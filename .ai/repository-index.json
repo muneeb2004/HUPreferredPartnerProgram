@@ -1,0 +1,23 @@
+{
+  "repository": {
+    "name": "Habib University Preferred Partner Platform",
+    "monorepo": true,
+    "workspaces": ["apps/*", "packages/*"]
+  },
+  "directories": {
+    "apps/web": "Next.js 15 frontend application",
+    "apps/api": "NestJS 10 backend REST API",
+    "packages/ui": "Shared React UI components (Tailwind + shadcn/ui)",
+    "packages/types": "Shared TypeScript definitions",
+    "packages/utils": "Shared utility functions",
+    "packages/config": "Shared configurations (ESLint, TSConfig, Prettier)",
+    "prisma": "Database schema and Prisma ORM configurations",
+    "docs": "Human-readable engineering documentation",
+    ".ai": "AI agent governance framework"
+  },
+  "invariants": {
+    "data": "Never fabricate business data",
+    "ui": "Performance and Accessibility first",
+    "architecture": "Decoupled frontend and backend"
+  }
+}

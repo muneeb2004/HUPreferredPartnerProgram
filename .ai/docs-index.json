@@ -1,0 +1,12 @@
+{
+  "docs": {
+    "Architecture": "docs/Architecture.md",
+    "Vision": "docs/Vision.md",
+    "Tech Stack": "docs/Tech-Stack.md",
+    "Design Principles": "docs/Design-Principles.md",
+    "Frontend Guidelines": "docs/Frontend-Guidelines.md",
+    "Backend Guidelines": "docs/Backend-Guidelines.md",
+    "Accessibility": "docs/Accessibility.md",
+    "Performance": "docs/Performance.md"
+  }
+}

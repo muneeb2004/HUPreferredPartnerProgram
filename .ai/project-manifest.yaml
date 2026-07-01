@@ -1,0 +1,13 @@
+project:
+  name: "Habib University Preferred Partner Platform"
+  domain: "Brand partnerships and offers"
+  architecture: "Decoupled Monorepo (Next.js + NestJS)"
+  stack:
+    frontend: ["Next.js", "React", "Tailwind CSS", "shadcn/ui", "Framer Motion", "GSAP", "Three.js"]
+    backend: ["NestJS", "Prisma", "PostgreSQL"]
+    infrastructure: ["Docker", "AWS ECS", "AWS RDS", "AWS S3"]
+  invariants:
+    - "No fabricated business data"
+    - "Strict server/client boundaries"
+    - "Accessibility first (WCAG 2.2 AA)"
+    - "GPU-friendly animations only"

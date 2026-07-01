@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  name         String
+  role         UserRole @default(VIEWER)
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Partner {
+  id          String          @id @default(uuid())
+  name        String
+  slug        String          @unique
+  description String
+  logo        String?
+  website     String?
+  category    PartnerCategory
+  status      PartnerStatus   @default(PENDING)
+  featured    Boolean         @default(false)
+  tier        String?
+  offers      Offer[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@map("partners")
+}
+
+model Offer {
+  id            String       @id @default(uuid())
+  title         String
+  description   String
+  code          String?
+  discountType  DiscountType
+  discountValue Float
+  partnerId     String
+  partner       Partner      @relation(fields: [partnerId], references: [id])
+  startDate     DateTime?
+  endDate       DateTime?
+  status        OfferStatus  @default(DRAFT)
+  terms         String?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@map("offers")
+}
+
+enum UserRole {
+  ADMIN
+  EDITOR
+  VIEWER
+}
+
+enum PartnerCategory {
+  FOOD
+  RETAIL
+  TECHNOLOGY
+  EDUCATION
+  HEALTH
+  ENTERTAINMENT
+  SERVICES
+  OTHER
+}
+
+enum PartnerStatus {
+  ACTIVE
+  INACTIVE
+  PENDING
+}
+
+enum OfferStatus {
+  ACTIVE
+  EXPIRED
+  DRAFT
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FIXED
+  BOGO
+  SPECIAL
+}

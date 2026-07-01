@@ -1,0 +1,4 @@
+* @team-lead
+/apps/api/ @backend-team
+/apps/web/ @frontend-team
+/infra/ @devops-team

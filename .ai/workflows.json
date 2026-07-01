@@ -1,0 +1,6 @@
+{
+  "workflows": {
+    "feature_development": ".ai/workflows/feature.md",
+    "architecture_decision": ".ai/workflows/architecture-decision.md"
+  }
+}

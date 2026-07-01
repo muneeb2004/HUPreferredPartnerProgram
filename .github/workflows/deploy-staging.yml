@@ -1,0 +1,14 @@
+name: Deploy Staging
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Placeholder Staging Deploy
+        run: echo "TODO: Implement ECR push and ECS deploy for staging"

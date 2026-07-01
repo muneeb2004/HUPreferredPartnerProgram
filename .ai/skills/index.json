@@ -1,0 +1,29 @@
+{
+  "skills": [
+    {
+      "id": "architect",
+      "file": "architect.md",
+      "role": "Principal Systems Architect"
+    },
+    {
+      "id": "reviewer",
+      "file": "reviewer.md",
+      "role": "Code Reviewer and Quality Gatekeeper"
+    },
+    {
+      "id": "frontend-engineer",
+      "file": "frontend-engineer.md",
+      "role": "React & Next.js UI developer"
+    },
+    {
+      "id": "backend-engineer",
+      "file": "backend-engineer.md",
+      "role": "NestJS API developer"
+    },
+    {
+      "id": "prisma-engineer",
+      "file": "prisma-engineer.md",
+      "role": "Database schema and ORM specialist"
+    }
+  ]
+}
