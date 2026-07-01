@@ -4,90 +4,166 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+}
+
+enum ContentStatus {
+  DRAFT
+  REVIEW
+  PUBLISHED
+  ARCHIVED
 }
 
 model User {
-  id           String   @id @default(uuid())
-  email        String   @unique
+  id           String      @id @default(uuid())
+  email        String      @unique
   name         String
-  role         UserRole @default(VIEWER)
+  role         String      @default("VIEWER") // Phase 9 handles RBAC properly
   passwordHash String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  deletedAt    DateTime?
+  auditLogs    AuditLog[]
 
   @@map("users")
 }
 
-model Partner {
-  id          String          @id @default(uuid())
+model Category {
+  id          String      @id @default(uuid())
+  slug        String      @unique
   name        String
-  slug        String          @unique
+  description String?
+  partners    Partner[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  deletedAt   DateTime?
+
+  @@map("categories")
+}
+
+model MediaAsset {
+  id          String    @id @default(uuid())
+  key         String    @unique // S3 Key
+  url         String
+  mimeType    String
+  sizeBytes   Int
+  altText     String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+
+  // Relations
+  partnerLogos    Partner[]         @relation("PartnerLogo")
+  partnerHeroes   Partner[]         @relation("PartnerHero")
+  newsletterIssues NewsletterIssue[] @relation("IssuePDF")
+
+  @@map("media_assets")
+}
+
+model Partner {
+  id          String        @id @default(uuid())
+  slug        String        @unique
+  name        String
   description String
-  logo        String?
   website     String?
-  category    PartnerCategory
-  status      PartnerStatus   @default(PENDING)
-  featured    Boolean         @default(false)
+  status      ContentStatus @default(DRAFT)
+  featured    Boolean       @default(false)
   tier        String?
+  
+  // Relations
+  categories  Category[]
   offers      Offer[]
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
+  
+  logoId      String?
+  logo        MediaAsset?   @relation("PartnerLogo", fields: [logoId], references: [id])
+  heroId      String?
+  hero        MediaAsset?   @relation("PartnerHero", fields: [heroId], references: [id])
+
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  deletedAt   DateTime?
 
   @@map("partners")
 }
 
 model Offer {
-  id            String       @id @default(uuid())
+  id            String        @id @default(uuid())
+  partnerId     String
+  partner       Partner       @relation(fields: [partnerId], references: [id])
   title         String
   description   String
   code          String?
-  discountType  DiscountType
+  discountType  String
   discountValue Float
-  partnerId     String
-  partner       Partner      @relation(fields: [partnerId], references: [id])
   startDate     DateTime?
   endDate       DateTime?
-  status        OfferStatus  @default(DRAFT)
   terms         String?
-  createdAt     DateTime     @default(now())
-  updatedAt     DateTime     @updatedAt
+  status        ContentStatus @default(DRAFT)
+
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  deletedAt   DateTime?
 
   @@map("offers")
 }
 
-enum UserRole {
-  ADMIN
-  EDITOR
-  VIEWER
+model Newsletter {
+  id          String            @id @default(uuid())
+  slug        String            @unique
+  title       String
+  description String?
+  status      ContentStatus     @default(DRAFT)
+  issues      NewsletterIssue[]
+
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+  deletedAt   DateTime?
+
+  @@map("newsletters")
 }
 
-enum PartnerCategory {
-  FOOD
-  RETAIL
-  TECHNOLOGY
-  EDUCATION
-  HEALTH
-  ENTERTAINMENT
-  SERVICES
-  OTHER
+model NewsletterIssue {
+  id           String        @id @default(uuid())
+  newsletterId String
+  newsletter   Newsletter    @relation(fields: [newsletterId], references: [id])
+  slug         String        @unique
+  title        String
+  excerpt      String?
+  publishedAt  DateTime?
+  status       ContentStatus @default(DRAFT)
+  
+  pdfId        String?
+  pdf          MediaAsset?   @relation("IssuePDF", fields: [pdfId], references: [id])
+
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  deletedAt    DateTime?
+
+  @@map("newsletter_issues")
 }
 
-enum PartnerStatus {
-  ACTIVE
-  INACTIVE
-  PENDING
+model Page {
+  id        String        @id @default(uuid())
+  slug      String        @unique
+  title     String
+  content   Json          // Structured blocks
+  status    ContentStatus @default(DRAFT)
+
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  deletedAt DateTime?
+
+  @@map("pages")
 }
 
-enum OfferStatus {
-  ACTIVE
-  EXPIRED
-  DRAFT
-}
+model AuditLog {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  action    String
+  entity    String
+  entityId  String
+  details   Json?
+  createdAt DateTime @default(now())
 
-enum DiscountType {
-  PERCENTAGE
-  FIXED
-  BOGO
-  SPECIAL
+  @@map("audit_logs")
 }

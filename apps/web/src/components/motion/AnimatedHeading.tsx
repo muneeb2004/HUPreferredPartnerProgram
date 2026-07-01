@@ -1,0 +1,29 @@
+"use client";
+
+import { m } from "framer-motion";
+import { slideUp } from "@/lib/motion";
+import { ReactNode } from "react";
+
+export function AnimatedHeading({ 
+  children, 
+  className,
+  as: Component = 'h2' 
+}: { 
+  children: ReactNode; 
+  className?: string;
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+}) {
+  const MotionComponent = m[Component];
+  
+  return (
+    <MotionComponent
+      variants={slideUp}
+      initial="initial"
+      whileInView="animate"
+      viewport={{ once: true, margin: "-50px" }}
+      className={className}
+    >
+      {children}
+    </MotionComponent>
+  );
+}

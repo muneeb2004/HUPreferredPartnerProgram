@@ -2,9 +2,16 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function LenisProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+      return; // Do not initialize Lenis if user prefers reduced motion
+    }
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
@@ -14,15 +21,22 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
       touchMultiplier: 2,
     });
 
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
+    // Synchronize Lenis scrolling with GSAP's ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
 
-    requestAnimationFrame(raf);
+    // Sync GSAP ticker with Lenis requestAnimationFrame
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    // Disable GSAP's lag smoothing to prevent jitter when syncing with Lenis
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
       lenis.destroy();
+      gsap.ticker.remove((time) => {
+        lenis.raf(time * 1000);
+      });
     };
   }, []);
 
