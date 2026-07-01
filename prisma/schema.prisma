@@ -13,18 +13,39 @@ enum ContentStatus {
   ARCHIVED
 }
 
+enum UserRole {
+  ADMIN
+  EDITOR
+  BRAND_MANAGER
+  VIEWER
+}
+
 model User {
   id           String      @id @default(uuid())
   email        String      @unique
   name         String
-  role         String      @default("VIEWER") // Phase 9 handles RBAC properly
+  role         UserRole    @default(VIEWER)
   passwordHash String
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @updatedAt
   deletedAt    DateTime?
   auditLogs    AuditLog[]
+  sessions     Session[]
 
   @@map("users")
+}
+
+model Session {
+  id               String   @id @default(uuid())
+  userId           String
+  user             User     @relation(fields: [userId], references: [id])
+  refreshTokenHash String
+  expiresAt        DateTime
+  userAgent        String?
+  ipAddress        String?
+  createdAt        DateTime @default(now())
+
+  @@map("sessions")
 }
 
 model Category {
