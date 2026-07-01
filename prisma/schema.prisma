@@ -4,6 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 enum ContentStatus {
@@ -158,6 +159,8 @@ model NewsletterIssue {
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
   deletedAt    DateTime?
+  
+  deliveryLogs DeliveryLog[]
 
   @@map("newsletter_issues")
 }
@@ -187,4 +190,89 @@ model AuditLog {
   createdAt DateTime @default(now())
 
   @@map("audit_logs")
+}
+
+enum SubscriptionStatus {
+  PENDING
+  ACTIVE
+  UNSUBSCRIBED
+  BOUNCED
+  COMPLAINED
+}
+
+enum DeliveryStatus {
+  QUEUED
+  SENDING
+  SENT
+  BOUNCED
+  COMPLAINED
+}
+
+model NewsletterSubscription {
+  id           String               @id @default(uuid())
+  email        String               @unique
+  status       SubscriptionStatus   @default(PENDING)
+  verifiedAt   DateTime?
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
+
+  preferences  NewsletterPreference[]
+  deliveryLogs DeliveryLog[]
+  verificationTokens EmailVerificationToken[]
+  unsubscribeTokens  UnsubscribeToken[]
+
+  @@index([status])
+  @@index([email])
+  @@map("newsletter_subscriptions")
+}
+
+model NewsletterPreference {
+  id             String                 @id @default(uuid())
+  subscriptionId String
+  subscription   NewsletterSubscription @relation(fields: [subscriptionId], references: [id])
+  categoryId     String
+  
+  @@unique([subscriptionId, categoryId])
+  @@map("newsletter_preferences")
+}
+
+model DeliveryLog {
+  id             String                 @id @default(uuid())
+  issueId        String
+  issue          NewsletterIssue        @relation(fields: [issueId], references: [id])
+  subscriptionId String
+  subscription   NewsletterSubscription @relation(fields: [subscriptionId], references: [id])
+  status         DeliveryStatus         @default(QUEUED)
+  timestamp      DateTime               @default(now())
+
+  @@index([issueId, status])
+  @@index([subscriptionId])
+  @@index([timestamp])
+  @@map("delivery_logs")
+}
+
+model EmailVerificationToken {
+  id             String                 @id @default(uuid())
+  subscriptionId String
+  subscription   NewsletterSubscription @relation(fields: [subscriptionId], references: [id])
+  tokenHash      String                 @unique
+  expiresAt      DateTime
+  createdAt      DateTime               @default(now())
+
+  @@index([subscriptionId])
+  @@index([tokenHash])
+  @@map("email_verification_tokens")
+}
+
+model UnsubscribeToken {
+  id             String                 @id @default(uuid())
+  subscriptionId String
+  subscription   NewsletterSubscription @relation(fields: [subscriptionId], references: [id])
+  tokenHash      String                 @unique
+  expiresAt      DateTime
+  createdAt      DateTime               @default(now())
+
+  @@index([subscriptionId])
+  @@index([tokenHash])
+  @@map("unsubscribe_tokens")
 }

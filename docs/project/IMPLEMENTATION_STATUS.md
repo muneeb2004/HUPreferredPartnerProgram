@@ -13,7 +13,7 @@ The Habib University Preferred Partner Platform is progressing smoothly and secu
 | **4. Landing Page** | ✅ Complete | ✅ PASS | ✅ Complete | ✅ PASS | Complete | Implemented Ahead |
 | **5. Partner Directory**| ✅ Complete | ✅ PASS | ✅ Complete | ✅ PASS | Complete | Implemented Ahead |
 | **6. Partner Detail** | ✅ Complete | ✅ PASS | ✅ Complete | ✅ PASS | Complete | Implemented Ahead |
-| **7. Offers & News** | 🟡 Partial | 🟡 Partial | 🟡 Partial | 🟡 Partial | In Progress | — |
+| **7. Newsletter System** | ✅ Complete | ✅ PASS | ✅ Complete | ✅ PASS W/ RECS | Complete | `phase-07-complete` |
 | **8. CMS Foundation** | ✅ Complete | ✅ PASS | ✅ Complete | ✅ PASS | Complete | `phase-08-complete` |
 | **9. Authentication** | ✅ Complete | ✅ PASS | ✅ Complete | ✅ PASS | Complete | `64fcdb3` |
 | **10. Admin Interface** | 🔴 Pending | 🔴 Pending | 🔴 Pending | 🔴 Pending | Pending | — |
@@ -32,11 +32,9 @@ The following items were explicitly excluded from their respective implementatio
 - **Phase 9 (Authentication):** Frontend UI implementation for Login, Password Reset, and Email Verification.
 
 ## 5. Known Recommendations
-The following non-blocking recommendations have been captured from engineering reviews and should be referenced during ongoing development:
-- **Pagination Strategy:** Consider implementing cursor-based pagination for partner and offer listings as the dataset grows (Phase 8).
-- **ISR Triggers:** Transition from synchronous revalidation to an `EventEmitter` pattern for webhook-driven ISR (Phase 8).
-- **Component Passthrough:** Ensure standard HTML wrapper attributes (e.g., `aria-`, `data-testid`) are cleanly forwarded in Animation Framework primitives (Phase 3).
-- **Next.js Cookies:** Server Actions utilizing `fetch()` to hit the API must manually parse and propagate the backend's `Set-Cookie` header to the client via `cookies().set()` (Phase 9).
+All non-blocking recommendations, technical debt, and architectural improvements identified during Engineering Reviews (including Phase 7 recommendations regarding DeliveryLog idempotency and Token cleanup) have been consolidated into a dedicated tracking document.
+
+Please refer to: [ENGINEERING_RECOMMENDATIONS.md](./ENGINEERING_RECOMMENDATIONS.md)
 
 ## 6. Next Phase
 **Target:** Phase 10 — Admin Interface

@@ -157,6 +157,12 @@ HuPrefferedPartner/
 
 ## Architecture Overview
 
+**Production Environment (AWS)**
+The canonical production architecture is strictly AWS-native.
+
+**Pilot Testing (Vercel)**
+To enable rapid QA, stakeholder review, and pilot testing, the `apps/web` Next.js frontend is fully compatible with Vercel Deployments. The Vercel deployment acts as an isolated preview tier connecting to the AWS backend infrastructure (or mock APIs), and does not replace the AWS production mandate.
+
 ```mermaid
 graph TB
     subgraph "Client"

@@ -31,7 +31,7 @@ export async function login(formData: FormData) {
 }
 
 export async function logout() {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const sessionId = cookieStore.get("sessionId")?.value;
 
   if (sessionId) {

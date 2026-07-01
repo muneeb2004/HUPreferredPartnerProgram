@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "buildCommand": "cd ../.. && turbo run build --filter=@hu-partner/web...",
+  "installCommand": "cd ../.. && pnpm install",
+  "outputDirectory": "apps/web/.next",
+  "framework": "nextjs"
+}

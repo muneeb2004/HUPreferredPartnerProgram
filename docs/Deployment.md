@@ -14,6 +14,21 @@
 - [Database Migrations](#database-migrations)
 - [SSL/TLS & HTTPS](#ssltls--https)
 - [Monitoring & Observability](#monitoring--observability)
+- [Pilot Testing (Vercel)](#pilot-testing-vercel)
+
+---
+
+## Pilot Testing (Vercel)
+
+To enable rapid iteration and stakeholder review, the repository is compatible with **Vercel** exclusively for pilot testing the Next.js frontend (`apps/web`). 
+This is **NOT** a platform migration. AWS remains the canonical production target.
+
+### Vercel Configuration
+- **Framework Preset:** Next.js
+- **Root Directory:** `apps/web` (Vercel automatically detects the Turbo workspace and runs `turbo run build --filter=@hu-partner/web...`)
+- **Environment Variables:** Only frontend variables (e.g., `NEXT_PUBLIC_API_URL`) are required. Backend variables like `DATABASE_URL` and `REDIS_HOST` are omitted since Vercel only compiles the frontend.
+
+By keeping the Next.js frontend physically decoupled from the NestJS backend, we ensure zero Vercel-specific hacks pollute the core infrastructure or API environment.
 
 ---
 

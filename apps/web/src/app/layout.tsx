@@ -7,7 +7,7 @@ import { MotionProvider } from '@/components/providers/MotionProvider';
 import { ErrorBoundary } from '@/components/providers/ErrorBoundary';
 // ThreeProvider loaded lazy to prevent blocking
 import dynamic from 'next/dynamic';
-const ThreeProvider = dynamic(() => import('@/components/providers/ThreeProvider').then(mod => mod.ThreeProvider), { ssr: false });
+const ThreeProvider = dynamic(() => import('@/components/providers/ThreeProvider').then(mod => mod.ThreeProvider));
 
 const inter = Inter({
   subsets: ['latin'],

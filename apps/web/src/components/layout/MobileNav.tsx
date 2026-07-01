@@ -2,8 +2,8 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from "@hu-partner/ui/components/ui/dialog";
-import { Button } from "@hu-partner/ui/components/ui/button";
+import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from "@hu-partner/ui";
+import { Button } from "@hu-partner/ui";
 
 export function MobileNav() {
   const [open, setOpen] = React.useState(false);

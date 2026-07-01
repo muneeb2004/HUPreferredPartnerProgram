@@ -2,7 +2,7 @@
 
 import { m } from "framer-motion";
 import { ReactNode } from "react";
-import { Button, ButtonProps } from "@/components/ui/button";
+import { Button, ButtonProps } from "@hu-partner/ui";
 
 export function AnimatedButton({ children, ...props }: ButtonProps & { children: ReactNode }) {
   return (

@@ -1,7 +1,7 @@
 export class CreatePartnerDto {
-  name: string;
-  slug: string;
-  description: string;
+  name!: string;
+  slug!: string;
+  description!: string;
   website?: string;
   tier?: string;
 }

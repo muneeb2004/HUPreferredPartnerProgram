@@ -23,8 +23,12 @@ export const disposeNode = (node: THREE.Object3D) => {
 export const clearScene = (scene: THREE.Scene) => {
   while (scene.children.length > 0) {
     const child = scene.children[0];
-    scene.remove(child);
-    disposeNode(child);
+    if (child) {
+      scene.remove(child);
+      disposeNode(child);
+    } else {
+      break;
+    }
   }
 };
 

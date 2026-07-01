@@ -16,6 +16,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.0.0",
     "@commitlint/config-conventional": "^19.0.0",
+    "@hu-partner/config": "workspace:*",
     "eslint": "^8.57.0",
     "husky": "^9.0.0",
     "lint-staged": "^15.0.0",
@@ -23,5 +24,8 @@
     "rimraf": "^5.0.0",
     "turbo": "^2.0.0",
     "typescript": "^5.4.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.0.0"
   }
 }

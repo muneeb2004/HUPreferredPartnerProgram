@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { Button } from "@hu-partner/ui/components/ui/button";
+import { Button } from "@hu-partner/ui";
 
 export default function NotFound() {
   return (

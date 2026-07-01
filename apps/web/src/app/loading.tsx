@@ -1,4 +1,4 @@
-import { Skeleton } from "@hu-partner/ui/components/ui/skeleton";
+import { Skeleton } from "@hu-partner/ui";
 
 export default function GlobalLoading() {
   return (

@@ -1,7 +1,7 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
   root: true,
-  extends: ['@hu-partner/config/eslint'],
+  extends: ['./packages/config/eslint/index.js'],
   parserOptions: {
     tsconfigRootDir: __dirname,
   },
