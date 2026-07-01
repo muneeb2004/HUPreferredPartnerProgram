@@ -24,6 +24,7 @@ When you join this project or lose context, read in this order:
 
 ## 3. Workflows
 - **Implementation:** Follow the 20-phase roadmap in `MASTER_PLAN.md`.
+- **Phase Gates:** No implementation phase begins until the previous phase receives either "PASS" or "PASS WITH RECOMMENDATIONS" from the reviewer.
 - **Feature RFC:** For significant features, create an RFC template in `.ai/templates/`.
 - **Architecture:** Do not violate boundaries (Next.js frontend, NestJS backend, Prisma). Changes require an ADR in `docs/Architecture-Decision-Records/`.
 

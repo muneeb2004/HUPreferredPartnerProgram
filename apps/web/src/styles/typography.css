@@ -1,0 +1,10 @@
+/* ─── Typography & Font Faces ─── */
+/* Font definitions will be loaded via next/font in layout.tsx */
+/* Type scales are handled in tailwind.config.ts */
+
+:root {
+  /* Default fallbacks until next/font swaps */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, monospace;
+}

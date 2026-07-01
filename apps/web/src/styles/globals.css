@@ -1,0 +1,121 @@
+@import 'tailwindcss';
+@config "../../tailwind.config.ts";
+
+@import './tokens.css';
+@import './typography.css';
+
+@layer base {
+  :root {
+    --background: var(--surface-page);
+    --foreground: #1A1814; /* neutral-900 */
+    --card: var(--surface-card);
+    --card-foreground: #1A1814;
+    --popover: var(--surface-elevated);
+    --popover-foreground: #1A1814;
+    --primary: #D4A853; /* gold-500 */
+    --primary-foreground: #0A1628; /* navy-900 */
+    --secondary: #1E4175; /* navy-600 */
+    --secondary-foreground: #FFFFFF;
+    --muted: #EDEAE6; /* neutral-100 */
+    --muted-foreground: #78736A; /* neutral-500 */
+    --accent: #F2E3C1; /* gold-200 */
+    --accent-foreground: #1A1814;
+    --destructive: #DC2626; /* error-500 */
+    --destructive-foreground: #FFFFFF;
+    --border: #DCD9D4; /* neutral-200 */
+    --input: #DCD9D4;
+    --ring: #2A5599; /* navy-500 */
+    
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: var(--surface-page);
+    --foreground: #EDEAE6; /* neutral-100 */
+    --card: var(--surface-card);
+    --card-foreground: #EDEAE6;
+    --popover: var(--surface-elevated);
+    --popover-foreground: #EDEAE6;
+    --primary: #D4A853;
+    --primary-foreground: #0A1628;
+    --secondary: #1E4175;
+    --secondary-foreground: #FFFFFF;
+    --muted: #0F2240; /* navy-800 */
+    --muted-foreground: #A3BBE0; /* navy-200 */
+    --accent: #163058; /* navy-700 */
+    --accent-foreground: #EDEAE6;
+    --destructive: #F87171;
+    --destructive-foreground: #0A1628;
+    --border: #163058; /* navy-700 */
+    --input: #163058;
+    --ring: #3D6DB5; /* navy-400 */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    font-family: var(--font-body);
+  }
+}
+
+/* ─── Base Resets ─── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: theme('colors.gold.200');
+  color: theme('colors.navy.900');
+}
+
+.dark ::selection {
+  background-color: theme('colors.navy.600');
+  color: theme('colors.neutral.50');
+}
+
+/* ─── Focus Styles ─── */
+:focus-visible {
+  outline: 2px solid theme('colors.navy.500');
+  outline-offset: 2px;
+}
+
+.dark :focus-visible {
+  outline: 2px solid theme('colors.gold.500');
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: theme('colors.neutral.100');
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: theme('colors.navy.900');
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme('colors.neutral.300');
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: theme('colors.navy.700');
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.neutral.400');
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.navy.600');
+}

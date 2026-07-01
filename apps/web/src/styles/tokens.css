@@ -1,0 +1,18 @@
+/* ─── Design System Tokens ─── */
+:root {
+  /* Semantic Colors for Surfaces */
+  --surface-page: #F6F5F2; /* neutral-50 */
+  --surface-card: #FFFFFF;
+  --surface-elevated: #FFFFFF;
+  --surface-overlay: rgba(6, 14, 26, 0.6); /* navy-950/60 */
+  --surface-subtle: #EDEAE6; /* neutral-100 */
+}
+
+.dark {
+  /* Semantic Colors for Surfaces in Dark Mode */
+  --surface-page: #0A1628; /* navy-900 */
+  --surface-card: #0F2240; /* navy-800 */
+  --surface-elevated: #163058; /* navy-700 */
+  --surface-overlay: rgba(6, 14, 26, 0.8); /* navy-950/80 */
+  --surface-subtle: #0F2240; /* navy-800 */
+}
