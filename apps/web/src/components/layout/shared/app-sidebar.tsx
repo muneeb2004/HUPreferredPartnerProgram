@@ -1,21 +1,26 @@
 "use client";
 
 import { cn } from "@hu-partner/ui";
-import { LayoutDashboard, Users, Tag, Mail, Store } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import type * as React from "react";
 
-const navigation = [
-  { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
-  { name: "Partners", href: "/admin/partners", icon: Store },
-  { name: "Offers", href: "/admin/offers", icon: Tag },
-  { name: "Users", href: "/admin/users", icon: Users },
-  { name: "Newsletters", href: "/admin/newsletters", icon: Mail },
-];
+export interface NavigationItem {
+  name: string;
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+}
 
-export function AdminSidebar({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: (val: boolean) => void }): React.ReactElement {
+export interface AppSidebarProps {
+  isOpen: boolean;
+  setIsOpen: (val: boolean) => void;
+  title: string;
+  baseHref: string;
+  navigation: NavigationItem[];
+}
+
+export function AppSidebar({ isOpen, setIsOpen, title, baseHref, navigation }: AppSidebarProps): React.ReactElement {
   const pathname = usePathname();
 
   return (
@@ -38,16 +43,17 @@ export function AdminSidebar({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen
       >
         <div className="p-6 border-b border-border flex items-center justify-between">
           <Link 
-            href="/admin" 
+            href={baseHref} 
             className="font-display font-bold text-lg focus-visible:outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-brand-primary"
             onClick={(): void => setIsOpen(false)}
           >
-            Admin Dashboard
+            {title}
           </Link>
         </div>
-        <nav className="flex-1 flex flex-col gap-2 p-4 overflow-y-auto" aria-label="Admin Navigation">
+        <nav className="flex-1 flex flex-col gap-2 p-4 overflow-y-auto" aria-label="Navigation">
           {navigation.map((item): React.JSX.Element => {
-            const isActive = pathname === item.href || (item.href !== "/admin" && pathname.startsWith(item.href + "/"));
+            const isActive = pathname === item.href || (item.href !== baseHref && pathname.startsWith(item.href + "/"));
+            const Icon = item.icon;
             return (
               <Link 
                 key={item.name}
@@ -61,7 +67,7 @@ export function AdminSidebar({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen
                 aria-current={isActive ? "page" : undefined}
                 onClick={(): void => setIsOpen(false)}
               >
-                <item.icon className="w-4 h-4" />
+                <Icon className="w-4 h-4" />
                 {item.name}
               </Link>
             );

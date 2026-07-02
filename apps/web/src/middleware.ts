@@ -47,6 +47,12 @@ export function middleware(request: NextRequest): NextResponse {
       const homeUrl = new URL('/', request.url);
       return NextResponse.redirect(homeUrl);
     }
+
+    // RBAC for brand-portal routes
+    if (pathname.startsWith('/brand-portal') && payload.role !== 'BRAND_MANAGER') {
+      const homeUrl = new URL('/', request.url);
+      return NextResponse.redirect(homeUrl);
+    }
   }
 
   return NextResponse.next();
