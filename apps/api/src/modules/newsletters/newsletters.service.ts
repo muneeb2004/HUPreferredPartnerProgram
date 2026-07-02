@@ -72,4 +72,56 @@ export class NewslettersService {
 
     return { message: 'Newsletter dispatch scheduled successfully', issueId: issue.id };
   }
+
+  // --- Admin CRUD Methods ---
+
+  async findAllSeries() {
+    return this.prisma.newsletter.findMany({
+      where: { deletedAt: null },
+      orderBy: { createdAt: 'desc' }
+    });
+  }
+
+  async findAllAdmin() {
+    return this.prisma.newsletterIssue.findMany({
+      where: { deletedAt: null },
+      orderBy: { createdAt: 'desc' },
+      include: {
+        newsletter: { select: { title: true } },
+      },
+    });
+  }
+
+  async findOneAdmin(id: string) {
+    const issue = await this.prisma.newsletterIssue.findUnique({
+      where: { id },
+      include: {
+        newsletter: { select: { title: true } },
+      },
+    });
+    if (!issue || issue.deletedAt) throw new NotFoundException('Issue not found');
+    return issue;
+  }
+
+  async createIssue(data: any) {
+    return this.prisma.newsletterIssue.create({
+      data,
+    });
+  }
+
+  async updateIssue(id: string, data: any) {
+    await this.findOneAdmin(id);
+    return this.prisma.newsletterIssue.update({
+      where: { id },
+      data,
+    });
+  }
+
+  async deleteIssue(id: string) {
+    await this.findOneAdmin(id);
+    return this.prisma.newsletterIssue.update({
+      where: { id },
+      data: { deletedAt: new Date(), status: 'ARCHIVED' },
+    });
+  }
 }

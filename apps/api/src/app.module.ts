@@ -17,6 +17,8 @@ import { PartnersModule } from './modules/partners/partners.module';
 import { SessionsModule } from './modules/sessions/sessions.module';
 import { SubscriptionModule } from './modules/subscriptions/subscriptions.module';
 import { UsersModule } from './modules/users/users.module';
+import { AdminModule } from './modules/admin/admin.module';
+import { OffersModule } from './modules/offers/offers.module';
 
 @Module({
   imports: [
@@ -38,7 +40,9 @@ import { UsersModule } from './modules/users/users.module';
     UsersModule,
     SessionsModule,
     SubscriptionModule,
-    NewslettersModule
+    NewslettersModule,
+    AdminModule,
+    OffersModule
   ],
   controllers: [AppController],
   providers: [
