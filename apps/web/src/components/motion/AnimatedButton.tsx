@@ -1,8 +1,8 @@
 "use client";
 
+import { Button, type ButtonProps } from "@hu-partner/ui";
 import { m } from "framer-motion";
-import { ReactNode } from "react";
-import { Button, ButtonProps } from "@hu-partner/ui";
+import { type ReactNode } from "react";
 
 export function AnimatedButton({ children, ...props }: ButtonProps & { children: ReactNode }) {
   return (

@@ -1,6 +1,8 @@
 import * as React from "react";
-import { NewsletterCard } from "./NewsletterCard";
+
 import { EmptyState } from "@/components/marketing/EmptyState";
+
+import { NewsletterCard } from "./NewsletterCard";
 
 interface NewsletterArchiveListProps {
   newsletters: Array<{ id: string; slug: string; title: string; date: string; excerpt: string }>;

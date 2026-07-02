@@ -8,13 +8,13 @@ import * as THREE from 'three';
 export const disposeNode = (node: THREE.Object3D) => {
   if (node instanceof THREE.Mesh) {
     if (node.geometry) {
-      node.geometry.dispose();
+      (node.geometry as THREE.BufferGeometry).dispose();
     }
     if (node.material) {
       if (Array.isArray(node.material)) {
-        node.material.forEach((mat) => mat.dispose());
+        node.material.forEach((mat) => (mat as THREE.Material).dispose());
       } else {
-        node.material.dispose();
+        (node.material as THREE.Material).dispose();
       }
     }
   }

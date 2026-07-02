@@ -1,8 +1,9 @@
 "use client";
 
 import { m } from "framer-motion";
+import { type ReactNode } from "react";
+
 import { slideUp } from "@/lib/motion";
-import { ReactNode } from "react";
 
 export function AnimatedHeading({ 
   children, 

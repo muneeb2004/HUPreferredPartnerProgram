@@ -1,6 +1,8 @@
 import * as React from "react";
-import { OfferCard } from "./OfferCard";
+
 import { EmptyState } from "@/components/marketing/EmptyState";
+
+import { OfferCard } from "./OfferCard";
 
 interface OfferGridProps {
   offers: Array<{ id: string; title: string; partnerName: string; expirationDate: string }>;

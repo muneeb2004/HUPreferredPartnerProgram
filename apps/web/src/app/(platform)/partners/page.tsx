@@ -1,6 +1,7 @@
+import { type Metadata } from "next";
+
 import { PartnerGrid } from "@/components/domain/partners/PartnerGrid";
 import { SectionHeading } from "@/components/marketing/SectionHeading";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: 'Partners | HU Preferred Partner',

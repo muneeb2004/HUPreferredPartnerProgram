@@ -1,5 +1,6 @@
+import { type Metadata } from "next";
+
 import { OfferDetailHeader } from "@/components/domain/offers/OfferDetailHeader";
-import { Metadata } from "next";
 
 export const revalidate = 3600; // ISR 1 hour
 

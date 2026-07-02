@@ -1,6 +1,7 @@
+import { type Metadata } from "next";
+
 import { OfferGrid } from "@/components/domain/offers/OfferGrid";
 import { SectionHeading } from "@/components/marketing/SectionHeading";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: 'Offers | HU Preferred Partner',

@@ -242,6 +242,9 @@ importers:
       '@types/three':
         specifier: ^0.185.0
         version: 0.185.0
+      eslint-config-next:
+        specifier: ^14.0.0
+        version: 14.2.35(eslint@8.57.1)(typescript@5.9.3)
 
   packages/config:
     devDependencies:

@@ -1,22 +1,36 @@
-import { notFound } from 'next/navigation';
-import { AnimatedHeading, FadeIn } from '../../../../components/motion/MotionPrimitives';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
+
+import { AnimatedHeading, FadeIn } from '../../../../components/motion/MotionPrimitives';
 
 export const revalidate = 60;
 
-async function getNewsletterBySlug(slug: string) {
+interface NewsletterDetail {
+  id: string;
+  slug: string;
+  title: string;
+  publishedAt: string;
+  excerpt?: string | null;
+  pdf?: { url: string } | null;
+}
+
+interface NewsletterDetailResponse {
+  data: NewsletterDetail;
+}
+
+async function getNewsletterBySlug(slug: string): Promise<NewsletterDetail | null> {
   const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
   try {
     const res = await fetch(`${API_URL}/newsletters/${slug}`, { next: { revalidate: 60 } });
     if (!res.ok) return null;
-    const json = await res.json();
-    return json.data;
+    const json = (await res.json()) as unknown;
+    return (json as NewsletterDetailResponse).data;
   } catch (error) {
     return null;
   }
 }
 
-export default async function NewsletterIssuePage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function NewsletterIssuePage({ params }: { params: Promise<{ slug: string }> }): Promise<React.ReactElement> {
   const resolvedParams = await params;
   const issue = await getNewsletterBySlug(resolvedParams.slug);
 

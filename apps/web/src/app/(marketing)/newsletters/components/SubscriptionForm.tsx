@@ -1,8 +1,9 @@
 'use client';
 
 import { useActionState } from 'react';
-import { subscribeAction } from '../../../actions/newsletter';
+
 import { AnimatedButton, FadeIn } from '../../../../components/motion/MotionPrimitives';
+import { subscribeAction } from '../../../actions/newsletter';
 
 export function SubscriptionForm() {
   const [state, formAction, pending] = useActionState(subscribeAction, null);

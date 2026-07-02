@@ -1,6 +1,7 @@
+import { type Metadata } from "next";
+
 import { HeroEditorial } from "@/components/marketing/HeroEditorial";
 import { ValuePropositionGrid } from "@/components/marketing/ValuePropositionGrid";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: 'About | HU Preferred Partner',

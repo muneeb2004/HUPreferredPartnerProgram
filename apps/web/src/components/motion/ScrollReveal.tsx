@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+
 import { createScrollReveal } from "@/lib/gsap-utils";
 
 export function ScrollReveal({ children, className }: { children: React.ReactNode; className?: string }) {

@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { Footer } from "@/components/layout/Footer";
 
 export default function BrandPortalLayout({ children }: { children: React.ReactNode }) {

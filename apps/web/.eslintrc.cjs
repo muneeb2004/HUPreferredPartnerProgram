@@ -1,7 +1,6 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
-  root: true,
-  extends: ['./packages/config/eslint/index.js'],
+  extends: ['../../.eslintrc.js', 'next/core-web-vitals'],
   parserOptions: {
     tsconfigRootDir: __dirname,
     project: true,

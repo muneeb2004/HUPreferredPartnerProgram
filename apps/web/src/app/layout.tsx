@@ -1,12 +1,17 @@
-import type { Metadata } from 'next';
+import dynamic from 'next/dynamic';
 import { Inter, Playfair_Display, JetBrains_Mono } from 'next/font/google';
-import '../styles/globals.css';
-import { ThemeProvider } from '@/components/providers/ThemeProvider';
+
+
+import { ErrorBoundary } from '@/components/providers/ErrorBoundary';
 import { LenisProvider } from '@/components/providers/LenisProvider';
 import { MotionProvider } from '@/components/providers/MotionProvider';
-import { ErrorBoundary } from '@/components/providers/ErrorBoundary';
+import { ThemeProvider } from '@/components/providers/ThemeProvider';
+
+import type { Metadata } from 'next';
+
+import '../styles/globals.css';
+
 // ThreeProvider loaded lazy to prevent blocking
-import dynamic from 'next/dynamic';
 const ThreeProvider = dynamic(() => import('@/components/providers/ThreeProvider').then(mod => mod.ThreeProvider));
 
 const inter = Inter({

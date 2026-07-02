@@ -1,12 +1,11 @@
-import { AnimatedHeading, FadeIn } from '../../../../components/motion/MotionPrimitives';
 import { UnsubscribeForm } from '../../../../components/marketing/UnsubscribeForm';
-import Link from 'next/link';
+import { AnimatedHeading, FadeIn } from '../../../../components/motion/MotionPrimitives';
 
 export default async function UnsubscribePage({
   searchParams,
 }: {
   searchParams: Promise<{ email?: string }>;
-}) {
+}): Promise<React.ReactElement> {
   const resolvedSearchParams = await searchParams;
   const defaultEmail = resolvedSearchParams.email || '';
 
@@ -18,7 +17,7 @@ export default async function UnsubscribePage({
 
       <FadeIn delay={0.2} className="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 max-w-md mx-auto">
         <p className="text-gray-600 dark:text-gray-300 mb-6">
-          We're sorry to see you go. Enter your email below to unsubscribe.
+          We&apos;re sorry to see you go. Enter your email below to unsubscribe.
         </p>
 
         <UnsubscribeForm defaultEmail={defaultEmail} />

@@ -1,6 +1,7 @@
-import { verifyAction } from '../../../actions/newsletter';
-import { AnimatedHeading, FadeIn } from '../../../../components/motion/MotionPrimitives';
 import Link from 'next/link';
+
+import { AnimatedHeading, FadeIn } from '../../../../components/motion/MotionPrimitives';
+import { verifyAction } from '../../../actions/newsletter';
 
 export default async function VerifySubscriptionPage({
   searchParams,

@@ -1,6 +1,7 @@
+import { type Metadata } from "next";
+
 import { PartnerHero } from "@/components/domain/partners/PartnerHero";
 import { PartnerOffersList } from "@/components/domain/partners/PartnerOffersList";
-import { Metadata } from "next";
 
 export const revalidate = 3600; // ISR 1 hour
 

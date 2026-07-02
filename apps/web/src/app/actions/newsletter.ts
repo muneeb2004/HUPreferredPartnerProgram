@@ -1,10 +1,8 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
-
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
 
-export async function subscribeAction(prevState: any, formData: FormData) {
+export async function subscribeAction(prevState: unknown, formData: FormData) {
   const email = formData.get('email') as string;
 
   if (!email || !email.includes('@')) {
@@ -19,7 +17,7 @@ export async function subscribeAction(prevState: any, formData: FormData) {
     });
 
     if (!res.ok) {
-      const data = await res.json();
+      const data = (await res.json()) as { message?: string };
       return { error: data.message || 'Subscription failed' };
     }
 
@@ -47,7 +45,7 @@ export async function verifyAction(token: string) {
   }
 }
 
-export async function unsubscribeAction(prevState: any, formData: FormData) {
+export async function unsubscribeAction(prevState: unknown, formData: FormData) {
   const email = formData.get('email') as string;
 
   try {

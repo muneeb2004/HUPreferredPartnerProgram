@@ -1,8 +1,9 @@
 "use client";
 
 import { m } from "framer-motion";
+import Image, { type ImageProps } from "next/image";
+
 import { fadeIn } from "@/lib/motion";
-import Image, { ImageProps } from "next/image";
 
 export function AnimatedImage(props: ImageProps) {
   return (

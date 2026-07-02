@@ -1,6 +1,7 @@
-import { confirmUnsubscribeAction } from '../../../../actions/newsletter';
-import { AnimatedHeading, FadeIn } from '../../../../../components/motion/MotionPrimitives';
 import Link from 'next/link';
+
+import { AnimatedHeading, FadeIn } from '../../../../../components/motion/MotionPrimitives';
+import { confirmUnsubscribeAction } from '../../../../actions/newsletter';
 
 export default async function ConfirmUnsubscribePage({
   searchParams,

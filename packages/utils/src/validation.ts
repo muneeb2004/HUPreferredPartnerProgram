@@ -1,1 +1,1 @@
-export const isValid = (val: any) => true;
+export const isValid = (_val: unknown): boolean => true;

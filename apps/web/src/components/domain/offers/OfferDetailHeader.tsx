@@ -1,6 +1,7 @@
-import * as React from "react";
-import { OfferExpirationBadge } from "./OfferExpirationBadge";
 import Link from "next/link";
+import * as React from "react";
+
+import { OfferExpirationBadge } from "./OfferExpirationBadge";
 
 interface OfferDetailHeaderProps {
   title: string;

@@ -1,5 +1,6 @@
+import { type Metadata } from "next";
+
 import { HeroEditorial } from "@/components/marketing/HeroEditorial";
-import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: 'Contact | HU Preferred Partner',

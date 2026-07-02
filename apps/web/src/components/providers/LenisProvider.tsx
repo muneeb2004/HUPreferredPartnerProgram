@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect } from "react";
-import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "lenis";
+import { useEffect } from "react";
 
 export function LenisProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
@@ -22,7 +22,7 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     });
 
     // Synchronize Lenis scrolling with GSAP's ScrollTrigger
-    lenis.on('scroll', ScrollTrigger.update);
+    lenis.on('scroll', () => { ScrollTrigger.update(); });
 
     // Sync GSAP ticker with Lenis requestAnimationFrame
     gsap.ticker.add((time) => {

@@ -1,6 +1,7 @@
-import { HeroEditorial } from "@/components/marketing/HeroEditorial";
+import { type Metadata } from "next";
+
 import { EmptyState } from "@/components/marketing/EmptyState";
-import { Metadata } from "next";
+import { HeroEditorial } from "@/components/marketing/HeroEditorial";
 
 export const metadata: Metadata = {
   title: 'FAQ | HU Preferred Partner',

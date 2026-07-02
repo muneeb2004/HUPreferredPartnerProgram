@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import { Suspense, ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 
 interface ThreeProviderProps {
   children: ReactNode;

@@ -1,8 +1,9 @@
 "use client";
 
 import { m } from "framer-motion";
+import { type ReactNode } from "react";
+
 import { fadeIn } from "@/lib/motion";
-import { ReactNode } from "react";
 
 export function FadeIn({ children, className }: { children: ReactNode; className?: string }) {
   return (

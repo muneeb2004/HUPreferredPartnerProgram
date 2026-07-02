@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { OfferExpirationBadge } from "./OfferExpirationBadge";
 
 interface OfferCardProps {

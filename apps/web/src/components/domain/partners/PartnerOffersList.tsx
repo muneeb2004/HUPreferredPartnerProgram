@@ -1,6 +1,7 @@
 import * as React from "react";
-import { EmptyState } from "@/components/marketing/EmptyState";
+
 import { OfferCard } from "@/components/domain/offers/OfferCard";
+import { EmptyState } from "@/components/marketing/EmptyState";
 
 interface PartnerOffersListProps {
   offers: Array<{ id: string; title: string; partnerName: string; expirationDate: string }>;

@@ -1,6 +1,7 @@
 'use client';
 
 import { useActionState } from 'react';
+
 import { unsubscribeAction } from '../../app/actions/newsletter';
 import { AnimatedButton } from '../motion/MotionPrimitives';
 

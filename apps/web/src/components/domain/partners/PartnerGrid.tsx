@@ -1,6 +1,8 @@
 import * as React from "react";
-import { PartnerCard } from "./PartnerCard";
+
 import { EmptyState } from "@/components/marketing/EmptyState";
+
+import { PartnerCard } from "./PartnerCard";
 
 interface PartnerGridProps {
   partners: Array<{ id: string; slug: string; name: string; description: string }>;

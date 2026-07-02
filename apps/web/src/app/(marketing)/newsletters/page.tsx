@@ -1,21 +1,37 @@
-import { FadeIn, AnimatedHeading, AnimatedCard, StaggerGroup } from '../../../components/motion/MotionPrimitives';
-import { SubscriptionForm } from './components/SubscriptionForm';
 import Link from 'next/link';
+
+import { FadeIn, AnimatedHeading, AnimatedCard, StaggerGroup } from '../../../components/motion/MotionPrimitives';
+
+import { SubscriptionForm } from './components/SubscriptionForm';
 
 export const revalidate = 60; // ISR revalidation every 60s
 
-async function getNewsletters() {
+interface Newsletter {
+  id: string;
+  slug: string;
+  title: string;
+  publishedAt: string;
+  excerpt?: string | null;
+  pdf?: { url: string } | null;
+}
+
+interface NewslettersResponse {
+  data: Newsletter[];
+}
+
+async function getNewsletters(): Promise<NewslettersResponse> {
   const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
   try {
     const res = await fetch(`${API_URL}/newsletters`, { next: { revalidate: 60 } });
     if (!res.ok) return { data: [] };
-    return res.json();
+    const json = (await res.json()) as unknown;
+    return json as NewslettersResponse;
   } catch (error) {
     return { data: [] };
   }
 }
 
-export default async function NewslettersArchivePage() {
+export default async function NewslettersArchivePage(): Promise<React.ReactElement> {
   const { data: newsletters } = await getNewsletters();
 
   return (
@@ -42,7 +58,7 @@ export default async function NewslettersArchivePage() {
           </FadeIn>
         ) : (
           <StaggerGroup className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {newsletters.map((issue: any) => (
+            {newsletters.map((issue: Newsletter) => (
               <AnimatedCard key={issue.id} className="block p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 dark:border-gray-700">
                 <Link href={`/newsletters/${issue.slug}`} className="block h-full">
                   <div className="text-sm text-blue-600 dark:text-blue-400 font-medium mb-2">
