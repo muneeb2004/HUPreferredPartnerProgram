@@ -2,7 +2,7 @@
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
 
-export async function subscribeAction(prevState: unknown, formData: FormData) {
+export async function subscribeAction(prevState: unknown, formData: FormData): Promise<{ error: string; success?: never; } | { success: string; error?: never; }> {
   const email = formData.get('email') as string;
 
   if (!email || !email.includes('@')) {
@@ -27,7 +27,7 @@ export async function subscribeAction(prevState: unknown, formData: FormData) {
   }
 }
 
-export async function verifyAction(token: string) {
+export async function verifyAction(token: string): Promise<{ error: string; success?: never; } | { success: string; error?: never; }> {
   try {
     const res = await fetch(`${API_URL}/subscriptions/verify`, {
       method: 'POST',
@@ -45,7 +45,7 @@ export async function verifyAction(token: string) {
   }
 }
 
-export async function unsubscribeAction(prevState: unknown, formData: FormData) {
+export async function unsubscribeAction(prevState: unknown, formData: FormData): Promise<{ error: string; success?: never; } | { success: string; error?: never; }> {
   const email = formData.get('email') as string;
 
   try {
@@ -65,7 +65,7 @@ export async function unsubscribeAction(prevState: unknown, formData: FormData) 
   }
 }
 
-export async function confirmUnsubscribeAction(token: string) {
+export async function confirmUnsubscribeAction(token: string): Promise<{ error: string; success?: never; } | { success: string; error?: never; }> {
   try {
     const res = await fetch(`${API_URL}/subscriptions/unsubscribe/confirm`, {
       method: 'POST',

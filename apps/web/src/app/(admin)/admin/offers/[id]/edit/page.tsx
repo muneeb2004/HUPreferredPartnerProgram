@@ -1,12 +1,12 @@
-import { notFound } from "next/navigation"
 import { cookies } from "next/headers"
+import { notFound } from "next/navigation"
 
 import { OfferForm } from "@/components/admin/offers/offer-form"
-import { OfferFormValues } from "@/lib/validations/offer"
+import { type OfferFormValues } from "@/lib/validations/offer"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
-async function getOffer(id: string) {
+async function getOffer(id: string): Promise<(OfferFormValues & { id: string }) | null> {
   const cookieStore = await cookies()
   const token = cookieStore.get("accessToken")?.value
   
@@ -21,11 +21,11 @@ async function getOffer(id: string) {
     return null
   }
 
-  const { data } = await res.json()
-  return data
+  const json = (await res.json()) as { data: OfferFormValues & { id: string } };
+  return json.data;
 }
 
-async function getPartners() {
+async function getPartners(): Promise<{ id: string; name: string }[]> {
   const cookieStore = await cookies()
   const token = cookieStore.get("accessToken")?.value
   
@@ -40,15 +40,15 @@ async function getPartners() {
     return []
   }
 
-  const { data } = await res.json()
-  return data.map((p: any) => ({ id: p.id, name: p.name }))
+  const json = (await res.json()) as { data: { id: string; name: string }[] };
+  return json.data;
 }
 
 interface EditOfferPageProps {
   params: Promise<{ id: string }>
 }
 
-export default async function EditOfferPage({ params }: EditOfferPageProps) {
+export default async function EditOfferPage({ params }: EditOfferPageProps): JSX.Element {
   const resolvedParams = await params
   const offer = await getOffer(resolvedParams.id)
   if (!offer) {

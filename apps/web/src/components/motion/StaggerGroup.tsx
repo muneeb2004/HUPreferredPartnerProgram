@@ -5,7 +5,7 @@ import { type ReactNode } from "react";
 
 import { staggerContainer } from "@/lib/motion";
 
-export function StaggerGroup({ children, className }: { children: ReactNode; className?: string }) {
+export function StaggerGroup({ children, className }: { children: ReactNode; className?: string }): JSX.Element {
   return (
     <m.div
       variants={staggerContainer}

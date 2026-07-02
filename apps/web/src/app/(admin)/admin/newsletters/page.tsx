@@ -1,13 +1,14 @@
-import { Suspense } from "react"
+import { Button } from "@hu-partner/ui"
+import { Plus } from "lucide-react"
 import { cookies } from "next/headers"
 import Link from "next/link"
-import { Plus } from "lucide-react"
+import { Suspense } from "react"
 
-import { Button } from "@hu-partner/ui"
 import { DataTable } from "@/components/layout/admin/data-table"
-import { DataTableSkeleton } from "@/components/layout/admin/data-table-skeleton"
 import { DataTableError } from "@/components/layout/admin/data-table-error"
-import { columns, NewsletterColumn } from "./columns"
+import { DataTableSkeleton } from "@/components/layout/admin/data-table-skeleton"
+
+import { columns, type NewsletterColumn } from "./columns"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
@@ -26,11 +27,11 @@ async function getNewsletters(): Promise<NewsletterColumn[]> {
     throw new Error("Failed to fetch newsletters")
   }
 
-  const data = await res.json()
+  const data = (await res.json()) as NewsletterColumn[];
   return data
 }
 
-export default function NewslettersPage() {
+export default function NewslettersPage(): JSX.Element {
   return (
     <div className="flex-1 space-y-4 p-8 pt-6">
       <div className="flex items-center justify-between space-y-2">
@@ -50,7 +51,7 @@ export default function NewslettersPage() {
   )
 }
 
-async function NewslettersTable() {
+async function NewslettersTable(): JSX.Element {
   try {
     const data = await getNewsletters()
     return (
@@ -61,7 +62,7 @@ async function NewslettersTable() {
         searchPlaceholder="Search by title..."
       />
     )
-  } catch (error) {
+  } catch (error: unknown) {
     return <DataTableError />
   }
 }

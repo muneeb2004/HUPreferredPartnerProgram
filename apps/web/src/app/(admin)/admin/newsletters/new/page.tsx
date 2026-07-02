@@ -4,7 +4,7 @@ import { NewsletterForm } from "@/components/admin/newsletters/newsletter-form"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
-async function getSeries() {
+async function getSeries(): Promise<{ id: string; name: string }[]> {
   const cookieStore = await cookies()
   const token = cookieStore.get("accessToken")?.value
   
@@ -15,11 +15,11 @@ async function getSeries() {
     }
   })
 
-  if (!res.ok) return []
-  return await res.json()
+  const json = (await res.json()) as { data: { id: string; name: string }[] };
+  return json.data || [];
 }
 
-export default async function NewNewsletterPage() {
+export default async function NewNewsletterPage(): JSX.Element {
   const series = await getSeries()
 
   return (

@@ -9,8 +9,8 @@ export default function ErrorBoundary({
 }: {
   error: Error & { digest?: string };
   reset: () => void;
-}) {
-  useEffect(() => {
+}): JSX.Element {
+  useEffect((): void => {
     // In production, log this to an error reporting service
     console.error("Route segment error:", error);
   }, [error]);
@@ -21,7 +21,7 @@ export default function ErrorBoundary({
       <p className="text-muted-foreground mb-8 max-w-md">
         We encountered an unexpected error processing this section of the application.
       </p>
-      <Button onClick={() => reset()}>Try again</Button>
+      <Button onClick={(): void => reset()}>Try again</Button>
     </div>
   );
 }

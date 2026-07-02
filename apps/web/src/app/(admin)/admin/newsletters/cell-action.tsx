@@ -1,9 +1,5 @@
 "use client"
 
-import * as React from "react"
-import { MoreHorizontal, Edit, Send, Trash } from "lucide-react"
-import { useRouter } from "next/navigation"
-
 import { 
   Button, 
   DropdownMenu, 
@@ -12,20 +8,25 @@ import {
   DropdownMenuLabel, 
   DropdownMenuTrigger 
 } from "@hu-partner/ui"
-import { NewsletterColumn } from "./columns"
+import { MoreHorizontal, Edit, Send, Trash } from "lucide-react"
+import { useRouter } from "next/navigation"
+import * as React from "react"
+
 import { deleteNewsletter, sendNewsletter } from "@/app/actions/newsletters"
+
+import { type NewsletterColumn } from "./columns"
 
 interface CellActionProps {
   data: NewsletterColumn
 }
 
-export function NewsletterCellAction({ data }: CellActionProps) {
+export function NewsletterCellAction({ data }: CellActionProps): JSX.Element {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
 
-  const onDelete = () => {
+  const onDelete = (): void => {
     if (confirm("Are you sure you want to delete this newsletter?")) {
-      startTransition(async () => {
+      startTransition(async (): Promise<void> => {
         const result = await deleteNewsletter(data.id)
         if (result.success) {
           router.refresh()
@@ -36,9 +37,9 @@ export function NewsletterCellAction({ data }: CellActionProps) {
     }
   }
 
-  const onSend = () => {
+  const onSend = (): void => {
     if (confirm("Are you sure you want to send this newsletter issue to subscribers?")) {
-      startTransition(async () => {
+      startTransition(async (): Promise<void> => {
         const result = await sendNewsletter(data.id)
         if (result.success) {
           alert("Newsletter send triggered successfully!")
@@ -60,7 +61,7 @@ export function NewsletterCellAction({ data }: CellActionProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-        <DropdownMenuItem onClick={() => router.push(`/admin/newsletters/${data.id}/edit`)}>
+        <DropdownMenuItem onClick={(): void => router.push(`/admin/newsletters/${data.id}/edit`)}>
           <Edit className="mr-2 h-4 w-4" /> Edit
         </DropdownMenuItem>
         

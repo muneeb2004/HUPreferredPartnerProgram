@@ -1,7 +1,8 @@
 "use client"
 
-import { ColumnDef } from "@tanstack/react-table"
 import { Badge } from "@hu-partner/ui"
+import { type ColumnDef } from "@tanstack/react-table"
+
 import { OfferCellAction } from "./cell-action"
 
 export type OfferColumn = {
@@ -28,30 +29,30 @@ export const columns: ColumnDef<OfferColumn>[] = [
   {
     accessorKey: "code",
     header: "Code",
-    cell: ({ row }) => row.getValue("code") || "-"
+    cell: ({ row }): void => row.getValue("code") || "-"
   },
   {
     accessorKey: "discountValue",
     header: "Value",
-    cell: ({ row }) => {
-      const type = row.getValue("discountType") as string
-      const val = row.getValue("discountValue") as number
-      if (type === "PERCENTAGE") return `${val}%`
-      if (type === "FIXED") return `$${val}`
-      return val
+    cell: ({ row }): string | number => {
+      const type = row.getValue("discountType")
+      const val = row.getValue("discountValue")
+      if (type === "PERCENTAGE") return `${String(val)}%`
+      if (type === "FIXED") return `$${String(val)}`
+      return Number(val)
     }
   },
   {
     accessorKey: "status",
     header: "Status",
-    cell: ({ row }) => {
-      const status = row.getValue("status") as string
+    cell: ({ row }): JSX.Element => {
+      const status = row.getValue("status")
       const variant = status === "PUBLISHED" ? "default" : status === "DRAFT" ? "secondary" : "destructive"
       return <Badge variant={variant}>{status}</Badge>
     },
   },
   {
     id: "actions",
-    cell: ({ row }) => <OfferCellAction data={row.original} />
+    cell: ({ row }): JSX.Element => <OfferCellAction data={row.original} />
   },
 ]

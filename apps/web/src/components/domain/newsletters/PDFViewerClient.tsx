@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-export function PDFViewerClient({ url }: { url: string }) {
+export function PDFViewerClient({ url }: { url: string }): JSX.Element {
   // In a real implementation (Phase 7), this might use react-pdf or a robust iframe solution
   return (
     <div className="w-full aspect-[3/4] md:aspect-auto md:h-[800px] border border-border rounded-lg overflow-hidden bg-muted flex flex-col items-center justify-center">

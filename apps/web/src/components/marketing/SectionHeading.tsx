@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export function SectionHeading({ title, subtitle }: { title: string; subtitle?: string }) {
+export function SectionHeading({ title, subtitle }: { title: string; subtitle?: string }): JSX.Element {
   return (
     <div className="flex flex-col gap-2 mb-12">
       <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">{title}</h2>

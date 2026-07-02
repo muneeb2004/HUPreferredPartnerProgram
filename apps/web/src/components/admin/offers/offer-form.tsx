@@ -1,14 +1,9 @@
 "use client"
 
-import * as React from "react"
-import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -22,21 +17,25 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@hu-partner/ui"
-import { offerSchema, OfferFormValues } from "@/lib/validations/offer"
+import { useRouter } from "next/navigation"
+import * as React from "react"
+import { useForm } from "react-hook-form"
+
 import { createOffer, updateOffer } from "@/app/actions/offers"
+import { offerSchema, type OfferFormValues } from "@/lib/validations/offer"
 
 interface OfferFormProps {
   initialData?: OfferFormValues & { id: string }
   partners: { id: string; name: string }[]
 }
 
-export function OfferForm({ initialData, partners }: OfferFormProps) {
+export function OfferForm({ initialData, partners }: OfferFormProps): JSX.Element {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
   const [error, setError] = React.useState<string | null>(null)
 
   const form = useForm<OfferFormValues>({
-    resolver: zodResolver(offerSchema) as any,
+    resolver: zodResolver(offerSchema),
     defaultValues: initialData || {
       partnerId: "",
       title: "",
@@ -51,10 +50,10 @@ export function OfferForm({ initialData, partners }: OfferFormProps) {
     },
   })
 
-  function onSubmit(data: OfferFormValues) {
+  function onSubmit(data: OfferFormValues): void {
     setError(null)
-    startTransition(async () => {
-      let result;
+    startTransition(async (): Promise<void> => {
+      let result: { success: boolean; error?: string; data?: unknown };
       if (initialData) {
         result = await updateOffer(initialData.id, data)
       } else {
@@ -71,7 +70,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit as any)} className="space-y-8 max-w-2xl">
+      <form onSubmit={(e) => { void form.handleSubmit(onSubmit)(e); }} className="space-y-8 max-w-2xl">
         {error && (
           <div className="p-4 bg-destructive/10 text-destructive rounded-md text-sm">
             {error}
@@ -79,9 +78,9 @@ export function OfferForm({ initialData, partners }: OfferFormProps) {
         )}
 
         <FormField<OfferFormValues, "partnerId">
-          control={form.control as any}
+          control={form.control}
           name="partnerId"
-          render={({ field }) => (
+          render={({ field }): JSX.Element => (
             <FormItem>
               <FormLabel>Partner</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -103,9 +102,9 @@ export function OfferForm({ initialData, partners }: OfferFormProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField<OfferFormValues, "title">
-            control={form.control as any}
+            control={form.control}
             name="title"
-            render={({ field }) => (
+            render={({ field }): JSX.Element => (
               <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
@@ -116,9 +115,9 @@ export function OfferForm({ initialData, partners }: OfferFormProps) {
             )}
           />
           <FormField<OfferFormValues, "code">
-            control={form.control as any}
+            control={form.control}
             name="code"
-            render={({ field }) => (
+            render={({ field }): JSX.Element => (
               <FormItem>
                 <FormLabel>Coupon Code</FormLabel>
                 <FormControl>
@@ -131,9 +130,9 @@ export function OfferForm({ initialData, partners }: OfferFormProps) {
         </div>
 
         <FormField<OfferFormValues, "description">
-          control={form.control as any}
+          control={form.control}
           name="description"
-          render={({ field }) => (
+          render={({ field }): JSX.Element => (
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
@@ -150,9 +149,9 @@ export function OfferForm({ initialData, partners }: OfferFormProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField<OfferFormValues, "discountType">
-            control={form.control as any}
+            control={form.control}
             name="discountType"
-            render={({ field }) => (
+            render={({ field }): JSX.Element => (
               <FormItem>
                 <FormLabel>Discount Type</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -173,9 +172,9 @@ export function OfferForm({ initialData, partners }: OfferFormProps) {
             )}
           />
           <FormField<OfferFormValues, "discountValue">
-            control={form.control as any}
+            control={form.control}
             name="discountValue"
-            render={({ field }) => (
+            render={({ field }): JSX.Element => (
               <FormItem>
                 <FormLabel>Discount Value</FormLabel>
                 <FormControl>
@@ -189,9 +188,9 @@ export function OfferForm({ initialData, partners }: OfferFormProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField<OfferFormValues, "startDate">
-            control={form.control as any}
+            control={form.control}
             name="startDate"
-            render={({ field }) => (
+            render={({ field }): JSX.Element => (
               <FormItem>
                 <FormLabel>Start Date</FormLabel>
                 <FormControl>
@@ -202,9 +201,9 @@ export function OfferForm({ initialData, partners }: OfferFormProps) {
             )}
           />
           <FormField<OfferFormValues, "endDate">
-            control={form.control as any}
+            control={form.control}
             name="endDate"
-            render={({ field }) => (
+            render={({ field }): JSX.Element => (
               <FormItem>
                 <FormLabel>End Date</FormLabel>
                 <FormControl>
@@ -218,9 +217,9 @@ export function OfferForm({ initialData, partners }: OfferFormProps) {
 
         <div className="grid grid-cols-1 gap-6">
           <FormField<OfferFormValues, "status">
-            control={form.control as any}
+            control={form.control}
             name="status"
-            render={({ field }) => (
+            render={({ field }): JSX.Element => (
               <FormItem>
                 <FormLabel>Status</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -246,7 +245,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps) {
           <Button type="submit" disabled={isPending}>
             {isPending ? "Saving..." : "Save Offer"}
           </Button>
-          <Button type="button" variant="outline" onClick={() => router.push("/admin/offers")} disabled={isPending}>
+          <Button type="button" variant="outline" onClick={(): void => router.push("/admin/offers")} disabled={isPending}>
             Cancel
           </Button>
         </div>

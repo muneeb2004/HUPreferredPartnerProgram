@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: 'Learn about the Habib University Preferred Partner platform.',
 };
 
-export default function AboutPage() {
+export default function AboutPage(): JSX.Element {
   return (
     <>
       <HeroEditorial 

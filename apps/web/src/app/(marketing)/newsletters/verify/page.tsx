@@ -7,7 +7,7 @@ export default async function VerifySubscriptionPage({
   searchParams,
 }: {
   searchParams: Promise<{ token?: string }>;
-}) {
+}): JSX.Element {
   const resolvedSearchParams = await searchParams;
   const token = resolvedSearchParams.token;
   let result = null;

@@ -12,7 +12,10 @@ import type { Metadata } from 'next';
 import '../styles/globals.css';
 
 // ThreeProvider loaded lazy to prevent blocking
-const ThreeProvider = dynamic(() => import('@/components/providers/ThreeProvider').then(mod => mod.ThreeProvider));
+const ThreeProvider = dynamic(
+  (): Promise<React.ComponentType<{ children: React.ReactNode }>> =>
+    import('@/components/providers/ThreeProvider').then((mod) => mod.ThreeProvider as React.ComponentType<{ children: React.ReactNode }>)
+);
 
 const inter = Inter({
   subsets: ['latin'],
@@ -51,7 +54,7 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>): JSX.Element {
   return (
     <html lang="en" suppressHydrationWarning className={`${playfair.variable} ${inter.variable} ${jetbrains.variable}`}>
       <body className="font-body antialiased bg-surface-page text-foreground min-h-screen flex flex-col selection:bg-brand-primary/20">

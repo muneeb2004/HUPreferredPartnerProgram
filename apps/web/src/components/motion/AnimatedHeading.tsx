@@ -13,7 +13,7 @@ export function AnimatedHeading({
   children: ReactNode; 
   className?: string;
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-}) {
+}): JSX.Element {
   const MotionComponent = m[Component];
   
   return (

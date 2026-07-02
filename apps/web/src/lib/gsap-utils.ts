@@ -1,4 +1,4 @@
-import gsap from 'gsap';
+import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 /**
@@ -10,7 +10,7 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-export const initScrollTrigger = () => {
+export const initScrollTrigger = (): void => {
   if (typeof window !== 'undefined') {
     ScrollTrigger.refresh();
   }
@@ -19,7 +19,7 @@ export const initScrollTrigger = () => {
 /**
  * Reusable scroll reveal generator
  */
-export const createScrollReveal = (element: Element | string, options?: gsap.TweenVars) => {
+export const createScrollReveal = (element: Element | string, options?: gsap.TweenVars): gsap.core.Tween => {
   return gsap.fromTo(
     element,
     { opacity: 0, y: 30 },

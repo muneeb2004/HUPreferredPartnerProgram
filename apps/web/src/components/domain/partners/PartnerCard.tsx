@@ -7,7 +7,7 @@ interface PartnerCardProps {
   logoUrl?: string; // Phase 8 CMS placeholder
 }
 
-export function PartnerCard({ slug, name, description, logoUrl }: PartnerCardProps) {
+export function PartnerCard({ slug, name, description, logoUrl }: PartnerCardProps): JSX.Element {
   return (
     <Link href={`/partners/${slug}`} className="group block h-full focus-visible:outline-brand-primary rounded-xl focus-visible:ring-2 focus-visible:ring-brand-primary">
       <article className="h-full flex flex-col p-6 rounded-xl border border-border bg-surface-card hover:border-foreground/20 transition-all hover:translate-y-[-2px] hover:shadow-elevation-md">

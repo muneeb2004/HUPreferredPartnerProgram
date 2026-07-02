@@ -4,7 +4,7 @@ import { Button, type ButtonProps } from "@hu-partner/ui";
 import { m } from "framer-motion";
 import { type ReactNode } from "react";
 
-export function AnimatedButton({ children, ...props }: ButtonProps & { children: ReactNode }) {
+export function AnimatedButton({ children, ...props }: ButtonProps & { children: ReactNode }): JSX.Element {
   return (
     <m.div
       whileHover={{ scale: 1.02 }}

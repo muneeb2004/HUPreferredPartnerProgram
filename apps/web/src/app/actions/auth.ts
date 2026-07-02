@@ -3,7 +3,7 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-export async function login(formData: FormData) {
+export async function login(formData: FormData): Promise<{ error: string; }> {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
 
@@ -30,7 +30,7 @@ export async function login(formData: FormData) {
   redirect("/admin");
 }
 
-export async function logout() {
+export async function logout(): Promise<void> {
   const cookieStore = await cookies();
   const sessionId = cookieStore.get("sessionId")?.value;
 

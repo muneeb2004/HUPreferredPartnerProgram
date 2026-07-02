@@ -1,9 +1,5 @@
 "use client"
 
-import * as React from "react"
-import { MoreHorizontal, Edit, Trash } from "lucide-react"
-import { useRouter } from "next/navigation"
-
 import { 
   Button, 
   DropdownMenu, 
@@ -12,20 +8,25 @@ import {
   DropdownMenuLabel, 
   DropdownMenuTrigger 
 } from "@hu-partner/ui"
-import { OfferColumn } from "./columns"
+import { MoreHorizontal, Edit, Trash } from "lucide-react"
+import { useRouter } from "next/navigation"
+import * as React from "react"
+
 import { deleteOffer } from "@/app/actions/offers"
+
+import { type OfferColumn } from "./columns"
 
 interface CellActionProps {
   data: OfferColumn
 }
 
-export function OfferCellAction({ data }: CellActionProps) {
+export function OfferCellAction({ data }: CellActionProps): JSX.Element {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
 
-  const onConfirm = () => {
+  const onConfirm = (): void => {
     if (confirm("Are you sure you want to delete this offer?")) {
-      startTransition(async () => {
+      startTransition(async (): Promise<void> => {
         const result = await deleteOffer(data.id)
         if (result.success) {
           router.refresh()
@@ -46,7 +47,7 @@ export function OfferCellAction({ data }: CellActionProps) {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-        <DropdownMenuItem onClick={() => router.push(`/admin/offers/${data.id}/edit`)}>
+        <DropdownMenuItem onClick={(): void => router.push(`/admin/offers/${data.id}/edit`)}>
           <Edit className="mr-2 h-4 w-4" /> Update
         </DropdownMenuItem>
         <DropdownMenuItem onClick={onConfirm} className="text-destructive focus:bg-destructive focus:text-destructive-foreground">

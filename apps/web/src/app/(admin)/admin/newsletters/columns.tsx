@@ -1,7 +1,8 @@
 "use client"
 
-import { ColumnDef } from "@tanstack/react-table"
 import { Badge } from "@hu-partner/ui"
+import { type ColumnDef } from "@tanstack/react-table"
+
 import { NewsletterCellAction } from "./cell-action"
 
 export type NewsletterColumn = {
@@ -27,8 +28,8 @@ export const columns: ColumnDef<NewsletterColumn>[] = [
   {
     accessorKey: "status",
     header: "Status",
-    cell: ({ row }) => {
-      const status = row.getValue("status") as string
+    cell: ({ row }): JSX.Element => {
+      const status = row.getValue("status")
       return (
         <Badge variant={status === "PUBLISHED" ? "default" : status === "DRAFT" ? "secondary" : "outline"}>
           {status}
@@ -39,13 +40,13 @@ export const columns: ColumnDef<NewsletterColumn>[] = [
   {
     accessorKey: "createdAt",
     header: "Created Date",
-    cell: ({ row }) => {
+    cell: ({ row }): string => {
       const date = new Date(row.getValue("createdAt"))
       return date.toLocaleDateString()
     }
   },
   {
     id: "actions",
-    cell: ({ row }) => <NewsletterCellAction data={row.original} />
+    cell: ({ row }): JSX.Element => <NewsletterCellAction data={row.original} />
   },
 ]

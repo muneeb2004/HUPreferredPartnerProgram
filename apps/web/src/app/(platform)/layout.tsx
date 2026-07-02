@@ -1,7 +1,7 @@
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 
-export default function PlatformLayout({ children }: { children: React.ReactNode }) {
+export default function PlatformLayout({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />

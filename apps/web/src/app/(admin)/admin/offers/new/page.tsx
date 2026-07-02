@@ -1,9 +1,10 @@
 import { cookies } from "next/headers"
+
 import { OfferForm } from "@/components/admin/offers/offer-form"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
-async function getPartners() {
+async function getPartners(): Promise<{ id: string; name: string }[]> {
   const cookieStore = await cookies()
   const token = cookieStore.get("accessToken")?.value
   
@@ -18,11 +19,11 @@ async function getPartners() {
     return []
   }
 
-  const { data } = await res.json()
-  return data.map((p: any) => ({ id: p.id, name: p.name }))
+  const json = (await res.json()) as { data: { id: string; name: string }[] };
+  return json.data;
 }
 
-export default async function NewOfferPage() {
+export default async function NewOfferPage(): JSX.Element {
   const partners = await getPartners()
 
   return (

@@ -1,10 +1,6 @@
 "use client"
 
-import * as React from "react"
-import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-
 import {
   Form,
   FormControl,
@@ -23,20 +19,24 @@ import {
   SelectValue,
   Checkbox,
 } from "@hu-partner/ui"
-import { partnerSchema, PartnerFormValues } from "@/lib/validations/partner"
+import { useRouter } from "next/navigation"
+import * as React from "react"
+import { useForm } from "react-hook-form"
+
 import { createPartner, updatePartner } from "@/app/actions/partners"
+import { partnerSchema, type PartnerFormValues } from "@/lib/validations/partner"
 
 interface PartnerFormProps {
   initialData?: PartnerFormValues & { slug: string }
 }
 
-export function PartnerForm({ initialData }: PartnerFormProps) {
+export function PartnerForm({ initialData }: PartnerFormProps): JSX.Element {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
   const [error, setError] = React.useState<string | null>(null)
 
   const form = useForm<PartnerFormValues>({
-    resolver: zodResolver(partnerSchema) as any,
+    resolver: zodResolver(partnerSchema),
     defaultValues: initialData || {
       name: "",
       slug: "",
@@ -48,10 +48,10 @@ export function PartnerForm({ initialData }: PartnerFormProps) {
     },
   })
 
-  function onSubmit(data: PartnerFormValues) {
+  function onSubmit(data: PartnerFormValues): void {
     setError(null)
-    startTransition(async () => {
-      let result;
+    startTransition(async (): Promise<void> => {
+      let result: { success: boolean; error?: string; data?: unknown };
       if (initialData) {
         result = await updatePartner(initialData.slug, data)
       } else {
@@ -68,7 +68,7 @@ export function PartnerForm({ initialData }: PartnerFormProps) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit as any)} className="space-y-8 max-w-2xl">
+      <form onSubmit={(e) => { void form.handleSubmit(onSubmit)(e); }} className="space-y-8 max-w-2xl">
         {error && (
           <div className="p-4 bg-destructive/10 text-destructive rounded-md text-sm">
             {error}
@@ -77,9 +77,9 @@ export function PartnerForm({ initialData }: PartnerFormProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField<PartnerFormValues, "name">
-            control={form.control as any}
+            control={form.control}
             name="name"
-            render={({ field }) => (
+            render={({ field }): JSX.Element => (
               <FormItem>
                 <FormLabel>Name</FormLabel>
                 <FormControl>
@@ -90,9 +90,9 @@ export function PartnerForm({ initialData }: PartnerFormProps) {
             )}
           />
           <FormField<PartnerFormValues, "slug">
-            control={form.control as any}
+            control={form.control}
             name="slug"
-            render={({ field }) => (
+            render={({ field }): JSX.Element => (
               <FormItem>
                 <FormLabel>Slug</FormLabel>
                 <FormControl>
@@ -108,9 +108,9 @@ export function PartnerForm({ initialData }: PartnerFormProps) {
         </div>
 
         <FormField<PartnerFormValues, "description">
-          control={form.control as any}
+          control={form.control}
           name="description"
-          render={({ field }) => (
+          render={({ field }): JSX.Element => (
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
@@ -127,9 +127,9 @@ export function PartnerForm({ initialData }: PartnerFormProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField<PartnerFormValues, "website">
-            control={form.control as any}
+            control={form.control}
             name="website"
-            render={({ field }) => (
+            render={({ field }): JSX.Element => (
               <FormItem>
                 <FormLabel>Website</FormLabel>
                 <FormControl>
@@ -140,9 +140,9 @@ export function PartnerForm({ initialData }: PartnerFormProps) {
             )}
           />
           <FormField<PartnerFormValues, "tier">
-            control={form.control as any}
+            control={form.control}
             name="tier"
-            render={({ field }) => (
+            render={({ field }): JSX.Element => (
               <FormItem>
                 <FormLabel>Tier</FormLabel>
                 <FormControl>
@@ -156,9 +156,9 @@ export function PartnerForm({ initialData }: PartnerFormProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField<PartnerFormValues, "status">
-            control={form.control as any}
+            control={form.control}
             name="status"
-            render={({ field }) => (
+            render={({ field }): JSX.Element => (
               <FormItem>
                 <FormLabel>Status</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -180,9 +180,9 @@ export function PartnerForm({ initialData }: PartnerFormProps) {
           />
           
           <FormField<PartnerFormValues, "featured">
-            control={form.control as any}
+            control={form.control}
             name="featured"
-            render={({ field }) => (
+            render={({ field }): JSX.Element => (
               <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow-sm">
                 <FormControl>
                   <Checkbox
@@ -207,7 +207,7 @@ export function PartnerForm({ initialData }: PartnerFormProps) {
           <Button type="submit" disabled={isPending}>
             {isPending ? "Saving..." : "Save Partner"}
           </Button>
-          <Button type="button" variant="outline" onClick={() => router.push("/admin/partners")} disabled={isPending}>
+          <Button type="button" variant="outline" onClick={(): void => router.push("/admin/partners")} disabled={isPending}>
             Cancel
           </Button>
         </div>

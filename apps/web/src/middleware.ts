@@ -1,10 +1,11 @@
-import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
+
+import type { NextRequest } from 'next/server';
 
 interface JwtPayload {
   sub: string;
   role: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 function decodeJwt(token: string): JwtPayload | null {
@@ -15,7 +16,7 @@ function decodeJwt(token: string): JwtPayload | null {
     const jsonPayload = decodeURIComponent(
       atob(base64)
         .split('')
-        .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .map((c): string => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
         .join('')
     );
     return JSON.parse(jsonPayload) as JwtPayload;

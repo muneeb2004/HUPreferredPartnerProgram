@@ -1,11 +1,12 @@
-import { notFound } from "next/navigation"
 import { cookies } from "next/headers"
+import { notFound } from "next/navigation"
 
 import { NewsletterForm } from "@/components/admin/newsletters/newsletter-form"
+import { type NewsletterFormValues } from "@/lib/validations/newsletter"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
-async function getSeries() {
+async function getSeries(): Promise<{ id: string; name: string }[]> {
   const cookieStore = await cookies()
   const token = cookieStore.get("accessToken")?.value
   
@@ -16,11 +17,11 @@ async function getSeries() {
     }
   })
 
-  if (!res.ok) return []
-  return await res.json()
+  const json = (await res.json()) as { data: { id: string; name: string }[] };
+  return json.data || [];
 }
 
-async function getNewsletter(id: string) {
+async function getNewsletter(id: string): Promise<(NewsletterFormValues & { id: string, title: string, publishedAt?: string | null }) | null> {
   const cookieStore = await cookies()
   const token = cookieStore.get("accessToken")?.value
   
@@ -35,14 +36,15 @@ async function getNewsletter(id: string) {
     return null
   }
 
-  return await res.json()
+  const json = (await res.json()) as { data: NewsletterFormValues & { id: string, title: string, publishedAt?: string | null } };
+  return json.data;
 }
 
 interface EditNewsletterPageProps {
   params: Promise<{ id: string }>
 }
 
-export default async function EditNewsletterPage({ params }: EditNewsletterPageProps) {
+export default async function EditNewsletterPage({ params }: EditNewsletterPageProps): JSX.Element {
   const resolvedParams = await params
   const [newsletter, series] = await Promise.all([
     getNewsletter(resolvedParams.id),

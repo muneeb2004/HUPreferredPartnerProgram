@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'FAQ | HU Preferred Partner',
 };
 
-export default function FAQPage() {
+export default function FAQPage(): JSX.Element {
   return (
     <>
       <HeroEditorial 

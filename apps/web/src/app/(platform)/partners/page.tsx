@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: 'Browse our exclusive brand partners.',
 };
 
-export default function PartnersPage() {
+export default function PartnersPage(): JSX.Element {
   return (
     <>
       <SectionHeading 

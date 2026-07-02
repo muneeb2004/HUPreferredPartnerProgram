@@ -1,10 +1,6 @@
 "use client"
 
-import * as React from "react"
-import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-
 import {
   Form,
   FormControl,
@@ -21,21 +17,25 @@ import {
   SelectValue,
   Textarea,
 } from "@hu-partner/ui"
-import { newsletterSchema, NewsletterFormValues } from "@/lib/validations/newsletter"
+import { useRouter } from "next/navigation"
+import * as React from "react"
+import { useForm } from "react-hook-form"
+
 import { createNewsletter, updateNewsletter } from "@/app/actions/newsletters"
+import { newsletterSchema, type NewsletterFormValues } from "@/lib/validations/newsletter"
 
 interface NewsletterFormProps {
   initialData?: NewsletterFormValues & { id: string }
   series: { id: string; title: string }[]
 }
 
-export function NewsletterForm({ initialData, series }: NewsletterFormProps) {
+export function NewsletterForm({ initialData, series }: NewsletterFormProps): JSX.Element {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
   const [error, setError] = React.useState<string | null>(null)
 
   const form = useForm<NewsletterFormValues>({
-    resolver: zodResolver(newsletterSchema) as any,
+    resolver: zodResolver(newsletterSchema),
     defaultValues: initialData || {
       newsletterId: "",
       slug: "",
@@ -45,10 +45,10 @@ export function NewsletterForm({ initialData, series }: NewsletterFormProps) {
     },
   })
 
-  function onSubmit(data: NewsletterFormValues) {
+  function onSubmit(data: NewsletterFormValues): void {
     setError(null)
-    startTransition(async () => {
-      let result;
+    startTransition(async (): Promise<void> => {
+      let result: { success: boolean; error?: string; data?: unknown };
       if (initialData) {
         result = await updateNewsletter(initialData.id, data)
       } else {
@@ -66,7 +66,7 @@ export function NewsletterForm({ initialData, series }: NewsletterFormProps) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit as any)} className="space-y-8 max-w-2xl">
+      <form onSubmit={(e) => { void form.handleSubmit(onSubmit)(e); }} className="space-y-8 max-w-2xl">
         {error && (
           <div className="p-4 bg-destructive/10 text-destructive rounded-md text-sm">
             {error}
@@ -75,9 +75,9 @@ export function NewsletterForm({ initialData, series }: NewsletterFormProps) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField<NewsletterFormValues, "newsletterId">
-            control={form.control as any}
+            control={form.control}
             name="newsletterId"
-            render={({ field }) => (
+            render={({ field }): JSX.Element => (
               <FormItem>
                 <FormLabel>Newsletter Series</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -98,9 +98,9 @@ export function NewsletterForm({ initialData, series }: NewsletterFormProps) {
           />
 
           <FormField<NewsletterFormValues, "status">
-            control={form.control as any}
+            control={form.control}
             name="status"
-            render={({ field }) => (
+            render={({ field }): JSX.Element => (
               <FormItem>
                 <FormLabel>Status</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -122,9 +122,9 @@ export function NewsletterForm({ initialData, series }: NewsletterFormProps) {
           />
 
           <FormField<NewsletterFormValues, "title">
-            control={form.control as any}
+            control={form.control}
             name="title"
-            render={({ field }) => (
+            render={({ field }): JSX.Element => (
               <FormItem className="col-span-1 md:col-span-2">
                 <FormLabel>Title</FormLabel>
                 <FormControl>
@@ -136,9 +136,9 @@ export function NewsletterForm({ initialData, series }: NewsletterFormProps) {
           />
 
           <FormField<NewsletterFormValues, "slug">
-            control={form.control as any}
+            control={form.control}
             name="slug"
-            render={({ field }) => (
+            render={({ field }): JSX.Element => (
               <FormItem className="col-span-1 md:col-span-2">
                 <FormLabel>Slug</FormLabel>
                 <FormControl>
@@ -150,9 +150,9 @@ export function NewsletterForm({ initialData, series }: NewsletterFormProps) {
           />
 
           <FormField<NewsletterFormValues, "excerpt">
-            control={form.control as any}
+            control={form.control}
             name="excerpt"
-            render={({ field }) => (
+            render={({ field }): JSX.Element => (
               <FormItem className="col-span-1 md:col-span-2">
                 <FormLabel>Excerpt (Optional)</FormLabel>
                 <FormControl>
@@ -168,7 +168,7 @@ export function NewsletterForm({ initialData, series }: NewsletterFormProps) {
           <Button type="submit" disabled={isPending}>
             {isPending ? "Saving..." : initialData ? "Save Changes" : "Create Issue"}
           </Button>
-          <Button type="button" variant="outline" onClick={() => router.push("/admin/newsletters")} disabled={isPending}>
+          <Button type="button" variant="outline" onClick={(): void => router.push("/admin/newsletters")} disabled={isPending}>
             Cancel
           </Button>
         </div>

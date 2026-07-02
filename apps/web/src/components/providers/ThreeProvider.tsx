@@ -7,7 +7,7 @@ interface ThreeProviderProps {
   children: ReactNode;
 }
 
-export function ThreeProvider({ children }: ThreeProviderProps) {
+export function ThreeProvider({ children }: ThreeProviderProps): JSX.Element {
   return (
     <>
       <div className="absolute inset-0 z-base -z-10 w-full h-full pointer-events-none">

@@ -10,7 +10,7 @@ interface OfferDetailHeaderProps {
   expirationDate: string;
 }
 
-export function OfferDetailHeader({ title, partnerName, partnerSlug, expirationDate }: OfferDetailHeaderProps) {
+export function OfferDetailHeader({ title, partnerName, partnerSlug, expirationDate }: OfferDetailHeaderProps): JSX.Element {
   return (
     <header className="w-full py-12 border-b border-border mb-12">
       <Link href={`/partners/${partnerSlug}`} className="inline-block text-sm font-medium text-brand-primary hover:underline mb-4 focus-visible:outline-brand-primary rounded-sm focus-visible:ring-2 focus-visible:ring-brand-primary">

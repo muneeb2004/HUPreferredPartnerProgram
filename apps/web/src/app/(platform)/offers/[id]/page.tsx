@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   };
 }
 
-export default async function OfferDetailPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function OfferDetailPage({ params }: { params: Promise<{ id: string }> }): JSX.Element {
   const { id } = await params;
   
   return (

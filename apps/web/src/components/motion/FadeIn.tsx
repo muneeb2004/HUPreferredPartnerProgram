@@ -5,7 +5,7 @@ import { type ReactNode } from "react";
 
 import { fadeIn } from "@/lib/motion";
 
-export function FadeIn({ children, className }: { children: ReactNode; className?: string }) {
+export function FadeIn({ children, className }: { children: ReactNode; className?: string }): JSX.Element {
   return (
     <m.div
       variants={fadeIn}

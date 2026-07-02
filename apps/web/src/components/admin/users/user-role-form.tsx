@@ -1,10 +1,6 @@
 "use client"
 
-import * as React from "react"
-import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-
 import {
   Form,
   FormControl,
@@ -19,28 +15,32 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@hu-partner/ui"
-import { userRoleSchema, UserRoleFormValues } from "@/lib/validations/user"
+import { useRouter } from "next/navigation"
+import * as React from "react"
+import { useForm } from "react-hook-form"
+
 import { updateUserRole } from "@/app/actions/users"
+import { userRoleSchema, type UserRoleFormValues } from "@/lib/validations/user"
 
 interface UserRoleFormProps {
   initialData: UserRoleFormValues & { id: string }
 }
 
-export function UserRoleForm({ initialData }: UserRoleFormProps) {
+export function UserRoleForm({ initialData }: UserRoleFormProps): JSX.Element {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
   const [error, setError] = React.useState<string | null>(null)
 
   const form = useForm<UserRoleFormValues>({
-    resolver: zodResolver(userRoleSchema) as any,
+    resolver: zodResolver(userRoleSchema),
     defaultValues: {
       role: initialData.role,
     },
   })
 
-  function onSubmit(data: UserRoleFormValues) {
+  function onSubmit(data: UserRoleFormValues): void {
     setError(null)
-    startTransition(async () => {
+    startTransition(async (): Promise<void> => {
       const result = await updateUserRole(initialData.id, data)
 
       if (result.success) {
@@ -53,7 +53,7 @@ export function UserRoleForm({ initialData }: UserRoleFormProps) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit as any)} className="space-y-8 max-w-xl">
+      <form onSubmit={(e) => { void form.handleSubmit(onSubmit)(e); }} className="space-y-8 max-w-xl">
         {error && (
           <div className="p-4 bg-destructive/10 text-destructive rounded-md text-sm">
             {error}
@@ -62,9 +62,9 @@ export function UserRoleForm({ initialData }: UserRoleFormProps) {
 
         <div className="grid grid-cols-1 gap-6">
           <FormField<UserRoleFormValues, "role">
-            control={form.control as any}
+            control={form.control}
             name="role"
-            render={({ field }) => (
+            render={({ field }): JSX.Element => (
               <FormItem>
                 <FormLabel>User Role</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -90,7 +90,7 @@ export function UserRoleForm({ initialData }: UserRoleFormProps) {
           <Button type="submit" disabled={isPending}>
             {isPending ? "Saving..." : "Save Role"}
           </Button>
-          <Button type="button" variant="outline" onClick={() => router.push("/admin/users")} disabled={isPending}>
+          <Button type="button" variant="outline" onClick={(): void => router.push("/admin/users")} disabled={isPending}>
             Cancel
           </Button>
         </div>

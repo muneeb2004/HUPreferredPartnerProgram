@@ -5,14 +5,14 @@
 
 import * as THREE from 'three';
 
-export const disposeNode = (node: THREE.Object3D) => {
+export const disposeNode = (node: THREE.Object3D): void => {
   if (node instanceof THREE.Mesh) {
     if (node.geometry) {
       (node.geometry as THREE.BufferGeometry).dispose();
     }
     if (node.material) {
       if (Array.isArray(node.material)) {
-        node.material.forEach((mat) => (mat as THREE.Material).dispose());
+        node.material.forEach((mat): void => (mat as THREE.Material).dispose());
       } else {
         (node.material as THREE.Material).dispose();
       }
@@ -20,7 +20,7 @@ export const disposeNode = (node: THREE.Object3D) => {
   }
 };
 
-export const clearScene = (scene: THREE.Scene) => {
+export const clearScene = (scene: THREE.Scene): void => {
   while (scene.children.length > 0) {
     const child = scene.children[0];
     if (child) {

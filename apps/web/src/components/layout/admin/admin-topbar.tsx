@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
 import { Button } from "@hu-partner/ui";
 import { Menu, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import React from "react";
 
 export function AdminTopbar({ onMenuClick }: { onMenuClick: () => void }): React.ReactElement {
   const pathname = usePathname();
@@ -23,7 +23,7 @@ export function AdminTopbar({ onMenuClick }: { onMenuClick: () => void }): React
           <Menu className="w-5 h-5" />
         </Button>
         <nav aria-label="Breadcrumb" className="hidden sm:flex items-center text-sm text-muted-foreground">
-          {segments.map((segment, index) => {
+          {segments.map((segment, index): JSX.Element => {
             const isLast = index === segments.length - 1;
             const href = "/" + segments.slice(0, index + 1).join("/");
             const title = segment.charAt(0).toUpperCase() + segment.slice(1);

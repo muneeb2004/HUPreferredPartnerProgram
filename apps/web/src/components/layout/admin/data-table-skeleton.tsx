@@ -1,12 +1,12 @@
 import { Skeleton, Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@hu-partner/ui";
 
-export function DataTableSkeleton({ columns = 4, rows = 5 }: { columns?: number; rows?: number }) {
+export function DataTableSkeleton({ columns = 4, rows = 5 }: { columns?: number; rows?: number }): JSX.Element {
   return (
     <div className="rounded-md border border-border bg-surface-card">
       <Table>
         <TableHeader>
           <TableRow>
-            {Array.from({ length: columns }).map((_, i) => (
+            {Array.from({ length: columns }).map((_, i): JSX.Element => (
               <TableHead key={i}>
                 <Skeleton className="h-4 w-[100px]" />
               </TableHead>
@@ -14,9 +14,9 @@ export function DataTableSkeleton({ columns = 4, rows = 5 }: { columns?: number;
           </TableRow>
         </TableHeader>
         <TableBody>
-          {Array.from({ length: rows }).map((_, rowIndex) => (
+          {Array.from({ length: rows }).map((_, rowIndex): JSX.Element => (
             <TableRow key={rowIndex}>
-              {Array.from({ length: columns }).map((_, colIndex) => (
+              {Array.from({ length: columns }).map((_, colIndex): JSX.Element => (
                 <TableCell key={colIndex}>
                   <Skeleton className="h-4 w-full" />
                 </TableCell>

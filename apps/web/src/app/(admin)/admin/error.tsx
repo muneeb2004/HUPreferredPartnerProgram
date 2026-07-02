@@ -1,8 +1,8 @@
 "use client"
 
-import { useEffect } from "react"
-import { AlertCircle } from "lucide-react"
 import { Button } from "@hu-partner/ui"
+import { AlertCircle } from "lucide-react"
+import { useEffect } from "react"
 
 export default function AdminError({
   error,
@@ -10,8 +10,8 @@ export default function AdminError({
 }: {
   error: Error & { digest?: string }
   reset: () => void
-}) {
-  useEffect(() => {
+}): JSX.Element {
+  useEffect((): void => {
     // Log the error to an error reporting service in a real app
     console.error(error)
   }, [error])

@@ -3,11 +3,11 @@
 import { revalidatePath } from "next/cache"
 import { cookies } from "next/headers"
 
-import { NewsletterFormValues } from "@/lib/validations/newsletter"
+import { type NewsletterFormValues } from "@/lib/validations/newsletter"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
-async function getAuthHeaders() {
+async function getAuthHeaders(): Promise<{ Authorization?: string; "Content-Type": string; }> {
   const cookieStore = await cookies()
   const token = cookieStore.get("accessToken")?.value
   
@@ -17,7 +17,7 @@ async function getAuthHeaders() {
   }
 }
 
-export async function createNewsletter(data: NewsletterFormValues) {
+export async function createNewsletter(data: NewsletterFormValues): Promise<{ success: boolean; error?: never; } | { success: boolean; error: string; }> {
   try {
     const headers = await getAuthHeaders()
     const response = await fetch(`${API_URL}/api/v1/admin/newsletters`, {
@@ -27,18 +27,18 @@ export async function createNewsletter(data: NewsletterFormValues) {
     })
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}))
+      const errorData = (await response.json().catch((): Record<string, unknown> => ({}))) as { message?: string }
       throw new Error(errorData.message || "Failed to create newsletter issue")
     }
 
     revalidatePath("/admin/newsletters")
     return { success: true }
-  } catch (error: any) {
-    return { success: false, error: error.message || "Something went wrong" }
+  } catch (error: unknown) {
+    return { success: false, error: (error instanceof Error ? error.message : "An error occurred") || "Something went wrong" }
   }
 }
 
-export async function updateNewsletter(id: string, data: NewsletterFormValues) {
+export async function updateNewsletter(id: string, data: NewsletterFormValues): Promise<{ success: boolean; error?: never; } | { success: boolean; error: string; }> {
   try {
     const headers = await getAuthHeaders()
     const response = await fetch(`${API_URL}/api/v1/admin/newsletters/${id}`, {
@@ -48,18 +48,18 @@ export async function updateNewsletter(id: string, data: NewsletterFormValues) {
     })
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}))
+      const errorData = (await response.json().catch((): Record<string, unknown> => ({}))) as { message?: string }
       throw new Error(errorData.message || "Failed to update newsletter issue")
     }
 
     revalidatePath("/admin/newsletters")
     return { success: true }
-  } catch (error: any) {
-    return { success: false, error: error.message || "Something went wrong" }
+  } catch (error: unknown) {
+    return { success: false, error: (error instanceof Error ? error.message : "An error occurred") || "Something went wrong" }
   }
 }
 
-export async function deleteNewsletter(id: string) {
+export async function deleteNewsletter(id: string): Promise<{ success: boolean; error?: never; } | { success: boolean; error: string; }> {
   try {
     const headers = await getAuthHeaders()
     const response = await fetch(`${API_URL}/api/v1/admin/newsletters/${id}`, {
@@ -68,18 +68,18 @@ export async function deleteNewsletter(id: string) {
     })
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}))
+      const errorData = (await response.json().catch((): Record<string, unknown> => ({}))) as { message?: string }
       throw new Error(errorData.message || "Failed to delete newsletter issue")
     }
 
     revalidatePath("/admin/newsletters")
     return { success: true }
-  } catch (error: any) {
-    return { success: false, error: error.message || "Something went wrong" }
+  } catch (error: unknown) {
+    return { success: false, error: (error instanceof Error ? error.message : "An error occurred") || "Something went wrong" }
   }
 }
 
-export async function sendNewsletter(id: string) {
+export async function sendNewsletter(id: string): Promise<{ success: boolean; error?: never; } | { success: boolean; error: string; }> {
   try {
     const headers = await getAuthHeaders()
     const response = await fetch(`${API_URL}/api/v1/admin/newsletters/${id}/send`, {
@@ -88,13 +88,13 @@ export async function sendNewsletter(id: string) {
     })
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}))
+      const errorData = (await response.json().catch((): Record<string, unknown> => ({}))) as { message?: string }
       throw new Error(errorData.message || "Failed to send newsletter")
     }
 
     revalidatePath("/admin/newsletters")
     return { success: true }
-  } catch (error: any) {
-    return { success: false, error: error.message || "Something went wrong" }
+  } catch (error: unknown) {
+    return { success: false, error: (error instanceof Error ? error.message : "An error occurred") || "Something went wrong" }
   }
 }

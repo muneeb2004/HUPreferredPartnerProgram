@@ -1,10 +1,11 @@
-import { Suspense } from "react"
 import { cookies } from "next/headers"
+import { Suspense } from "react"
 
 import { DataTable } from "@/components/layout/admin/data-table"
-import { DataTableSkeleton } from "@/components/layout/admin/data-table-skeleton"
 import { DataTableError } from "@/components/layout/admin/data-table-error"
-import { columns, UserColumn } from "./columns"
+import { DataTableSkeleton } from "@/components/layout/admin/data-table-skeleton"
+
+import { columns, type UserColumn } from "./columns"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
@@ -23,11 +24,12 @@ async function getUsers(): Promise<UserColumn[]> {
     throw new Error("Failed to fetch users")
   }
 
-  const { data } = await res.json()
+  const json = (await res.json()) as { data: UserColumn[] };
+      const data = json.data;
   return data
 }
 
-export default function UsersPage() {
+export default function UsersPage(): JSX.Element {
   return (
     <div className="flex-1 space-y-4 p-8 pt-6">
       <div className="flex items-center justify-between space-y-2">
@@ -40,7 +42,7 @@ export default function UsersPage() {
   )
 }
 
-async function UsersTable() {
+async function UsersTable(): JSX.Element {
   try {
     const data = await getUsers()
     return (
@@ -51,7 +53,7 @@ async function UsersTable() {
         searchPlaceholder="Search by email..."
       />
     )
-  } catch (error) {
+  } catch (error: unknown) {
     return <DataTableError />
   }
 }

@@ -5,7 +5,7 @@ import Image, { type ImageProps } from "next/image";
 
 import { fadeIn } from "@/lib/motion";
 
-export function AnimatedImage(props: ImageProps) {
+export function AnimatedImage(props: ImageProps): JSX.Element {
   return (
     <m.div
       variants={fadeIn}
@@ -16,7 +16,7 @@ export function AnimatedImage(props: ImageProps) {
       style={{ overflow: "hidden" }}
     >
       <m.div whileHover={{ scale: 1.05 }} transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}>
-        <Image {...props} className="w-full h-full object-cover" />
+        <Image {...props} alt={props.alt || ""} className="w-full h-full object-cover" />
       </m.div>
     </m.div>
   );

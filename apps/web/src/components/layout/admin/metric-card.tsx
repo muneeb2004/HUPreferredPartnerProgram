@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@hu-partner/ui";
-import { LucideIcon } from "lucide-react";
+import { type LucideIcon } from "lucide-react";
 
 interface MetricCardProps {
   title: string;
@@ -13,7 +13,7 @@ interface MetricCardProps {
   };
 }
 
-export function MetricCard({ title, value, description, icon: Icon, trend }: MetricCardProps) {
+export function MetricCard({ title, value, description, icon: Icon, trend }: MetricCardProps): JSX.Element {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">

@@ -19,11 +19,11 @@ export class ErrorBoundary extends Component<Props, State> {
     return { hasError: true };
   }
 
-  public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  public componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     console.error("Uncaught provider boundary error:", error, errorInfo);
   }
 
-  public render() {
+  public render(): JSX.Element {
     if (this.state.hasError) {
       return (
         <div className="min-h-screen flex items-center justify-center p-4">
@@ -32,7 +32,7 @@ export class ErrorBoundary extends Component<Props, State> {
             <p className="text-muted-foreground">The application encountered an unexpected client-side error.</p>
             <button
               className="px-4 py-2 bg-foreground text-background rounded-md text-sm font-medium"
-              onClick={() => this.setState({ hasError: false })}
+              onClick={(): void => this.setState({ hasError: false })}
             >
               Try again
             </button>

@@ -4,7 +4,7 @@ import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription , 
 import Link from "next/link";
 import * as React from "react";
 
-export function MobileNav() {
+export function MobileNav(): JSX.Element {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -16,10 +16,10 @@ export function MobileNav() {
         <DialogTitle className="font-display text-xl font-bold">Navigation</DialogTitle>
         <DialogDescription className="sr-only">Main navigation links for mobile.</DialogDescription>
         <nav className="flex flex-col gap-6 mt-12">
-          <Link href="/partners" onClick={() => setOpen(false)} className="text-lg font-medium hover:text-brand-primary transition-colors focus-visible:outline-brand-primary rounded-sm focus-visible:ring-2 focus-visible:ring-brand-primary">Partners</Link>
-          <Link href="/catalogue" onClick={() => setOpen(false)} className="text-lg font-medium hover:text-brand-primary transition-colors focus-visible:outline-brand-primary rounded-sm focus-visible:ring-2 focus-visible:ring-brand-primary">Catalogue</Link>
+          <Link href="/partners" onClick={(): void => setOpen(false)} className="text-lg font-medium hover:text-brand-primary transition-colors focus-visible:outline-brand-primary rounded-sm focus-visible:ring-2 focus-visible:ring-brand-primary">Partners</Link>
+          <Link href="/catalogue" onClick={(): void => setOpen(false)} className="text-lg font-medium hover:text-brand-primary transition-colors focus-visible:outline-brand-primary rounded-sm focus-visible:ring-2 focus-visible:ring-brand-primary">Catalogue</Link>
           <div className="h-px bg-border my-2 w-full" role="separator" />
-          <Link href="/login" onClick={() => setOpen(false)} className="text-lg font-medium text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-brand-primary rounded-sm focus-visible:ring-2 focus-visible:ring-brand-primary">Login</Link>
+          <Link href="/login" onClick={(): void => setOpen(false)} className="text-lg font-medium text-muted-foreground hover:text-foreground transition-colors focus-visible:outline-brand-primary rounded-sm focus-visible:ring-2 focus-visible:ring-brand-primary">Login</Link>
         </nav>
       </DialogContent>
     </Dialog>

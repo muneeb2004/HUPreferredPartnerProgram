@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: 'Connecting students with exclusive brand partnerships.',
 };
 
-export default function HomePage() {
+export default function HomePage(): JSX.Element {
   return (
     <>
       <HeroEditorial 

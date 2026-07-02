@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import React from 'react';
 
-export const FadeIn = ({ children, delay = 0, className = '' }: React.PropsWithChildren<{ className?: string; delay?: number }>) => (
+export const FadeIn = ({ children, delay = 0, className = '' }: React.PropsWithChildren<{ className?: string; delay?: number }>): JSX.Element => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
@@ -14,7 +14,7 @@ export const FadeIn = ({ children, delay = 0, className = '' }: React.PropsWithC
   </motion.div>
 );
 
-export const AnimatedHeading = ({ children, level = 1, className = '' }: React.PropsWithChildren<{ className?: string; level?: number }>) => {
+export const AnimatedHeading = ({ children, level = 1, className = '' }: React.PropsWithChildren<{ className?: string; level?: number }>): JSX.Element => {
   const Tag = `h${level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   return (
     <motion.div
@@ -27,7 +27,7 @@ export const AnimatedHeading = ({ children, level = 1, className = '' }: React.P
   );
 };
 
-export const AnimatedCard = ({ children, className = '' }: React.PropsWithChildren<{ className?: string }>) => (
+export const AnimatedCard = ({ children, className = '' }: React.PropsWithChildren<{ className?: string }>): JSX.Element => (
   <motion.div
     whileHover={{ scale: 1.02 }}
     whileTap={{ scale: 0.98 }}
@@ -37,7 +37,7 @@ export const AnimatedCard = ({ children, className = '' }: React.PropsWithChildr
   </motion.div>
 );
 
-export const AnimatedButton = ({ children, className = '', ...props }: React.PropsWithChildren<{ className?: string; [key: string]: unknown }>) => (
+export const AnimatedButton = ({ children, className = '', ...props }: React.PropsWithChildren<{ className?: string; [key: string]: unknown }>): JSX.Element => (
   <motion.button
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}
@@ -48,7 +48,7 @@ export const AnimatedButton = ({ children, className = '', ...props }: React.Pro
   </motion.button>
 );
 
-export const StaggerGroup = ({ children, className = '' }: React.PropsWithChildren<{ className?: string }>) => (
+export const StaggerGroup = ({ children, className = '' }: React.PropsWithChildren<{ className?: string }>): JSX.Element => (
   <motion.div
     initial="hidden"
     animate="visible"

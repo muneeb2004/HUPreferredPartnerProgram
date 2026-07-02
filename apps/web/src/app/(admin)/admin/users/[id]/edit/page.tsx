@@ -1,11 +1,12 @@
-import { notFound } from "next/navigation"
 import { cookies } from "next/headers"
+import { notFound } from "next/navigation"
 
 import { UserRoleForm } from "@/components/admin/users/user-role-form"
+import { type UserRoleFormValues } from "@/lib/validations/user"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
-async function getUser(id: string) {
+async function getUser(id: string): Promise<(UserRoleFormValues & { id: string; name: string }) | null> {
   const cookieStore = await cookies()
   const token = cookieStore.get("accessToken")?.value
   
@@ -20,15 +21,15 @@ async function getUser(id: string) {
     return null
   }
 
-  const { data } = await res.json()
-  return data
+  const json = (await res.json()) as { data: UserRoleFormValues & { id: string; name: string } };
+  return json.data;
 }
 
 interface EditUserPageProps {
   params: Promise<{ id: string }>
 }
 
-export default async function EditUserPage({ params }: EditUserPageProps) {
+export default async function EditUserPage({ params }: EditUserPageProps): JSX.Element {
   const resolvedParams = await params
   const user = await getUser(resolvedParams.id)
   

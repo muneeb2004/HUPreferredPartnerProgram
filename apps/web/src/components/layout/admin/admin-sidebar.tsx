@@ -22,7 +22,7 @@ export function AdminSidebar({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen
       {isOpen && (
         <div 
           className="fixed inset-0 bg-black/50 z-40 md:hidden" 
-          onClick={() => setIsOpen(false)} 
+          onClick={(): void => setIsOpen(false)} 
           aria-hidden="true" 
         />
       )}
@@ -38,13 +38,13 @@ export function AdminSidebar({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen
           <Link 
             href="/admin" 
             className="font-display font-bold text-lg focus-visible:outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-brand-primary"
-            onClick={() => setIsOpen(false)}
+            onClick={(): void => setIsOpen(false)}
           >
             Admin Dashboard
           </Link>
         </div>
         <nav className="flex-1 flex flex-col gap-2 p-4 overflow-y-auto" aria-label="Admin Navigation">
-          {navigation.map((item) => {
+          {navigation.map((item): JSX.Element => {
             const isActive = pathname === item.href || (item.href !== "/admin" && pathname.startsWith(item.href + "/"));
             return (
               <Link 
@@ -57,7 +57,7 @@ export function AdminSidebar({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen
                     : "hover:bg-muted text-muted-foreground hover:text-foreground"
                 )}
                 aria-current={isActive ? "page" : undefined}
-                onClick={() => setIsOpen(false)}
+                onClick={(): void => setIsOpen(false)}
               >
                 <item.icon className="w-4 h-4" />
                 {item.name}

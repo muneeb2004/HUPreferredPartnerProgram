@@ -1,7 +1,8 @@
 "use client"
 
-import { ColumnDef } from "@tanstack/react-table"
 import { Badge } from "@hu-partner/ui"
+import { type ColumnDef } from "@tanstack/react-table"
+
 import { PartnerCellAction } from "./cell-action"
 
 export type PartnerColumn = {
@@ -25,16 +26,16 @@ export const columns: ColumnDef<PartnerColumn>[] = [
   {
     accessorKey: "tier",
     header: "Tier",
-    cell: ({ row }) => {
-      const tier = row.getValue("tier") as string | null
+    cell: ({ row }): string => {
+      const tier = row.getValue("tier")
       return tier ? tier : "-"
     }
   },
   {
     accessorKey: "status",
     header: "Status",
-    cell: ({ row }) => {
-      const status = row.getValue("status") as string
+    cell: ({ row }): JSX.Element => {
+      const status = row.getValue("status")
       const variant = status === "PUBLISHED" ? "default" : status === "DRAFT" ? "secondary" : "destructive"
       return <Badge variant={variant}>{status}</Badge>
     },
@@ -42,13 +43,13 @@ export const columns: ColumnDef<PartnerColumn>[] = [
   {
     accessorKey: "createdAt",
     header: "Date Added",
-    cell: ({ row }) => {
+    cell: ({ row }): string => {
       const date = new Date(row.getValue("createdAt"))
       return date.toLocaleDateString()
     }
   },
   {
     id: "actions",
-    cell: ({ row }) => <PartnerCellAction data={row.original} />
+    cell: ({ row }): JSX.Element => <PartnerCellAction data={row.original} />
   },
 ]

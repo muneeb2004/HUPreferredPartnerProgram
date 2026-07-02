@@ -1,8 +1,16 @@
 import { Store, Tag, Users, Mail } from "lucide-react";
-import { MetricCard } from "@/components/layout/admin/metric-card";
 import { cookies } from "next/headers";
 
-async function getDashboardStats() {
+import { MetricCard } from "@/components/layout/admin/metric-card";
+
+interface DashboardStats {
+  partners: number;
+  offers: number;
+  users: number;
+  activeSubscriptions: number;
+}
+
+async function getDashboardStats(): Promise<DashboardStats | null> {
   try {
     const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
     const cookieStore = await cookies();
@@ -28,15 +36,15 @@ async function getDashboardStats() {
       return null;
     }
     
-    const json = await res.json();
+    const json = (await res.json()) as { data: DashboardStats };
     return json.data;
-  } catch (error) {
+  } catch (error: unknown) {
     console.error("Failed to fetch admin stats:", error);
     return null;
   }
 }
 
-export default async function AdminDashboardPage() {
+export default async function AdminDashboardPage(): JSX.Element {
   const stats = await getDashboardStats();
 
   return (

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: 'Browse active offers from our partners.',
 };
 
-export default function OffersPage() {
+export default function OffersPage(): JSX.Element {
   return (
     <>
       <SectionHeading 

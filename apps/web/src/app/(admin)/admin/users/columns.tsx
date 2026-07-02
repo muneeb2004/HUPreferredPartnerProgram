@@ -1,7 +1,8 @@
 "use client"
 
-import { ColumnDef } from "@tanstack/react-table"
 import { Badge } from "@hu-partner/ui"
+import { type ColumnDef } from "@tanstack/react-table"
+
 import { UserCellAction } from "./cell-action"
 
 export type UserColumn = {
@@ -25,15 +26,15 @@ export const columns: ColumnDef<UserColumn>[] = [
   {
     accessorKey: "role",
     header: "Role",
-    cell: ({ row }) => {
-      const role = row.getValue("role") as string
-      return <Badge variant="outline">{role.replace("_", " ")}</Badge>
+    cell: ({ row }): JSX.Element => {
+      const role = row.getValue("role")
+      return <Badge variant="outline">{String(role).replace("_", " ")}</Badge>
     }
   },
   {
     id: "status",
     header: "Status",
-    cell: ({ row }) => {
+    cell: ({ row }): JSX.Element => {
       const isInactive = !!row.original.deletedAt
       return <Badge variant={isInactive ? "destructive" : "default"}>{isInactive ? "Inactive" : "Active"}</Badge>
     },
@@ -41,13 +42,13 @@ export const columns: ColumnDef<UserColumn>[] = [
   {
     accessorKey: "createdAt",
     header: "Joined",
-    cell: ({ row }) => {
+    cell: ({ row }): string => {
       const date = new Date(row.getValue("createdAt"))
       return date.toLocaleDateString()
     }
   },
   {
     id: "actions",
-    cell: ({ row }) => <UserCellAction data={row.original} />
+    cell: ({ row }): JSX.Element => <UserCellAction data={row.original} />
   },
 ]

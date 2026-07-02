@@ -5,7 +5,7 @@ import { type ReactNode } from "react";
 
 import { slideUp } from "@/lib/motion";
 
-export function Reveal({ children, className }: { children: ReactNode; className?: string }) {
+export function Reveal({ children, className }: { children: ReactNode; className?: string }): JSX.Element {
   return (
     <m.div
       variants={slideUp}

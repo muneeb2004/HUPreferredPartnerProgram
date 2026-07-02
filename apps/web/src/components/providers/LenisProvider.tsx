@@ -1,12 +1,12 @@
 "use client";
 
-import gsap from "gsap";
+import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { useEffect } from "react";
 
-export function LenisProvider({ children }: { children: React.ReactNode }) {
-  useEffect(() => {
+export function LenisProvider({ children }: { children: React.ReactNode }): JSX.Element {
+  useEffect((): (() => void) | undefined => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) {
       return; // Do not initialize Lenis if user prefers reduced motion
@@ -14,7 +14,7 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
 
     const lenis = new Lenis({
       duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+      easing: (t): number => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
@@ -22,19 +22,19 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     });
 
     // Synchronize Lenis scrolling with GSAP's ScrollTrigger
-    lenis.on('scroll', () => { ScrollTrigger.update(); });
+    lenis.on('scroll', (): void => { ScrollTrigger.update(); });
 
     // Sync GSAP ticker with Lenis requestAnimationFrame
-    gsap.ticker.add((time) => {
+    gsap.ticker.add((time): void => {
       lenis.raf(time * 1000);
     });
 
     // Disable GSAP's lag smoothing to prevent jitter when syncing with Lenis
     gsap.ticker.lagSmoothing(0);
 
-    return () => {
+    return (): void => {
       lenis.destroy();
-      gsap.ticker.remove((time) => {
+      gsap.ticker.remove((time): void => {
         lenis.raf(time * 1000);
       });
     };

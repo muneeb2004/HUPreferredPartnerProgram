@@ -1,6 +1,6 @@
 import { Loader2 } from "lucide-react"
 
-export default function AdminLoading() {
+export default function AdminLoading(): JSX.Element {
   return (
     <div className="flex h-[50vh] w-full items-center justify-center">
       <div className="flex flex-col items-center gap-2">

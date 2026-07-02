@@ -1,12 +1,12 @@
-import { notFound } from "next/navigation"
 import { cookies } from "next/headers"
+import { notFound } from "next/navigation"
 
 import { PartnerForm } from "@/components/admin/partners/partner-form"
-import { PartnerFormValues } from "@/lib/validations/partner"
+import { type PartnerFormValues } from "@/lib/validations/partner"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
-async function getPartner(slug: string) {
+async function getPartner(slug: string): Promise<(PartnerFormValues & { slug: string }) | null> {
   const cookieStore = await cookies()
   const token = cookieStore.get("accessToken")?.value
   
@@ -22,15 +22,15 @@ async function getPartner(slug: string) {
     throw new Error("Failed to fetch partner")
   }
 
-  const { data } = await res.json()
-  return data
+  const json = (await res.json()) as { data: PartnerFormValues & { slug: string } };
+  return json.data;
 }
 
 interface EditPartnerPageProps {
   params: Promise<{ slug: string }>
 }
 
-export default async function EditPartnerPage({ params }: EditPartnerPageProps) {
+export default async function EditPartnerPage({ params }: EditPartnerPageProps): JSX.Element {
   const resolvedParams = await params
   const partner = await getPartner(resolvedParams.slug)
 

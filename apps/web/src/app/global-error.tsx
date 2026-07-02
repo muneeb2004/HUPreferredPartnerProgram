@@ -11,7 +11,7 @@ export default function GlobalError({
 }: {
   error: Error & { digest?: string };
   reset: () => void;
-}) {
+}): JSX.Element {
   return (
     <html lang="en" className={`${inter.className} ${playfair.className}`}>
       <body>
@@ -22,7 +22,7 @@ export default function GlobalError({
           </p>
           <button
             className="px-4 py-2 bg-black text-white rounded-md font-medium"
-            onClick={() => reset()}
+            onClick={(): void => reset()}
           >
             Try again
           </button>

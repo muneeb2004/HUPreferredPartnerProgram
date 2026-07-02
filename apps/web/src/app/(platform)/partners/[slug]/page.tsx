@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function PartnerDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function PartnerDetailPage({ params }: { params: Promise<{ slug: string }> }): JSX.Element {
   const { slug } = await params;
   
   return (

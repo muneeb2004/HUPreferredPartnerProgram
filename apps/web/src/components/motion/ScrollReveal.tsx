@@ -5,10 +5,10 @@ import { useRef } from "react";
 
 import { createScrollReveal } from "@/lib/gsap-utils";
 
-export function ScrollReveal({ children, className }: { children: React.ReactNode; className?: string }) {
+export function ScrollReveal({ children, className }: { children: React.ReactNode; className?: string }): JSX.Element {
   const container = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
+  useGSAP((): void => {
     if (container.current) {
       // Respect user motion preferences
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

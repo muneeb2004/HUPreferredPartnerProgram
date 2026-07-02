@@ -1,13 +1,14 @@
-import { Suspense } from "react"
-import Link from "next/link"
+import { Button } from "@hu-partner/ui"
 import { Plus } from "lucide-react"
 import { cookies } from "next/headers"
+import Link from "next/link"
+import { Suspense } from "react"
 
-import { Button } from "@hu-partner/ui"
 import { DataTable } from "@/components/layout/admin/data-table"
-import { DataTableSkeleton } from "@/components/layout/admin/data-table-skeleton"
 import { DataTableError } from "@/components/layout/admin/data-table-error"
-import { columns, PartnerColumn } from "./columns"
+import { DataTableSkeleton } from "@/components/layout/admin/data-table-skeleton"
+
+import { columns, type PartnerColumn } from "./columns"
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
@@ -26,20 +27,21 @@ async function getPartners(): Promise<PartnerColumn[]> {
     throw new Error("Failed to fetch partners")
   }
 
-  const { data } = await res.json()
+  const json = (await res.json()) as { data: PartnerColumn[] };
+      const data = json.data;
   return data
 }
 
-async function PartnerList() {
+async function PartnerList(): JSX.Element {
   try {
     const data = await getPartners()
     return <DataTable searchKey="name" columns={columns} data={data} />
-  } catch (error) {
+  } catch (error: unknown) {
     return <DataTableError />
   }
 }
 
-export default function PartnersPage() {
+export default function PartnersPage(): JSX.Element {
   return (
     <div className="flex-1 space-y-4 p-8 pt-6">
       <div className="flex items-center justify-between space-y-2">
