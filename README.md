@@ -88,8 +88,8 @@ HuPrefferedPartner/
 │   │   │   ├── app/            # File-based routing
 │   │   │   │   ├── (public)/   # Landing, catalogue, partners
 │   │   │   │   ├── (auth)/     # Login, register
-│   │   │   │   ├── admin/      # Admin dashboard (protected)
-│   │   │   │   └── portal/     # Brand portal (protected)
+│   │   │   │   ├── (admin)/    # Admin dashboard (protected)
+│   │   │   │   └── (portal)/   # Brand portal (protected)
 │   │   │   ├── components/     # React components (ui/, sections/, three/, shared/)
 │   │   │   ├── lib/            # Utilities, hooks, API client
 │   │   │   └── styles/         # Tokens, typography, globals

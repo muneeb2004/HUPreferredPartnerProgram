@@ -76,24 +76,15 @@ CREATE EXTENSION IF NOT EXISTS "unaccent";    -- Accent-insensitive search
 ```mermaid
 erDiagram
     User ||--o{ AuditLog : "generates"
-    User ||--o{ OfferRedemption : "redeems"
-    User }o--|| Role : "assigned"
+    User ||--o{ Session : "has"
 
     Partner ||--o{ Offer : "provides"
-    Partner ||--o{ PartnerContact : "has"
-    Partner ||--o{ PartnerAsset : "uploads"
-    Partner ||--o{ PartnerAgreement : "signs"
-    Partner ||--o{ PartnerNote : "has"
-    Partner }o--|| PartnerTier : "belongs to"
     Partner }o--o{ Category : "tagged with"
 
-    Offer }o--|| Category : "categorised as"
-    Offer ||--o{ OfferRedemption : "tracks"
-
-    Newsletter ||--o{ Edition : "contains"
-    Edition ||--o{ NLSection : "contains"
-    NLSection ||--o{ Article : "contains"
-    Edition }o--|| Template : "uses"
+    Newsletter ||--o{ NewsletterIssue : "contains"
+    
+    NewsletterIssue ||--o{ DeliveryLog : "generates"
+    NewsletterSubscription ||--o{ DeliveryLog : "receives"
 
     Page ||--o{ ContentVersion : "versioned by"
     Page ||--o{ Media : "references"
@@ -101,50 +92,37 @@ erDiagram
     User {
         string id PK
         string email
+        string name
+        enum role
         string passwordHash
-        string firstName
-        string lastName
-        string roleId FK
         datetime createdAt
         datetime updatedAt
         datetime deletedAt
     }
 
-    Role {
-        string id PK
-        string name
-        json permissions
-    }
-
     Partner {
         string id PK
-        string name
         string slug
-        string tierId FK
-        string status
-        string logoUrl
-        text description
-        datetime partnerSince
-        datetime deletedAt
-    }
-
-    PartnerTier {
-        string id PK
         string name
-        int sortOrder
-        json benefits
+        text description
+        string status
+        string tier
+        boolean featured
+        string logoId FK
+        datetime createdAt
+        datetime deletedAt
     }
 
     Offer {
         string id PK
         string partnerId FK
-        string categoryId FK
         string title
         text description
-        string offerType
+        string discountType
+        float discountValue
         string status
-        datetime startsAt
-        datetime expiresAt
+        datetime startDate
+        datetime endDate
     }
 
     Category {
@@ -182,12 +160,27 @@ erDiagram
         string id PK
         string userId FK
         string action
-        string entityType
+        string entity
         string entityId
-        json changes
+        json details
         datetime createdAt
     }
 ```
+
+### 3.3 Known Issues and Technical Debt
+
+**Role Discrepancy (Non-blocking):**
+The original Master Plan specifies three standard roles: `ADMIN`, `BRAND_MANAGER`, and `STUDENT`. The current Prisma `UserRole` enum defines:
+- `ADMIN`
+- `BRAND_MANAGER`
+- `STUDENT` (implicitly planned)
+- `EDITOR` (currently in Prisma schema)
+- `VIEWER` (currently in Prisma schema, set as default)
+
+*Note: This is a known non-blocking issue. Future iterations should align the Prisma enum strictly with the Master Plan RBAC definitions.*
+
+**Soft Deletes & Audit Fields:**
+All primary entities (`User`, `Partner`, `Offer`, `Newsletter`, etc.) incorporate `deletedAt DateTime?` for soft deletes and `createdAt`/`updatedAt` for record tracking. An `AuditLog` table independently chronicles administrative mutations.
 
 ---
 

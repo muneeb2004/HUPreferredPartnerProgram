@@ -138,16 +138,15 @@ apps/web/
 │   │   │   │   └── page.tsx
 │   │   │   └── register/
 │   │   │       └── page.tsx
-│   │   ├── (dashboard)/         # Route group: authenticated area
-│   │   │   ├── layout.tsx       # Dashboard shell with sidebar
-│   │   │   ├── partners/
-│   │   │   │   ├── page.tsx     # Partner listing
-│   │   │   │   ├── [id]/
-│   │   │   │   │   └── page.tsx # Partner detail
-│   │   │   │   └── loading.tsx  # Suspense fallback
-│   │   │   ├── applications/
-│   │   │   │   └── page.tsx
-│   │   │   └── settings/
+│   │   ├── (admin)/             # Route group: admin dashboard
+│   │   │   ├── admin/           # Admin shell with sidebar
+│   │   │   │   ├── page.tsx     # Admin dashboard overview
+│   │   │   │   ├── partners/
+│   │   │   │   ├── offers/
+│   │   │   │   ├── users/
+│   │   │   │   └── newsletters/
+│   │   ├── (portal)/            # Route group: brand portal
+│   │   │   └── brand-portal/
 │   │   │       └── page.tsx
 │   │   ├── api/                 # Route Handlers (BFF pattern)
 │   │   │   └── auth/

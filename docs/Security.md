@@ -91,9 +91,10 @@ sequenceDiagram
 ### Authorization Rules
 
 1. **RBAC is enforced at the API layer** (NestJS guards), never solely on the frontend.
-2. **Frontend route guards** provide UX convenience only—they are not security controls.
+2. **Frontend route guards and Next.js Edge Middleware** provide UX convenience and a first layer of defense (blocking unauthorized routes globally via `middleware.ts`), but they are not the sole security controls.
 3. **Resource-level authorization**: `brand-manager` users can only access resources belonging to their own brand. This is enforced by a `BrandOwnerGuard` that checks `req.user.brandId` against the requested resource.
 4. **Admin actions are audit-logged.** Every create, update, and delete by an admin is recorded with timestamp, user ID, and the change made.
+5. **Server Actions Authorization**: Next.js Server Actions independently verify the `HttpOnly` token and validate permissions before mutating data or calling the NestJS API. They act as an intermediate secure proxy.
 
 ### NestJS Guard Implementation
 
