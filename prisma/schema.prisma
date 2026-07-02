@@ -32,6 +32,9 @@ model User {
   deletedAt    DateTime?
   auditLogs    AuditLog[]
   sessions     Session[]
+  
+  partnerId    String?
+  partner      Partner?    @relation(fields: [partnerId], references: [id])
 
   @@map("users")
 }
@@ -94,6 +97,7 @@ model Partner {
   // Relations
   categories  Category[]
   offers      Offer[]
+  users       User[]
   
   logoId      String?
   logo        MediaAsset?   @relation("PartnerLogo", fields: [logoId], references: [id])

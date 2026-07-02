@@ -17,6 +17,7 @@ import { MediaModule } from './modules/media/media.module';
 import { NewslettersModule } from './modules/newsletters/newsletters.module';
 import { OffersModule } from './modules/offers/offers.module';
 import { PartnersModule } from './modules/partners/partners.module';
+import { PortalModule } from './modules/portal/portal.module';
 import { SessionsModule } from './modules/sessions/sessions.module';
 import { SubscriptionModule } from './modules/subscriptions/subscriptions.module';
 import { UsersModule } from './modules/users/users.module';
@@ -43,7 +44,8 @@ import { UsersModule } from './modules/users/users.module';
     SubscriptionModule,
     NewslettersModule,
     AdminModule,
-    OffersModule
+    OffersModule,
+    PortalModule
   ],
   controllers: [AppController],
   providers: [
