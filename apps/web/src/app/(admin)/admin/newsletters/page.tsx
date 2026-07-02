@@ -53,7 +53,7 @@ export default function NewslettersPage(): React.JSX.Element {
   )
 }
 
-async function NewslettersTable(): React.JSX.Element {
+async function NewslettersTable(): Promise<React.JSX.Element> {
   try {
     const data = await getNewsletters()
     return (

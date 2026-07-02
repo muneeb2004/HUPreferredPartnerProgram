@@ -21,7 +21,7 @@ async function getSeries(): Promise<{ id: string; name: string }[]> {
   return json.data || [];
 }
 
-export default async function NewNewsletterPage(): React.JSX.Element {
+export default async function NewNewsletterPage(): Promise<React.JSX.Element> {
   const series = await getSeries()
 
   return (

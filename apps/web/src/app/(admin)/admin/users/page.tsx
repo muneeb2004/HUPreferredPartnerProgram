@@ -44,7 +44,7 @@ export default function UsersPage(): React.JSX.Element {
   )
 }
 
-async function UsersTable(): React.JSX.Element {
+async function UsersTable(): Promise<React.JSX.Element> {
   try {
     const data = await getUsers()
     return (

@@ -31,14 +31,14 @@ export const columns: ColumnDef<OfferColumn>[] = [
   {
     accessorKey: "code",
     header: "Code",
-    cell: ({ row }): void => row.getValue("code") || "-"
+    cell: ({ row }): React.ReactNode => String(row.getValue("code")) || "-"
   },
   {
     accessorKey: "discountValue",
     header: "Value",
     cell: ({ row }): string | number => {
-      const type = row.getValue("discountType")
-      const val = row.getValue("discountValue")
+      const type = String(row.getValue("discountType"))
+      const val = Number(row.getValue("discountValue"))
       if (type === "PERCENTAGE") return `${String(val)}%`
       if (type === "FIXED") return `$${String(val)}`
       return Number(val)
@@ -48,7 +48,7 @@ export const columns: ColumnDef<OfferColumn>[] = [
     accessorKey: "status",
     header: "Status",
     cell: ({ row }): React.JSX.Element => {
-      const status = row.getValue("status")
+      const status = String(row.getValue("status"))
       const variant = status === "PUBLISHED" ? "default" : status === "DRAFT" ? "secondary" : "destructive"
       return <Badge variant={variant}>{status}</Badge>
     },

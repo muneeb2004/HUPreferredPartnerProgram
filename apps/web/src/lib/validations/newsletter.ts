@@ -5,7 +5,7 @@ export const newsletterSchema = z.object({
   slug: z.string().min(1, "Slug is required"),
   title: z.string().min(1, "Title is required"),
   excerpt: z.string().optional(),
-  status: z.enum(["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"]).default("DRAFT"),
+  status: z.enum(["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"]),
   pdfId: z.string().optional(),
   publishedAt: z.string().optional(),
 });

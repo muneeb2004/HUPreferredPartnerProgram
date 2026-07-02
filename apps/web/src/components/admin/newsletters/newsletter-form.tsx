@@ -26,7 +26,7 @@ import { newsletterSchema, type NewsletterFormValues } from "@/lib/validations/n
 
 interface NewsletterFormProps {
   initialData?: NewsletterFormValues & { id: string }
-  series: { id: string; title: string }[]
+  series: { id: string; name: string }[]
 }
 
 export function NewsletterForm({ initialData, series }: NewsletterFormProps): React.JSX.Element {
@@ -88,7 +88,7 @@ export function NewsletterForm({ initialData, series }: NewsletterFormProps): Re
                   </FormControl>
                   <SelectContent>
                     {series.map(s => (
-                      <SelectItem key={s.id} value={s.id}>{s.title}</SelectItem>
+                      <SelectItem key={s.id} value={s.id}>{s.name}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>

@@ -50,7 +50,7 @@ interface EditOfferPageProps {
   params: Promise<{ id: string }>
 }
 
-export default async function EditOfferPage({ params }: EditOfferPageProps): React.JSX.Element {
+export default async function EditOfferPage({ params }: EditOfferPageProps): Promise<React.JSX.Element> {
   const resolvedParams = await params
   const offer = await getOffer(resolvedParams.id)
   if (!offer) {

@@ -29,7 +29,7 @@ export const columns: ColumnDef<UserColumn>[] = [
     accessorKey: "role",
     header: "Role",
     cell: ({ row }): React.JSX.Element => {
-      const role = row.getValue("role")
+      const role = String(row.getValue("role"))
       return <Badge variant="outline">{String(role).replace("_", " ")}</Badge>
     }
   },
@@ -45,7 +45,7 @@ export const columns: ColumnDef<UserColumn>[] = [
     accessorKey: "createdAt",
     header: "Joined",
     cell: ({ row }): string => {
-      const date = new Date(row.getValue("createdAt"))
+      const date = new Date(String(row.getValue("createdAt")))
       return date.toLocaleDateString()
     }
   },

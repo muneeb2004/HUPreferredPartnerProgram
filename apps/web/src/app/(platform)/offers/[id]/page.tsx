@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   };
 }
 
-export default async function OfferDetailPage({ params }: { params: Promise<{ id: string }> }): React.JSX.Element {
+export default async function OfferDetailPage({ params }: { params: Promise<{ id: string }> }): Promise<React.JSX.Element> {
   const { id } = await params;
   
   return (

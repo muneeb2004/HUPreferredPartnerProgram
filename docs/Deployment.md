@@ -30,6 +30,11 @@ This is **NOT** a platform migration. AWS remains the canonical production targe
 
 By keeping the Next.js frontend physically decoupled from the NestJS backend, we ensure zero Vercel-specific hacks pollute the core infrastructure or API environment.
 
+### Windows Development Note
+
+> **Note on Local Builds**
+> Next.js `standalone` output is enabled in `next.config.ts` for optimized Docker and AWS deployments. This may fail with `EPERM` during symlink creation when building locally on Windows systems without elevated privileges. This is a local development limitation and does not affect Linux-based environments (Vercel, Docker, AWS EC2, GitHub Actions). Production builds should be validated on Linux.
+
 ---
 
 ## Architecture Overview

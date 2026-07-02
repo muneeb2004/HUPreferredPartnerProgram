@@ -22,7 +22,7 @@ import * as React from "react"
 import { useForm } from "react-hook-form"
 
 import { createOffer, updateOffer } from "@/app/actions/offers"
-import { offerSchema, type OfferFormValues } from "@/lib/validations/offer"
+import { offerSchema, type OfferFormValues, type OfferFormInput } from "@/lib/validations/offer"
 
 interface OfferFormProps {
   initialData?: OfferFormValues & { id: string }
@@ -34,8 +34,8 @@ export function OfferForm({ initialData, partners }: OfferFormProps): React.JSX.
   const [isPending, startTransition] = React.useTransition()
   const [error, setError] = React.useState<string | null>(null)
 
-  const form = useForm<OfferFormValues>({
-    resolver: zodResolver(offerSchema),
+  const form = useForm<OfferFormInput, undefined, OfferFormValues>({
+        resolver: zodResolver(offerSchema),
     defaultValues: initialData || {
       partnerId: "",
       title: "",
@@ -77,7 +77,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps): React.JSX.
           </div>
         )}
 
-        <FormField<OfferFormValues, "partnerId">
+        <FormField<OfferFormInput, "partnerId">
           control={form.control}
           name="partnerId"
           render={({ field }): React.JSX.Element => (
@@ -101,7 +101,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps): React.JSX.
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <FormField<OfferFormValues, "title">
+          <FormField<OfferFormInput, "title">
             control={form.control}
             name="title"
             render={({ field }): React.JSX.Element => (
@@ -114,7 +114,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps): React.JSX.
               </FormItem>
             )}
           />
-          <FormField<OfferFormValues, "code">
+          <FormField<OfferFormInput, "code">
             control={form.control}
             name="code"
             render={({ field }): React.JSX.Element => (
@@ -129,7 +129,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps): React.JSX.
           />
         </div>
 
-        <FormField<OfferFormValues, "description">
+        <FormField<OfferFormInput, "description">
           control={form.control}
           name="description"
           render={({ field }): React.JSX.Element => (
@@ -148,7 +148,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps): React.JSX.
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <FormField<OfferFormValues, "discountType">
+          <FormField<OfferFormInput, "discountType">
             control={form.control}
             name="discountType"
             render={({ field }): React.JSX.Element => (
@@ -171,7 +171,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps): React.JSX.
               </FormItem>
             )}
           />
-          <FormField<OfferFormValues, "discountValue">
+          <FormField<OfferFormInput, "discountValue">
             control={form.control}
             name="discountValue"
             render={({ field }): React.JSX.Element => (
@@ -187,7 +187,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps): React.JSX.
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <FormField<OfferFormValues, "startDate">
+          <FormField<OfferFormInput, "startDate">
             control={form.control}
             name="startDate"
             render={({ field }): React.JSX.Element => (
@@ -200,7 +200,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps): React.JSX.
               </FormItem>
             )}
           />
-          <FormField<OfferFormValues, "endDate">
+          <FormField<OfferFormInput, "endDate">
             control={form.control}
             name="endDate"
             render={({ field }): React.JSX.Element => (
@@ -216,7 +216,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps): React.JSX.
         </div>
 
         <div className="grid grid-cols-1 gap-6">
-          <FormField<OfferFormValues, "status">
+          <FormField<OfferFormInput, "status">
             control={form.control}
             name="status"
             render={({ field }): React.JSX.Element => (

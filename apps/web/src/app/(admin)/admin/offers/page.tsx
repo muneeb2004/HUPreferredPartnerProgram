@@ -52,7 +52,7 @@ export default function OffersPage(): React.JSX.Element {
   )
 }
 
-async function OffersTable(): React.JSX.Element {
+async function OffersTable(): Promise<React.JSX.Element> {
   try {
     const data = await getOffers()
     return (

@@ -31,7 +31,7 @@ interface EditUserPageProps {
   params: Promise<{ id: string }>
 }
 
-export default async function EditUserPage({ params }: EditUserPageProps): React.JSX.Element {
+export default async function EditUserPage({ params }: EditUserPageProps): Promise<React.JSX.Element> {
   const resolvedParams = await params
   const user = await getUser(resolvedParams.id)
   

@@ -36,7 +36,7 @@ export function PartnerForm({ initialData }: PartnerFormProps): React.JSX.Elemen
   const [error, setError] = React.useState<string | null>(null)
 
   const form = useForm<PartnerFormValues>({
-    resolver: zodResolver(partnerSchema),
+        resolver: zodResolver(partnerSchema),
     defaultValues: initialData || {
       name: "",
       slug: "",

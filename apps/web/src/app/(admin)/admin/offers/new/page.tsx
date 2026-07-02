@@ -25,7 +25,7 @@ async function getPartners(): Promise<{ id: string; name: string }[]> {
   return json.data;
 }
 
-export default async function NewOfferPage(): React.JSX.Element {
+export default async function NewOfferPage(): Promise<React.JSX.Element> {
   const partners = await getPartners()
 
   return (

@@ -31,7 +31,7 @@ export const columns: ColumnDef<NewsletterColumn>[] = [
     accessorKey: "status",
     header: "Status",
     cell: ({ row }): React.JSX.Element => {
-      const status = row.getValue("status")
+      const status = String(row.getValue("status"))
       return (
         <Badge variant={status === "PUBLISHED" ? "default" : status === "DRAFT" ? "secondary" : "outline"}>
           {status}
@@ -43,7 +43,7 @@ export const columns: ColumnDef<NewsletterColumn>[] = [
     accessorKey: "createdAt",
     header: "Created Date",
     cell: ({ row }): string => {
-      const date = new Date(row.getValue("createdAt"))
+      const date = new Date(String(row.getValue("createdAt")))
       return date.toLocaleDateString()
     }
   },

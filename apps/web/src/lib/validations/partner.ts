@@ -6,8 +6,8 @@ export const partnerSchema = z.object({
   description: z.string().min(10, "Description must be at least 10 characters."),
   website: z.string().url("Must be a valid URL").optional().or(z.literal("")),
   tier: z.string().optional(),
-  status: z.enum(["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"]).default("DRAFT"),
-  featured: z.boolean().default(false),
+  status: z.enum(["DRAFT", "REVIEW", "PUBLISHED", "ARCHIVED"]),
+  featured: z.boolean(),
 });
 
-export type PartnerFormValues = z.input<typeof partnerSchema>;
+export type PartnerFormValues = z.infer<typeof partnerSchema>;

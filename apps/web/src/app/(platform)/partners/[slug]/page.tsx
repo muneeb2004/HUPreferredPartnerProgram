@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function PartnerDetailPage({ params }: { params: Promise<{ slug: string }> }): React.JSX.Element {
+export default async function PartnerDetailPage({ params }: { params: Promise<{ slug: string }> }): Promise<React.JSX.Element> {
   const { slug } = await params;
   
   return (

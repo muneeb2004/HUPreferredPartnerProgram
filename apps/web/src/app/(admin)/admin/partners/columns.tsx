@@ -29,7 +29,7 @@ export const columns: ColumnDef<PartnerColumn>[] = [
     accessorKey: "tier",
     header: "Tier",
     cell: ({ row }): string => {
-      const tier = row.getValue("tier")
+      const tier = String(row.getValue("tier"))
       return tier ? tier : "-"
     }
   },
@@ -37,7 +37,7 @@ export const columns: ColumnDef<PartnerColumn>[] = [
     accessorKey: "status",
     header: "Status",
     cell: ({ row }): React.JSX.Element => {
-      const status = row.getValue("status")
+      const status = String(row.getValue("status"))
       const variant = status === "PUBLISHED" ? "default" : status === "DRAFT" ? "secondary" : "destructive"
       return <Badge variant={variant}>{status}</Badge>
     },
@@ -46,7 +46,7 @@ export const columns: ColumnDef<PartnerColumn>[] = [
     accessorKey: "createdAt",
     header: "Date Added",
     cell: ({ row }): string => {
-      const date = new Date(row.getValue("createdAt"))
+      const date = new Date(String(row.getValue("createdAt")))
       return date.toLocaleDateString()
     }
   },

@@ -5,6 +5,8 @@ import { MetricCard } from "@/components/layout/admin/metric-card";
 
 import type * as React from "react";
 
+export const dynamic = "force-dynamic";
+
 interface DashboardStats {
   partners: number;
   offers: number;
@@ -46,7 +48,7 @@ async function getDashboardStats(): Promise<DashboardStats | null> {
   }
 }
 
-export default async function AdminDashboardPage(): React.JSX.Element {
+export default async function AdminDashboardPage(): Promise<React.JSX.Element> {
   const stats = await getDashboardStats();
 
   return (

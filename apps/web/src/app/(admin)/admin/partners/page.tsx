@@ -34,7 +34,7 @@ async function getPartners(): Promise<PartnerColumn[]> {
   return data
 }
 
-async function PartnerList(): React.JSX.Element {
+async function PartnerList(): Promise<React.JSX.Element> {
   try {
     const data = await getPartners()
     return <DataTable searchKey="name" columns={columns} data={data} />

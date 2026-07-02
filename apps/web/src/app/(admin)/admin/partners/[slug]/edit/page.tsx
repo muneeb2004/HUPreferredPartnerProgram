@@ -32,7 +32,7 @@ interface EditPartnerPageProps {
   params: Promise<{ slug: string }>
 }
 
-export default async function EditPartnerPage({ params }: EditPartnerPageProps): React.JSX.Element {
+export default async function EditPartnerPage({ params }: EditPartnerPageProps): Promise<React.JSX.Element> {
   const resolvedParams = await params
   const partner = await getPartner(resolvedParams.slug)
 
