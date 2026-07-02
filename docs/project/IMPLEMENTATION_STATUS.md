@@ -41,7 +41,7 @@ Please refer to: [ENGINEERING_RECOMMENDATIONS.md](./ENGINEERING_RECOMMENDATIONS.
 
 * **Objective:** Give partner brands a self-service portal to manage their profile, create offers, and view engagement analytics.
 * **Dependencies:** Phase 9 (Authentication), Phase 10 (Admin Dashboard), Phase 12 (Offer Management).
-* **Required Documents:** Review `MASTER_PLAN.md` and previously approved architectural blueprints before initiating the Phase 11 Architecture gap analysis.
+* **Required Documents:** Review `MASTER_PLAN.md` and [Brand Portal Architecture](../Brand-Portal.md) before initiating the Phase 11 implementation.
 
 ## 7. Repository Health
 - **Architecture Consistency:** Exceptional. The strict separation of NestJS backend and Next.js frontend Server Components is intact.

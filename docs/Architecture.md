@@ -150,7 +150,7 @@ graph LR
 | Pattern | When | Example |
 |---------|------|---------|
 | RSC `fetch()` | Page-level data, ISR-compatible | Partner list, brand details |
-| Server Actions | Mutations, form submissions | Create offer, update profile |
+| Server Actions | Mutations, form submissions | Create offer, update profile. See [Server Action Architecture](./Frontend-Guidelines.md#server-action-architecture) |
 | Client `fetch` + SWR | Real-time data, polling | Analytics dashboard |
 | Route Handlers | Webhook endpoints, file uploads | Newsletter PDF upload |
 

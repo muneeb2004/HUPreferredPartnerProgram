@@ -162,6 +162,70 @@ fetch(url, { cache: 'force-cache' });
 
 ---
 
+## Server Action Architecture
+
+Server Actions serve as the secure bridge between our Next.js frontend and the NestJS backend for all mutations. They act as a secure proxy layer that ensures strict validation before data reaches the API.
+
+### Request Lifecycle
+
+```mermaid
+sequenceDiagram
+    participant Client as Client Component (Form)
+    participant RHF as react-hook-form
+    participant Zod as Zod (Client Validation)
+    participant Action as Server Action (Next.js)
+    participant API as NestJS API
+    participant DB as Prisma / Database
+
+    Client->>RHF: User Submits Form
+    RHF->>Zod: Validate Input
+    alt Validation Fails
+        Zod-->>RHF: Validation Errors
+        RHF-->>Client: Display Field Errors
+    else Validation Passes
+        RHF->>Action: Call Server Action with Payload
+        Action->>Action: Validate Payload (Zod)
+        Action->>Action: Read HttpOnly JWT Cookie
+        Action->>API: Forward HTTP Request with JWT
+        API->>API: RolesGuard & Ownership Check
+        API->>DB: Execute Mutation
+        DB-->>API: Result
+        API-->>Action: Success / Error Response
+        alt API Error
+            Action-->>Client: Throw Error / Return Failure
+        else Success
+            Action->>Action: revalidatePath()
+            Action-->>Client: Return Success
+        end
+    end
+```
+
+### Layer Responsibilities
+
+- **Client Component**: Renders the UI, captures user input, and provides instant visual feedback.
+- **react-hook-form & Zod (Client)**: Prevents unnecessary network requests by catching schema violations immediately in the browser.
+- **Server Action**: The secure execution context. Responsible for re-validating the payload (never trust the client), extracting the HTTP-only auth cookie, appending it to the backend request, and triggering Next.js cache revalidations.
+- **NestJS API**: The ultimate source of truth. Enforces business logic, RBAC (`RolesGuard`), data ownership, and orchestrates database transactions.
+- **Prisma**: Executes safe, parameterized SQL queries.
+
+### Validation Boundaries
+Validation happens twice:
+1. **Client-side** for instant user feedback.
+2. **Server-side (Server Action)** to protect against malicious payloads bypassing the UI. Both use the identical Zod schemas imported from `packages/validators`.
+
+### Optimistic UI
+For actions requiring immediate feedback (e.g., toggling an offer status), use React's `useOptimistic` hook. The UI updates instantly, and rolls back if the Server Action returns an error.
+
+### Revalidation
+Always call `revalidatePath()` or `revalidateTag()` inside the Server Action upon a successful mutation. This ensures the Next.js router clears its cache and fetches the fresh data on the next render.
+
+### Security Considerations
+- Server Actions must never blindly trust user input. Always parse with Zod.
+- Server Actions must forward the user's JWT to NestJS to ensure the mutation is executed under the correct identity.
+- Never expose sensitive backend error messages or stack traces directly to the client; catch them in the Server Action and return generic, human-readable error messages.
+
+---
+
 ## State Management
 
 | State Type | Solution | Example |
