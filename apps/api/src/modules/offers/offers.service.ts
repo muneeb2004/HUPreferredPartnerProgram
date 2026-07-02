@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/require-await, @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-call, @typescript-eslint/explicit-function-return-type */
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 
 import { PrismaService } from '../../common/prisma/prisma.service';
 
@@ -9,9 +9,33 @@ import { CreateOfferDto, UpdateOfferDto } from './dto/offer.dto';
 export class OffersService {
   constructor(private prisma: PrismaService) {}
 
+  private validateDates(startDate?: string | Date | null, endDate?: string | Date | null) {
+    if (startDate && endDate) {
+      if (new Date(startDate) >= new Date(endDate)) {
+        throw new BadRequestException('endDate must be after startDate');
+      }
+    }
+  }
+
+  private validatePublish(dto: any, existingOffer?: any) {
+    const status = dto.status || existingOffer?.status;
+    if (status === 'PUBLISHED') {
+      const startDate = dto.startDate !== undefined ? dto.startDate : existingOffer?.startDate;
+      const endDate = dto.endDate !== undefined ? dto.endDate : existingOffer?.endDate;
+      const terms = dto.terms !== undefined ? dto.terms : existingOffer?.terms;
+
+      if (!startDate || !endDate || !terms) {
+        throw new BadRequestException('Offers cannot be published without startDate, endDate, and terms');
+      }
+    }
+  }
+
   async create(createOfferDto: CreateOfferDto) {
+    this.validateDates(createOfferDto.startDate, createOfferDto.endDate);
+    this.validatePublish(createOfferDto);
+    
     return this.prisma.offer.create({
-      data: createOfferDto,
+      data: createOfferDto as any,
       include: { partner: true }
     });
   }
@@ -39,10 +63,16 @@ export class OffersService {
   }
 
   async update(id: string, updateOfferDto: UpdateOfferDto) {
-    await this.findOne(id);
+    const existing = await this.findOne(id);
+    this.validateDates(
+      updateOfferDto.startDate !== undefined ? updateOfferDto.startDate : existing.startDate, 
+      updateOfferDto.endDate !== undefined ? updateOfferDto.endDate : existing.endDate
+    );
+    this.validatePublish(updateOfferDto, existing);
+
     return this.prisma.offer.update({
       where: { id },
-      data: updateOfferDto,
+      data: updateOfferDto as any,
       include: { partner: true }
     });
   }
