@@ -7,14 +7,14 @@ interface PartnerOffersListProps {
   offers: Array<{ id: string; title: string; partnerName: string; expirationDate: string }>;
 }
 
-export function PartnerOffersList({ offers }: PartnerOffersListProps): JSX.Element {
+export function PartnerOffersList({ offers }: PartnerOffersListProps): React.JSX.Element {
   if (!offers || offers.length === 0) {
     return <EmptyState title="No active offers" description="This partner does not have any active offers at the moment." />;
   }
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {offers.map((offer): JSX.Element => (
+      {offers.map((offer): React.JSX.Element => (
         <OfferCard 
           key={offer.id} 
           id={offer.id} 

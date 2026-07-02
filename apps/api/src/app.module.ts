@@ -10,15 +10,15 @@ import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { RolesGuard } from './common/guards/roles.guard';
 import { ResponseInterceptor } from './common/interceptors/response.interceptor';
 import { PrismaModule } from './common/prisma/prisma.module';
+import { AdminModule } from './modules/admin/admin.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { MediaModule } from './modules/media/media.module';
 import { NewslettersModule } from './modules/newsletters/newsletters.module';
+import { OffersModule } from './modules/offers/offers.module';
 import { PartnersModule } from './modules/partners/partners.module';
 import { SessionsModule } from './modules/sessions/sessions.module';
 import { SubscriptionModule } from './modules/subscriptions/subscriptions.module';
 import { UsersModule } from './modules/users/users.module';
-import { AdminModule } from './modules/admin/admin.module';
-import { OffersModule } from './modules/offers/offers.module';
 
 @Module({
   imports: [

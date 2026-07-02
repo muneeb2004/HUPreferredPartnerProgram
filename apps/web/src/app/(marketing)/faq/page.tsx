@@ -3,11 +3,13 @@ import { type Metadata } from "next";
 import { EmptyState } from "@/components/marketing/EmptyState";
 import { HeroEditorial } from "@/components/marketing/HeroEditorial";
 
+import type * as React from "react";
+
 export const metadata: Metadata = {
   title: 'FAQ | HU Preferred Partner',
 };
 
-export default function FAQPage(): JSX.Element {
+export default function FAQPage(): React.JSX.Element {
   return (
     <>
       <HeroEditorial 

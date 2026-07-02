@@ -2,7 +2,9 @@ import Link from "next/link";
 
 import { MobileNav } from "./MobileNav";
 
-export function Header(): JSX.Element {
+import type * as React from "react";
+
+export function Header(): React.JSX.Element {
   return (
     <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-surface-page/85 border-b border-border shadow-elevation-sm">
       <div className="container mx-auto px-4 md:px-8 lg:px-12 max-w-7xl h-16 flex items-center justify-between">

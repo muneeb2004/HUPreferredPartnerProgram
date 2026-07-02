@@ -2,6 +2,8 @@ import { cookies } from "next/headers"
 
 import { OfferForm } from "@/components/admin/offers/offer-form"
 
+import type * as React from "react";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
 async function getPartners(): Promise<{ id: string; name: string }[]> {
@@ -23,7 +25,7 @@ async function getPartners(): Promise<{ id: string; name: string }[]> {
   return json.data;
 }
 
-export default async function NewOfferPage(): JSX.Element {
+export default async function NewOfferPage(): React.JSX.Element {
   const partners = await getPartners()
 
   return (

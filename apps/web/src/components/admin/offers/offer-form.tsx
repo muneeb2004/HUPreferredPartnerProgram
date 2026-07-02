@@ -29,7 +29,7 @@ interface OfferFormProps {
   partners: { id: string; name: string }[]
 }
 
-export function OfferForm({ initialData, partners }: OfferFormProps): JSX.Element {
+export function OfferForm({ initialData, partners }: OfferFormProps): React.JSX.Element {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
   const [error, setError] = React.useState<string | null>(null)
@@ -80,7 +80,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps): JSX.Elemen
         <FormField<OfferFormValues, "partnerId">
           control={form.control}
           name="partnerId"
-          render={({ field }): JSX.Element => (
+          render={({ field }): React.JSX.Element => (
             <FormItem>
               <FormLabel>Partner</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -104,7 +104,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps): JSX.Elemen
           <FormField<OfferFormValues, "title">
             control={form.control}
             name="title"
-            render={({ field }): JSX.Element => (
+            render={({ field }): React.JSX.Element => (
               <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
@@ -117,7 +117,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps): JSX.Elemen
           <FormField<OfferFormValues, "code">
             control={form.control}
             name="code"
-            render={({ field }): JSX.Element => (
+            render={({ field }): React.JSX.Element => (
               <FormItem>
                 <FormLabel>Coupon Code</FormLabel>
                 <FormControl>
@@ -132,7 +132,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps): JSX.Elemen
         <FormField<OfferFormValues, "description">
           control={form.control}
           name="description"
-          render={({ field }): JSX.Element => (
+          render={({ field }): React.JSX.Element => (
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
@@ -151,7 +151,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps): JSX.Elemen
           <FormField<OfferFormValues, "discountType">
             control={form.control}
             name="discountType"
-            render={({ field }): JSX.Element => (
+            render={({ field }): React.JSX.Element => (
               <FormItem>
                 <FormLabel>Discount Type</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -174,7 +174,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps): JSX.Elemen
           <FormField<OfferFormValues, "discountValue">
             control={form.control}
             name="discountValue"
-            render={({ field }): JSX.Element => (
+            render={({ field }): React.JSX.Element => (
               <FormItem>
                 <FormLabel>Discount Value</FormLabel>
                 <FormControl>
@@ -190,7 +190,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps): JSX.Elemen
           <FormField<OfferFormValues, "startDate">
             control={form.control}
             name="startDate"
-            render={({ field }): JSX.Element => (
+            render={({ field }): React.JSX.Element => (
               <FormItem>
                 <FormLabel>Start Date</FormLabel>
                 <FormControl>
@@ -203,7 +203,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps): JSX.Elemen
           <FormField<OfferFormValues, "endDate">
             control={form.control}
             name="endDate"
-            render={({ field }): JSX.Element => (
+            render={({ field }): React.JSX.Element => (
               <FormItem>
                 <FormLabel>End Date</FormLabel>
                 <FormControl>
@@ -219,7 +219,7 @@ export function OfferForm({ initialData, partners }: OfferFormProps): JSX.Elemen
           <FormField<OfferFormValues, "status">
             control={form.control}
             name="status"
-            render={({ field }): JSX.Element => (
+            render={({ field }): React.JSX.Element => (
               <FormItem>
                 <FormLabel>Status</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>

@@ -5,7 +5,8 @@ import { type ReactNode } from "react";
 
 import { slideUp } from "@/lib/motion";
 
-export function AnimatedCard({ children, className }: { children: ReactNode; className?: string }): JSX.Element {
+
+export function AnimatedCard({ children, className }: { children: ReactNode; className?: string }): React.JSX.Element {
   return (
     <m.div
       variants={slideUp}

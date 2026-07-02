@@ -5,6 +5,8 @@ import { type ColumnDef } from "@tanstack/react-table"
 
 import { OfferCellAction } from "./cell-action"
 
+import type * as React from "react";
+
 export type OfferColumn = {
   id: string
   title: string
@@ -45,7 +47,7 @@ export const columns: ColumnDef<OfferColumn>[] = [
   {
     accessorKey: "status",
     header: "Status",
-    cell: ({ row }): JSX.Element => {
+    cell: ({ row }): React.JSX.Element => {
       const status = row.getValue("status")
       const variant = status === "PUBLISHED" ? "default" : status === "DRAFT" ? "secondary" : "destructive"
       return <Badge variant={variant}>{status}</Badge>
@@ -53,6 +55,6 @@ export const columns: ColumnDef<OfferColumn>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }): JSX.Element => <OfferCellAction data={row.original} />
+    cell: ({ row }): React.JSX.Element => <OfferCellAction data={row.original} />
   },
 ]

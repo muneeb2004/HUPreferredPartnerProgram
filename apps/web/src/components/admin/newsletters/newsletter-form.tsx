@@ -29,7 +29,7 @@ interface NewsletterFormProps {
   series: { id: string; title: string }[]
 }
 
-export function NewsletterForm({ initialData, series }: NewsletterFormProps): JSX.Element {
+export function NewsletterForm({ initialData, series }: NewsletterFormProps): React.JSX.Element {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
   const [error, setError] = React.useState<string | null>(null)
@@ -77,7 +77,7 @@ export function NewsletterForm({ initialData, series }: NewsletterFormProps): JS
           <FormField<NewsletterFormValues, "newsletterId">
             control={form.control}
             name="newsletterId"
-            render={({ field }): JSX.Element => (
+            render={({ field }): React.JSX.Element => (
               <FormItem>
                 <FormLabel>Newsletter Series</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -100,7 +100,7 @@ export function NewsletterForm({ initialData, series }: NewsletterFormProps): JS
           <FormField<NewsletterFormValues, "status">
             control={form.control}
             name="status"
-            render={({ field }): JSX.Element => (
+            render={({ field }): React.JSX.Element => (
               <FormItem>
                 <FormLabel>Status</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -124,7 +124,7 @@ export function NewsletterForm({ initialData, series }: NewsletterFormProps): JS
           <FormField<NewsletterFormValues, "title">
             control={form.control}
             name="title"
-            render={({ field }): JSX.Element => (
+            render={({ field }): React.JSX.Element => (
               <FormItem className="col-span-1 md:col-span-2">
                 <FormLabel>Title</FormLabel>
                 <FormControl>
@@ -138,7 +138,7 @@ export function NewsletterForm({ initialData, series }: NewsletterFormProps): JS
           <FormField<NewsletterFormValues, "slug">
             control={form.control}
             name="slug"
-            render={({ field }): JSX.Element => (
+            render={({ field }): React.JSX.Element => (
               <FormItem className="col-span-1 md:col-span-2">
                 <FormLabel>Slug</FormLabel>
                 <FormControl>
@@ -152,7 +152,7 @@ export function NewsletterForm({ initialData, series }: NewsletterFormProps): JS
           <FormField<NewsletterFormValues, "excerpt">
             control={form.control}
             name="excerpt"
-            render={({ field }): JSX.Element => (
+            render={({ field }): React.JSX.Element => (
               <FormItem className="col-span-1 md:col-span-2">
                 <FormLabel>Excerpt (Optional)</FormLabel>
                 <FormControl>

@@ -2,7 +2,9 @@ import Link from "next/link";
 
 import { Footer } from "@/components/layout/Footer";
 
-export default function BrandPortalLayout({ children }: { children: React.ReactNode }): JSX.Element {
+import type * as React from "react";
+
+export default function BrandPortalLayout({ children }: { children: React.ReactNode }): React.JSX.Element {
   return (
     <div className="flex min-h-screen flex-col bg-surface-page">
       <header className="h-16 border-b border-border bg-surface-card flex items-center px-6 sticky top-0 z-30 justify-between">

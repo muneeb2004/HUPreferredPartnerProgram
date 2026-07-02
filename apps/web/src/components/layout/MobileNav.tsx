@@ -4,7 +4,7 @@ import { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription , 
 import Link from "next/link";
 import * as React from "react";
 
-export function MobileNav(): JSX.Element {
+export function MobileNav(): React.JSX.Element {
   const [open, setOpen] = React.useState(false);
 
   return (

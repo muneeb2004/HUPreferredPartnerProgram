@@ -5,6 +5,8 @@ import { LayoutDashboard, Users, Tag, Mail, Store } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import type * as React from "react";
+
 const navigation = [
   { name: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { name: "Partners", href: "/admin/partners", icon: Store },
@@ -44,7 +46,7 @@ export function AdminSidebar({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen
           </Link>
         </div>
         <nav className="flex-1 flex flex-col gap-2 p-4 overflow-y-auto" aria-label="Admin Navigation">
-          {navigation.map((item): JSX.Element => {
+          {navigation.map((item): React.JSX.Element => {
             const isActive = pathname === item.href || (item.href !== "/admin" && pathname.startsWith(item.href + "/"));
             return (
               <Link 

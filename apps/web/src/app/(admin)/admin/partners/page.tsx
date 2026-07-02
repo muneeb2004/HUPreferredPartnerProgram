@@ -10,6 +10,8 @@ import { DataTableSkeleton } from "@/components/layout/admin/data-table-skeleton
 
 import { columns, type PartnerColumn } from "./columns"
 
+import type * as React from "react";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
 async function getPartners(): Promise<PartnerColumn[]> {
@@ -32,7 +34,7 @@ async function getPartners(): Promise<PartnerColumn[]> {
   return data
 }
 
-async function PartnerList(): JSX.Element {
+async function PartnerList(): React.JSX.Element {
   try {
     const data = await getPartners()
     return <DataTable searchKey="name" columns={columns} data={data} />
@@ -41,7 +43,7 @@ async function PartnerList(): JSX.Element {
   }
 }
 
-export default function PartnersPage(): JSX.Element {
+export default function PartnersPage(): React.JSX.Element {
   return (
     <div className="flex-1 space-y-4 p-8 pt-6">
       <div className="flex items-center justify-between space-y-2">

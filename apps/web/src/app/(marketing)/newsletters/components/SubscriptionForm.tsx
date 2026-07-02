@@ -5,7 +5,9 @@ import { useActionState } from 'react';
 import { AnimatedButton, FadeIn } from '../../../../components/motion/MotionPrimitives';
 import { subscribeAction } from '../../../actions/newsletter';
 
-export function SubscriptionForm(): JSX.Element {
+import type * as React from "react";
+
+export function SubscriptionForm(): React.JSX.Element {
   const [state, formAction, pending] = useActionState(subscribeAction, null);
 
   return (

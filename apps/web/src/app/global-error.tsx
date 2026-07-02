@@ -2,6 +2,8 @@
 
 import { Inter, Playfair_Display } from "next/font/google";
 
+import type * as React from "react";
+
 const inter = Inter({ subsets: ["latin"] });
 const playfair = Playfair_Display({ subsets: ["latin"] });
 
@@ -11,7 +13,7 @@ export default function GlobalError({
 }: {
   error: Error & { digest?: string };
   reset: () => void;
-}): JSX.Element {
+}): React.JSX.Element {
   return (
     <html lang="en" className={`${inter.className} ${playfair.className}`}>
       <body>

@@ -2,11 +2,13 @@ import { type Metadata } from "next";
 
 import { HeroEditorial } from "@/components/marketing/HeroEditorial";
 
+import type * as React from "react";
+
 export const metadata: Metadata = {
   title: 'Contact | HU Preferred Partner',
 };
 
-export default function ContactPage(): JSX.Element {
+export default function ContactPage(): React.JSX.Element {
   return (
     <>
       <HeroEditorial 

@@ -4,6 +4,8 @@ import { notFound } from "next/navigation"
 import { UserRoleForm } from "@/components/admin/users/user-role-form"
 import { type UserRoleFormValues } from "@/lib/validations/user"
 
+import type * as React from "react";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
 async function getUser(id: string): Promise<(UserRoleFormValues & { id: string; name: string }) | null> {
@@ -29,7 +31,7 @@ interface EditUserPageProps {
   params: Promise<{ id: string }>
 }
 
-export default async function EditUserPage({ params }: EditUserPageProps): JSX.Element {
+export default async function EditUserPage({ params }: EditUserPageProps): React.JSX.Element {
   const resolvedParams = await params
   const user = await getUser(resolvedParams.id)
   

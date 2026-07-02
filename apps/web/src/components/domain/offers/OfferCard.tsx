@@ -2,6 +2,8 @@ import Link from "next/link";
 
 import { OfferExpirationBadge } from "./OfferExpirationBadge";
 
+import type * as React from "react";
+
 interface OfferCardProps {
   id: string;
   title: string;
@@ -9,7 +11,7 @@ interface OfferCardProps {
   expirationDate: string;
 }
 
-export function OfferCard({ id, title, partnerName, expirationDate }: OfferCardProps): JSX.Element {
+export function OfferCard({ id, title, partnerName, expirationDate }: OfferCardProps): React.JSX.Element {
   return (
     <Link href={`/offers/${id}`} className="group block focus-visible:outline-brand-primary rounded-xl focus-visible:ring-2 focus-visible:ring-brand-primary">
       <article className="p-6 rounded-xl border border-border bg-surface-card hover:border-foreground/20 transition-all hover:translate-y-[-2px] hover:shadow-elevation-md flex flex-col gap-4 h-full">

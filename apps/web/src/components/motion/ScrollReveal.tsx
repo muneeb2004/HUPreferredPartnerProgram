@@ -5,7 +5,8 @@ import { useRef } from "react";
 
 import { createScrollReveal } from "@/lib/gsap-utils";
 
-export function ScrollReveal({ children, className }: { children: React.ReactNode; className?: string }): JSX.Element {
+
+export function ScrollReveal({ children, className }: { children: React.ReactNode; className?: string }): React.JSX.Element {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP((): void => {

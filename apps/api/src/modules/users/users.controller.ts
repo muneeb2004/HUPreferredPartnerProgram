@@ -1,7 +1,9 @@
 import { Controller, Get, Patch, Param, Body, UseInterceptors } from '@nestjs/common';
 import { UserRole } from '@prisma/client';
+
 import { Roles } from '../../common/decorators/roles.decorator';
 import { ResponseInterceptor } from '../../common/interceptors/response.interceptor';
+
 import { UsersService } from './users.service';
 
 @Controller('api/v1/users')

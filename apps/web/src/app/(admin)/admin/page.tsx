@@ -3,6 +3,8 @@ import { cookies } from "next/headers";
 
 import { MetricCard } from "@/components/layout/admin/metric-card";
 
+import type * as React from "react";
+
 interface DashboardStats {
   partners: number;
   offers: number;
@@ -44,7 +46,7 @@ async function getDashboardStats(): Promise<DashboardStats | null> {
   }
 }
 
-export default async function AdminDashboardPage(): JSX.Element {
+export default async function AdminDashboardPage(): React.JSX.Element {
   const stats = await getDashboardStats();
 
   return (

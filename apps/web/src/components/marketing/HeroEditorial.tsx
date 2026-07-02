@@ -6,7 +6,7 @@ interface HeroEditorialProps {
   children?: React.ReactNode;
 }
 
-export function HeroEditorial({ headline, subheadline, children }: HeroEditorialProps): JSX.Element {
+export function HeroEditorial({ headline, subheadline, children }: HeroEditorialProps): React.JSX.Element {
   return (
     <section className="w-full py-24 md:py-32 flex flex-col items-center text-center px-4">
       <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight max-w-4xl text-foreground">

@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import type * as React from "react";
+
 interface NewsletterCardProps {
   slug: string;
   title: string;
@@ -7,7 +9,7 @@ interface NewsletterCardProps {
   excerpt: string;
 }
 
-export function NewsletterCard({ slug, title, date, excerpt }: NewsletterCardProps): JSX.Element {
+export function NewsletterCard({ slug, title, date, excerpt }: NewsletterCardProps): React.JSX.Element {
   return (
     <Link href={`/newsletters/${slug}`} className="group block focus-visible:outline-brand-primary rounded-xl focus-visible:ring-2 focus-visible:ring-brand-primary">
       <article className="p-6 rounded-xl border border-border bg-surface-card hover:border-foreground/20 transition-all hover:translate-y-[-2px] hover:shadow-elevation-md h-full flex flex-col">

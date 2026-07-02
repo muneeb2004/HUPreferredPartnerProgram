@@ -5,7 +5,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { useEffect } from "react";
 
-export function LenisProvider({ children }: { children: React.ReactNode }): JSX.Element {
+
+export function LenisProvider({ children }: { children: React.ReactNode }): React.JSX.Element {
   useEffect((): (() => void) | undefined => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) {

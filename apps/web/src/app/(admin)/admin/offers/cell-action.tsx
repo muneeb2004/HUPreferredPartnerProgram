@@ -20,7 +20,7 @@ interface CellActionProps {
   data: OfferColumn
 }
 
-export function OfferCellAction({ data }: CellActionProps): JSX.Element {
+export function OfferCellAction({ data }: CellActionProps): React.JSX.Element {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
 

@@ -3,12 +3,14 @@ import { type Metadata } from "next";
 import { PartnerGrid } from "@/components/domain/partners/PartnerGrid";
 import { SectionHeading } from "@/components/marketing/SectionHeading";
 
+import type * as React from "react";
+
 export const metadata: Metadata = {
   title: 'Partners | HU Preferred Partner',
   description: 'Browse our exclusive brand partners.',
 };
 
-export default function PartnersPage(): JSX.Element {
+export default function PartnersPage(): React.JSX.Element {
   return (
     <>
       <SectionHeading 

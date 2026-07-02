@@ -4,6 +4,8 @@ import { FadeIn, AnimatedHeading, AnimatedCard, StaggerGroup } from '../../../co
 
 import { SubscriptionForm } from './components/SubscriptionForm';
 
+import type * as React from "react";
+
 export const revalidate = 60; // ISR revalidation every 60s
 
 interface Newsletter {
@@ -58,7 +60,7 @@ export default async function NewslettersArchivePage(): Promise<React.ReactEleme
           </FadeIn>
         ) : (
           <StaggerGroup className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {newsletters.map((issue: Newsletter): JSX.Element => (
+            {newsletters.map((issue: Newsletter): React.JSX.Element => (
               <AnimatedCard key={issue.id} className="block p-6 bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 dark:border-gray-700">
                 <Link href={`/newsletters/${issue.slug}`} className="block h-full">
                   <div className="text-sm text-blue-600 dark:text-blue-400 font-medium mb-2">

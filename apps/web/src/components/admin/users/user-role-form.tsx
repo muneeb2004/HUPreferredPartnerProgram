@@ -26,7 +26,7 @@ interface UserRoleFormProps {
   initialData: UserRoleFormValues & { id: string }
 }
 
-export function UserRoleForm({ initialData }: UserRoleFormProps): JSX.Element {
+export function UserRoleForm({ initialData }: UserRoleFormProps): React.JSX.Element {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
   const [error, setError] = React.useState<string | null>(null)
@@ -64,7 +64,7 @@ export function UserRoleForm({ initialData }: UserRoleFormProps): JSX.Element {
           <FormField<UserRoleFormValues, "role">
             control={form.control}
             name="role"
-            render={({ field }): JSX.Element => (
+            render={({ field }): React.JSX.Element => (
               <FormItem>
                 <FormLabel>User Role</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>

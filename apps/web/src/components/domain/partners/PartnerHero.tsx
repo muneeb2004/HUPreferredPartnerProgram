@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export function PartnerHero({ name, description }: { name: string; description: string }): JSX.Element {
+export function PartnerHero({ name, description }: { name: string; description: string }): React.JSX.Element {
   return (
     <header className="w-full py-16 border-b border-border mb-12">
       <div className="flex items-center gap-6 mb-8">

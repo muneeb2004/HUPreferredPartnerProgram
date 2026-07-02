@@ -23,7 +23,7 @@ export class ErrorBoundary extends Component<Props, State> {
     console.error("Uncaught provider boundary error:", error, errorInfo);
   }
 
-  public render(): JSX.Element {
+  public render(): React.ReactNode {
     if (this.state.hasError) {
       return (
         <div className="min-h-screen flex items-center justify-center p-4">

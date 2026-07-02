@@ -5,7 +5,9 @@ import { useActionState } from 'react';
 import { unsubscribeAction } from '../../app/actions/newsletter';
 import { AnimatedButton } from '../motion/MotionPrimitives';
 
-export function UnsubscribeForm({ defaultEmail }: { defaultEmail: string }): JSX.Element {
+import type * as React from "react";
+
+export function UnsubscribeForm({ defaultEmail }: { defaultEmail: string }): React.JSX.Element {
   const [state, formAction, isPending] = useActionState(unsubscribeAction, null);
 
   return (

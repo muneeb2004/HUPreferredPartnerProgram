@@ -5,7 +5,8 @@ import { type ReactNode } from "react";
 
 import { fadeIn } from "@/lib/motion";
 
-export function AnimatedSection({ children, className, id }: { children: ReactNode; className?: string; id?: string }): JSX.Element {
+
+export function AnimatedSection({ children, className, id }: { children: ReactNode; className?: string; id?: string }): React.JSX.Element {
   return (
     <m.section
       id={id}

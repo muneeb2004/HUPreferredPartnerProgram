@@ -5,6 +5,8 @@ import { type ColumnDef } from "@tanstack/react-table"
 
 import { UserCellAction } from "./cell-action"
 
+import type * as React from "react";
+
 export type UserColumn = {
   id: string
   name: string
@@ -26,7 +28,7 @@ export const columns: ColumnDef<UserColumn>[] = [
   {
     accessorKey: "role",
     header: "Role",
-    cell: ({ row }): JSX.Element => {
+    cell: ({ row }): React.JSX.Element => {
       const role = row.getValue("role")
       return <Badge variant="outline">{String(role).replace("_", " ")}</Badge>
     }
@@ -34,7 +36,7 @@ export const columns: ColumnDef<UserColumn>[] = [
   {
     id: "status",
     header: "Status",
-    cell: ({ row }): JSX.Element => {
+    cell: ({ row }): React.JSX.Element => {
       const isInactive = !!row.original.deletedAt
       return <Badge variant={isInactive ? "destructive" : "default"}>{isInactive ? "Inactive" : "Active"}</Badge>
     },
@@ -49,6 +51,6 @@ export const columns: ColumnDef<UserColumn>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }): JSX.Element => <UserCellAction data={row.original} />
+    cell: ({ row }): React.JSX.Element => <UserCellAction data={row.original} />
   },
 ]

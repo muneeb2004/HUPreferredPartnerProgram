@@ -3,11 +3,12 @@
 import { Canvas } from "@react-three/fiber";
 import { Suspense, type ReactNode } from "react";
 
+
 interface ThreeProviderProps {
   children: ReactNode;
 }
 
-export function ThreeProvider({ children }: ThreeProviderProps): JSX.Element {
+export function ThreeProvider({ children }: ThreeProviderProps): React.JSX.Element {
   return (
     <>
       <div className="absolute inset-0 z-base -z-10 w-full h-full pointer-events-none">

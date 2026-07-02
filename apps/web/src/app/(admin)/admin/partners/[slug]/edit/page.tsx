@@ -4,6 +4,8 @@ import { notFound } from "next/navigation"
 import { PartnerForm } from "@/components/admin/partners/partner-form"
 import { type PartnerFormValues } from "@/lib/validations/partner"
 
+import type * as React from "react";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
 async function getPartner(slug: string): Promise<(PartnerFormValues & { slug: string }) | null> {
@@ -30,7 +32,7 @@ interface EditPartnerPageProps {
   params: Promise<{ slug: string }>
 }
 
-export default async function EditPartnerPage({ params }: EditPartnerPageProps): JSX.Element {
+export default async function EditPartnerPage({ params }: EditPartnerPageProps): React.JSX.Element {
   const resolvedParams = await params
   const partner = await getPartner(resolvedParams.slug)
 

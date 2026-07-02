@@ -2,6 +2,8 @@ import { type Metadata } from "next";
 
 import { OfferDetailHeader } from "@/components/domain/offers/OfferDetailHeader";
 
+import type * as React from "react";
+
 export const revalidate = 3600; // ISR 1 hour
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
@@ -11,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   };
 }
 
-export default async function OfferDetailPage({ params }: { params: Promise<{ id: string }> }): JSX.Element {
+export default async function OfferDetailPage({ params }: { params: Promise<{ id: string }> }): React.JSX.Element {
   const { id } = await params;
   
   return (

@@ -76,9 +76,9 @@ export function DataTable<TData, TValue>({
       <div className="rounded-md border border-border bg-surface-card">
         <Table>
           <TableHeader>
-            {table.getHeaderGroups().map((headerGroup): JSX.Element => (
+            {table.getHeaderGroups().map((headerGroup): React.JSX.Element => (
               <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header): JSX.Element => {
+                {headerGroup.headers.map((header): React.JSX.Element => {
                   return (
                     <TableHead key={header.id}>
                       {header.isPlaceholder
@@ -95,12 +95,12 @@ export function DataTable<TData, TValue>({
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row): JSX.Element => (
+              table.getRowModel().rows.map((row): React.JSX.Element => (
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                 >
-                  {row.getVisibleCells().map((cell): JSX.Element => (
+                  {row.getVisibleCells().map((cell): React.JSX.Element => (
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,

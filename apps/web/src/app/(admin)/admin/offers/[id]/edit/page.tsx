@@ -4,6 +4,8 @@ import { notFound } from "next/navigation"
 import { OfferForm } from "@/components/admin/offers/offer-form"
 import { type OfferFormValues } from "@/lib/validations/offer"
 
+import type * as React from "react";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
 async function getOffer(id: string): Promise<(OfferFormValues & { id: string }) | null> {
@@ -48,7 +50,7 @@ interface EditOfferPageProps {
   params: Promise<{ id: string }>
 }
 
-export default async function EditOfferPage({ params }: EditOfferPageProps): JSX.Element {
+export default async function EditOfferPage({ params }: EditOfferPageProps): React.JSX.Element {
   const resolvedParams = await params
   const offer = await getOffer(resolvedParams.id)
   if (!offer) {

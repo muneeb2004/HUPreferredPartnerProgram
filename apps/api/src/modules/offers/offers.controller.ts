@@ -1,8 +1,10 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseInterceptors } from '@nestjs/common';
 import { UserRole } from '@prisma/client';
+
 import { Public } from '../../common/decorators/public.decorator';
 import { Roles } from '../../common/decorators/roles.decorator';
 import { ResponseInterceptor } from '../../common/interceptors/response.interceptor';
+
 import { CreateOfferDto, UpdateOfferDto } from './dto/offer.dto';
 import { OffersService } from './offers.service';
 

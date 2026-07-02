@@ -4,7 +4,9 @@ import Link from "next/link";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 
-export default function NotFound(): JSX.Element {
+import type * as React from "react";
+
+export default function NotFound(): React.JSX.Element {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />

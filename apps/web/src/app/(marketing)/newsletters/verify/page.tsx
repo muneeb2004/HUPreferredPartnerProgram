@@ -3,11 +3,13 @@ import Link from 'next/link';
 import { AnimatedHeading, FadeIn } from '../../../../components/motion/MotionPrimitives';
 import { verifyAction } from '../../../actions/newsletter';
 
+import type * as React from "react";
+
 export default async function VerifySubscriptionPage({
   searchParams,
 }: {
   searchParams: Promise<{ token?: string }>;
-}): JSX.Element {
+}): React.JSX.Element {
   const resolvedSearchParams = await searchParams;
   const token = resolvedSearchParams.token;
   let result = null;

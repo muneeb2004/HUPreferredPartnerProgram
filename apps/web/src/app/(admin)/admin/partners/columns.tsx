@@ -5,6 +5,8 @@ import { type ColumnDef } from "@tanstack/react-table"
 
 import { PartnerCellAction } from "./cell-action"
 
+import type * as React from "react";
+
 export type PartnerColumn = {
   id: string
   name: string
@@ -34,7 +36,7 @@ export const columns: ColumnDef<PartnerColumn>[] = [
   {
     accessorKey: "status",
     header: "Status",
-    cell: ({ row }): JSX.Element => {
+    cell: ({ row }): React.JSX.Element => {
       const status = row.getValue("status")
       const variant = status === "PUBLISHED" ? "default" : status === "DRAFT" ? "secondary" : "destructive"
       return <Badge variant={variant}>{status}</Badge>
@@ -50,6 +52,6 @@ export const columns: ColumnDef<PartnerColumn>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }): JSX.Element => <PartnerCellAction data={row.original} />
+    cell: ({ row }): React.JSX.Element => <PartnerCellAction data={row.original} />
   },
 ]

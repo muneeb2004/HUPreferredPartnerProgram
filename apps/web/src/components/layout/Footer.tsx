@@ -1,6 +1,8 @@
 import Link from "next/link";
 
-export function Footer(): JSX.Element {
+import type * as React from "react";
+
+export function Footer(): React.JSX.Element {
   return (
     <footer className="w-full border-t border-border bg-surface-page py-12 md:py-16 mt-auto" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">Footer</h2>

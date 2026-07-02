@@ -1,7 +1,9 @@
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 
-export default function MarketingLayout({ children }: { children: React.ReactNode }): JSX.Element {
+import type * as React from "react";
+
+export default function MarketingLayout({ children }: { children: React.ReactNode }): React.JSX.Element {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />

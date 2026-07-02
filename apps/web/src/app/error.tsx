@@ -3,13 +3,15 @@
 import { Button } from "@hu-partner/ui";
 import { useEffect } from "react";
 
+import type * as React from "react";
+
 export default function ErrorBoundary({
   error,
   reset,
 }: {
   error: Error & { digest?: string };
   reset: () => void;
-}): JSX.Element {
+}): React.JSX.Element {
   useEffect((): void => {
     // In production, log this to an error reporting service
     console.error("Route segment error:", error);

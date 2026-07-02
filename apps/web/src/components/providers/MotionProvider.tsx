@@ -2,7 +2,8 @@
 
 import { MotionConfig, LazyMotion, domAnimation } from "framer-motion";
 
-export function MotionProvider({ children }: { children: React.ReactNode }): JSX.Element {
+
+export function MotionProvider({ children }: { children: React.ReactNode }): React.JSX.Element {
   // reducedMotion="user" ensures all framer-motion animations respect user OS settings
   // LazyMotion with domAnimation strips out domMax features for a smaller bundle
   return (

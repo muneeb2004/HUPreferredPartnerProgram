@@ -10,4 +10,4 @@ export const partnerSchema = z.object({
   featured: z.boolean().default(false),
 });
 
-export type PartnerFormValues = z.infer<typeof partnerSchema>;
+export type PartnerFormValues = z.input<typeof partnerSchema>;

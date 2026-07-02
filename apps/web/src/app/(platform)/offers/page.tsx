@@ -3,12 +3,14 @@ import { type Metadata } from "next";
 import { OfferGrid } from "@/components/domain/offers/OfferGrid";
 import { SectionHeading } from "@/components/marketing/SectionHeading";
 
+import type * as React from "react";
+
 export const metadata: Metadata = {
   title: 'Offers | HU Preferred Partner',
   description: 'Browse active offers from our partners.',
 };
 
-export default function OffersPage(): JSX.Element {
+export default function OffersPage(): React.JSX.Element {
   return (
     <>
       <SectionHeading 

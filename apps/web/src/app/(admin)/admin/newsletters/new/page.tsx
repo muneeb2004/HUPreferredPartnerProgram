@@ -2,6 +2,8 @@ import { cookies } from "next/headers"
 
 import { NewsletterForm } from "@/components/admin/newsletters/newsletter-form"
 
+import type * as React from "react";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
 async function getSeries(): Promise<{ id: string; name: string }[]> {
@@ -19,7 +21,7 @@ async function getSeries(): Promise<{ id: string; name: string }[]> {
   return json.data || [];
 }
 
-export default async function NewNewsletterPage(): JSX.Element {
+export default async function NewNewsletterPage(): React.JSX.Element {
   const series = await getSeries()
 
   return (

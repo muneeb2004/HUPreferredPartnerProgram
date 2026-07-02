@@ -4,13 +4,15 @@ import { Button } from "@hu-partner/ui"
 import { AlertCircle } from "lucide-react"
 import { useEffect } from "react"
 
+import type * as React from "react";
+
 export default function AdminError({
   error,
   reset,
 }: {
   error: Error & { digest?: string }
   reset: () => void
-}): JSX.Element {
+}): React.JSX.Element {
   useEffect((): void => {
     // Log the error to an error reporting service in a real app
     console.error(error)

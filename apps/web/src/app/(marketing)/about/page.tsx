@@ -3,12 +3,14 @@ import { type Metadata } from "next";
 import { HeroEditorial } from "@/components/marketing/HeroEditorial";
 import { ValuePropositionGrid } from "@/components/marketing/ValuePropositionGrid";
 
+import type * as React from "react";
+
 export const metadata: Metadata = {
   title: 'About | HU Preferred Partner',
   description: 'Learn about the Habib University Preferred Partner platform.',
 };
 
-export default function AboutPage(): JSX.Element {
+export default function AboutPage(): React.JSX.Element {
   return (
     <>
       <HeroEditorial 

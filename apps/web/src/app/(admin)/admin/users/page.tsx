@@ -7,6 +7,8 @@ import { DataTableSkeleton } from "@/components/layout/admin/data-table-skeleton
 
 import { columns, type UserColumn } from "./columns"
 
+import type * as React from "react";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
 async function getUsers(): Promise<UserColumn[]> {
@@ -29,7 +31,7 @@ async function getUsers(): Promise<UserColumn[]> {
   return data
 }
 
-export default function UsersPage(): JSX.Element {
+export default function UsersPage(): React.JSX.Element {
   return (
     <div className="flex-1 space-y-4 p-8 pt-6">
       <div className="flex items-center justify-between space-y-2">
@@ -42,7 +44,7 @@ export default function UsersPage(): JSX.Element {
   )
 }
 
-async function UsersTable(): JSX.Element {
+async function UsersTable(): React.JSX.Element {
   try {
     const data = await getUsers()
     return (

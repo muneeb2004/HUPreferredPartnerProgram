@@ -1,6 +1,8 @@
 import { PartnerForm } from "@/components/admin/partners/partner-form"
 
-export default function NewPartnerPage(): JSX.Element {
+import type * as React from "react";
+
+export default function NewPartnerPage(): React.JSX.Element {
   return (
     <div className="flex-1 space-y-4 p-8 pt-6">
       <div className="flex items-center justify-between space-y-2">

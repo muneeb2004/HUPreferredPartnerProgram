@@ -4,7 +4,8 @@ import { m, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { type ReactNode } from "react";
 
-export function PageTransition({ children }: { children: ReactNode }): JSX.Element {
+
+export function PageTransition({ children }: { children: ReactNode }): React.JSX.Element {
   const pathname = usePathname();
 
   return (

@@ -8,6 +8,7 @@ import { MotionProvider } from '@/components/providers/MotionProvider';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
 
 import type { Metadata } from 'next';
+import type * as React from 'react';
 
 import '../styles/globals.css';
 
@@ -54,7 +55,7 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>): JSX.Element {
+}>): React.JSX.Element {
   return (
     <html lang="en" suppressHydrationWarning className={`${playfair.variable} ${inter.variable} ${jetbrains.variable}`}>
       <body className="font-body antialiased bg-surface-page text-foreground min-h-screen flex flex-col selection:bg-brand-primary/20">

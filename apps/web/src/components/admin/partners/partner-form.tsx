@@ -30,7 +30,7 @@ interface PartnerFormProps {
   initialData?: PartnerFormValues & { slug: string }
 }
 
-export function PartnerForm({ initialData }: PartnerFormProps): JSX.Element {
+export function PartnerForm({ initialData }: PartnerFormProps): React.JSX.Element {
   const router = useRouter()
   const [isPending, startTransition] = React.useTransition()
   const [error, setError] = React.useState<string | null>(null)
@@ -79,7 +79,7 @@ export function PartnerForm({ initialData }: PartnerFormProps): JSX.Element {
           <FormField<PartnerFormValues, "name">
             control={form.control}
             name="name"
-            render={({ field }): JSX.Element => (
+            render={({ field }): React.JSX.Element => (
               <FormItem>
                 <FormLabel>Name</FormLabel>
                 <FormControl>
@@ -92,7 +92,7 @@ export function PartnerForm({ initialData }: PartnerFormProps): JSX.Element {
           <FormField<PartnerFormValues, "slug">
             control={form.control}
             name="slug"
-            render={({ field }): JSX.Element => (
+            render={({ field }): React.JSX.Element => (
               <FormItem>
                 <FormLabel>Slug</FormLabel>
                 <FormControl>
@@ -110,7 +110,7 @@ export function PartnerForm({ initialData }: PartnerFormProps): JSX.Element {
         <FormField<PartnerFormValues, "description">
           control={form.control}
           name="description"
-          render={({ field }): JSX.Element => (
+          render={({ field }): React.JSX.Element => (
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
@@ -129,7 +129,7 @@ export function PartnerForm({ initialData }: PartnerFormProps): JSX.Element {
           <FormField<PartnerFormValues, "website">
             control={form.control}
             name="website"
-            render={({ field }): JSX.Element => (
+            render={({ field }): React.JSX.Element => (
               <FormItem>
                 <FormLabel>Website</FormLabel>
                 <FormControl>
@@ -142,7 +142,7 @@ export function PartnerForm({ initialData }: PartnerFormProps): JSX.Element {
           <FormField<PartnerFormValues, "tier">
             control={form.control}
             name="tier"
-            render={({ field }): JSX.Element => (
+            render={({ field }): React.JSX.Element => (
               <FormItem>
                 <FormLabel>Tier</FormLabel>
                 <FormControl>
@@ -158,7 +158,7 @@ export function PartnerForm({ initialData }: PartnerFormProps): JSX.Element {
           <FormField<PartnerFormValues, "status">
             control={form.control}
             name="status"
-            render={({ field }): JSX.Element => (
+            render={({ field }): React.JSX.Element => (
               <FormItem>
                 <FormLabel>Status</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
@@ -182,7 +182,7 @@ export function PartnerForm({ initialData }: PartnerFormProps): JSX.Element {
           <FormField<PartnerFormValues, "featured">
             control={form.control}
             name="featured"
-            render={({ field }): JSX.Element => (
+            render={({ field }): React.JSX.Element => (
               <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 shadow-sm">
                 <FormControl>
                   <Checkbox

@@ -5,7 +5,8 @@ import Image, { type ImageProps } from "next/image";
 
 import { fadeIn } from "@/lib/motion";
 
-export function AnimatedImage(props: ImageProps): JSX.Element {
+
+export function AnimatedImage(props: ImageProps): React.JSX.Element {
   return (
     <m.div
       variants={fadeIn}

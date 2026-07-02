@@ -3,6 +3,8 @@ import { type Metadata } from "next";
 import { PartnerHero } from "@/components/domain/partners/PartnerHero";
 import { PartnerOffersList } from "@/components/domain/partners/PartnerOffersList";
 
+import type * as React from "react";
+
 export const revalidate = 3600; // ISR 1 hour
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -12,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function PartnerDetailPage({ params }: { params: Promise<{ slug: string }> }): JSX.Element {
+export default async function PartnerDetailPage({ params }: { params: Promise<{ slug: string }> }): React.JSX.Element {
   const { slug } = await params;
   
   return (

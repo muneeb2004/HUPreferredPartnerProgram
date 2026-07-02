@@ -4,6 +4,8 @@ import { notFound } from "next/navigation"
 import { NewsletterForm } from "@/components/admin/newsletters/newsletter-form"
 import { type NewsletterFormValues } from "@/lib/validations/newsletter"
 
+import type * as React from "react";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"
 
 async function getSeries(): Promise<{ id: string; name: string }[]> {
@@ -44,7 +46,7 @@ interface EditNewsletterPageProps {
   params: Promise<{ id: string }>
 }
 
-export default async function EditNewsletterPage({ params }: EditNewsletterPageProps): JSX.Element {
+export default async function EditNewsletterPage({ params }: EditNewsletterPageProps): React.JSX.Element {
   const resolvedParams = await params
   const [newsletter, series] = await Promise.all([
     getNewsletter(resolvedParams.id),

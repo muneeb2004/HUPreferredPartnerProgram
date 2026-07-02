@@ -5,6 +5,8 @@ import { type ColumnDef } from "@tanstack/react-table"
 
 import { NewsletterCellAction } from "./cell-action"
 
+import type * as React from "react";
+
 export type NewsletterColumn = {
   id: string
   title: string
@@ -28,7 +30,7 @@ export const columns: ColumnDef<NewsletterColumn>[] = [
   {
     accessorKey: "status",
     header: "Status",
-    cell: ({ row }): JSX.Element => {
+    cell: ({ row }): React.JSX.Element => {
       const status = row.getValue("status")
       return (
         <Badge variant={status === "PUBLISHED" ? "default" : status === "DRAFT" ? "secondary" : "outline"}>
@@ -47,6 +49,6 @@ export const columns: ColumnDef<NewsletterColumn>[] = [
   },
   {
     id: "actions",
-    cell: ({ row }): JSX.Element => <NewsletterCellAction data={row.original} />
+    cell: ({ row }): React.JSX.Element => <NewsletterCellAction data={row.original} />
   },
 ]
