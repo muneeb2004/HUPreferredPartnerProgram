@@ -1,9 +1,12 @@
 import { Controller, Get, Post, Param, Query, UseGuards } from '@nestjs/common';
-import { NewslettersService } from './newsletters.service';
+import { Throttle } from '@nestjs/throttler';
+import { UserRole } from '@prisma/client';
+
 import { Public } from '../../common/decorators/public.decorator';
 import { Roles } from '../../common/decorators/roles.decorator';
-import { UserRole } from '@prisma/client';
-import { Throttle } from '@nestjs/throttler';
+
+import { NewslettersService } from './newsletters.service';
+
 
 @Controller('api/v1')
 export class NewslettersController {

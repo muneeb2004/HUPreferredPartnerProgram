@@ -1,10 +1,14 @@
+import * as crypto from 'crypto';
+
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UsersService } from '../users/users.service';
-import { SessionsService } from '../sessions/sessions.service';
-import { LoginDto, RefreshDto } from './dto/auth.dto';
 import * as bcrypt from 'bcrypt';
-import * as crypto from 'crypto';
+
+import { SessionsService } from '../sessions/sessions.service';
+import { UsersService } from '../users/users.service';
+
+import { LoginDto, RefreshDto } from './dto/auth.dto';
+
 
 @Injectable()
 export class AuthService {

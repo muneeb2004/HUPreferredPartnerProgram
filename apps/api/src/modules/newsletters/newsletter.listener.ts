@@ -1,7 +1,8 @@
+import { InjectQueue } from '@nestjs/bullmq';
 import { Injectable, Logger } from '@nestjs/common';
 import { OnEvent } from '@nestjs/event-emitter';
-import { InjectQueue } from '@nestjs/bullmq';
 import { Queue } from 'bullmq';
+
 import { 
   NewsletterSendRequestedEvent, 
   NewsletterSendingEvent,

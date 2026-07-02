@@ -1,12 +1,14 @@
-import { Injectable, BadRequestException, Logger } from '@nestjs/common';
-import { PrismaService } from '../../common/prisma/prisma.service';
-import { EventEmitter2 } from '@nestjs/event-emitter';
-import { EmailProvider } from '../email/email.provider';
 import * as crypto from 'crypto';
+
+import { Injectable, BadRequestException, Logger } from '@nestjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+
 import { 
   SubscriptionVerifiedEvent, 
   SubscriptionUnsubscribedEvent 
 } from '../../common/events/newsletter.events';
+import { PrismaService } from '../../common/prisma/prisma.service';
+import { EmailProvider } from '../email/email.provider';
 
 @Injectable()
 export class SubscriptionsService {

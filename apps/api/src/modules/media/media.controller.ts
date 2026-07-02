@@ -1,6 +1,8 @@
 import { Controller, Post, Body, UseInterceptors } from '@nestjs/common';
-import { MediaService } from './media.service';
+
 import { ResponseInterceptor } from '../../common/interceptors/response.interceptor';
+
+import { MediaService } from './media.service';
 
 @Controller('api/v1/media')
 @UseInterceptors(ResponseInterceptor)

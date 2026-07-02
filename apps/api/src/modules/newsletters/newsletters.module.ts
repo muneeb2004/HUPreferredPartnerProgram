@@ -1,10 +1,13 @@
-import { Module } from '@nestjs/common';
 import { BullModule } from '@nestjs/bullmq';
+import { Module } from '@nestjs/common';
+
+import { EmailDeliveryModule } from '../email/email.module';
+
+import { NewsletterListener } from './newsletter.listener';
+import { NewsletterDispatchProcessor, NewsletterDeliveryProcessor } from './newsletter.processor';
 import { NewslettersController } from './newsletters.controller';
 import { NewslettersService } from './newsletters.service';
-import { NewsletterDispatchProcessor, NewsletterDeliveryProcessor } from './newsletter.processor';
-import { NewsletterListener } from './newsletter.listener';
-import { EmailDeliveryModule } from '../email/email.module';
+
 
 @Module({
   imports: [

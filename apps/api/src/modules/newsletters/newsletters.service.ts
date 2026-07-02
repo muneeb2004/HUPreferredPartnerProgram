@@ -1,7 +1,8 @@
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
-import { PrismaService } from '../../common/prisma/prisma.service';
 import { EventEmitter2 } from '@nestjs/event-emitter';
+
 import { NewsletterSendRequestedEvent } from '../../common/events/newsletter.events';
+import { PrismaService } from '../../common/prisma/prisma.service';
 
 @Injectable()
 export class NewslettersService {

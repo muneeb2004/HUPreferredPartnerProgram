@@ -1,11 +1,13 @@
 import { Controller, Post, Body, Get, UseGuards } from '@nestjs/common';
-import { SubscriptionsService } from './subscriptions.service';
-import { SubscribeDto, VerifySubscriptionDto, UnsubscribeDto, ConfirmUnsubscribeDto } from './dto/subscription.dto';
-import { Public } from '../../common/decorators/public.decorator';
 import { Throttle } from '@nestjs/throttler';
-import { Roles } from '../../common/decorators/roles.decorator';
 import { UserRole } from '@prisma/client';
+
+import { Public } from '../../common/decorators/public.decorator';
+import { Roles } from '../../common/decorators/roles.decorator';
 import { PrismaService } from '../../common/prisma/prisma.service';
+
+import { SubscribeDto, VerifySubscriptionDto, UnsubscribeDto, ConfirmUnsubscribeDto } from './dto/subscription.dto';
+import { SubscriptionsService } from './subscriptions.service';
 
 @Controller('api/v1')
 export class SubscriptionsController {

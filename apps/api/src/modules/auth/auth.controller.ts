@@ -1,9 +1,12 @@
 import { Controller, Post, Body, Req, HttpCode, HttpStatus, Res, UseInterceptors } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { LoginDto, RefreshDto } from './dto/auth.dto';
+import { Request, Response } from 'express';
+
 import { Public } from '../../common/decorators/public.decorator';
 import { ResponseInterceptor } from '../../common/interceptors/response.interceptor';
-import { Request, Response } from 'express';
+
+import { AuthService } from './auth.service';
+import { LoginDto, RefreshDto } from './dto/auth.dto';
+
 
 @Controller('api/v1/auth')
 @UseInterceptors(ResponseInterceptor)

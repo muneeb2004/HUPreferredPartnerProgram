@@ -1,11 +1,15 @@
+import * as crypto from 'crypto';
+
 import { Processor, WorkerHost, InjectQueue } from '@nestjs/bullmq';
-import { Job, Queue } from 'bullmq';
 import { Logger } from '@nestjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
+import { Job, Queue } from 'bullmq';
+
+import { NewsletterSendingEvent, DeliveryCompletedEvent } from '../../common/events/newsletter.events';
 import { PrismaService } from '../../common/prisma/prisma.service';
 import { EmailProvider } from '../email/email.provider';
-import { EventEmitter2 } from '@nestjs/event-emitter';
-import { NewsletterSendingEvent, DeliveryCompletedEvent } from '../../common/events/newsletter.events';
-import * as crypto from 'crypto';
+
+
 
 interface DispatchJobData {
   issueId: string;

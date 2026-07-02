@@ -1,21 +1,22 @@
+import { BullModule } from '@nestjs/bullmq';
 import { Module } from '@nestjs/common';
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
-import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { EventEmitterModule } from '@nestjs/event-emitter';
-import { BullModule } from '@nestjs/bullmq';
+import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
+
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { PrismaModule } from './common/prisma/prisma.module';
-import { PartnersModule } from './modules/partners/partners.module';
-import { MediaModule } from './modules/media/media.module';
-import { AuthModule } from './modules/auth/auth.module';
-import { UsersModule } from './modules/users/users.module';
-import { SessionsModule } from './modules/sessions/sessions.module';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
 import { RolesGuard } from './common/guards/roles.guard';
 import { ResponseInterceptor } from './common/interceptors/response.interceptor';
-import { SubscriptionModule } from './modules/subscriptions/subscriptions.module';
+import { PrismaModule } from './common/prisma/prisma.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { MediaModule } from './modules/media/media.module';
 import { NewslettersModule } from './modules/newsletters/newsletters.module';
+import { PartnersModule } from './modules/partners/partners.module';
+import { SessionsModule } from './modules/sessions/sessions.module';
+import { SubscriptionModule } from './modules/subscriptions/subscriptions.module';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
