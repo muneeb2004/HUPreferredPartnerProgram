@@ -84,4 +84,22 @@ export class UpdatePortalOfferDto {
   @IsString()
   @IsOptional()
   terms?: string;
+
+  @IsString()
+  @IsOptional()
+  status?: string;
+}
+
+export class UpdatePortalSettingsDto {
+  @IsString()
+  @IsOptional()
+  name?: string;
+}
+
+export class UpdatePortalPasswordDto {
+  @IsString()
+  currentPassword!: string;
+
+  @IsString()
+  newPassword!: string;
 }

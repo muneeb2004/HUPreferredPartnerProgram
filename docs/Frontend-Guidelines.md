@@ -39,7 +39,7 @@ apps/web/
 │   │   └── globals.css         # Tailwind directives + CSS custom properties
 │   ├── components/
 │   │   ├── ui/                 # shadcn/ui primitives (Button, Dialog, etc.)
-│   │   ├── layout/             # Header, Footer, Sidebar, Navigation
+│   │   ├── layout/             # Shell components (admin, portal, shared)
 │   │   ├── marketing/          # Landing page sections, brand cards
 │   │   ├── dashboard/          # Admin tables, forms, charts
 │   │   └── shared/             # Cross-cutting components (ErrorBoundary, EmptyState)

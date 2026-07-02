@@ -145,6 +145,7 @@ HuPrefferedPartner/
 | [Folder Structure](docs/Folder-Structure.md) | Complete monorepo layout with co-location rules |
 | [Frontend Guidelines](docs/Frontend-Guidelines.md) | Next.js conventions, RSC, data fetching, Tailwind, shadcn/ui |
 | [Backend Guidelines](docs/Backend-Guidelines.md) | NestJS patterns, DTOs, Prisma, API versioning, RBAC |
+| [Brand Portal](docs/Brand-Portal.md) | Architecture blueprint for the Brand Partner Self-Service Portal |
 | [Animation Guidelines](docs/Animation-Guidelines.md) | Motion hierarchy, durations, easings, library policies |
 | [Three.js Guidelines](docs/ThreeJS-Guidelines.md) | 3D usage criteria, performance budgets, mobile fallbacks |
 | [Accessibility](docs/Accessibility.md) | WCAG 2.2 AA, semantic HTML, ARIA, keyboard nav |

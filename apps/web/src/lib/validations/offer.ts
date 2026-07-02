@@ -15,3 +15,10 @@ export const offerSchema = z.object({
 
 export type OfferFormValues = z.infer<typeof offerSchema>;
 export type OfferFormInput = z.input<typeof offerSchema>;
+
+export const portalOfferSchema = offerSchema.omit({ partnerId: true }).extend({
+  status: z.enum(["DRAFT", "REVIEW", "ARCHIVED"]).default("DRAFT"),
+});
+
+export type PortalOfferFormValues = z.infer<typeof portalOfferSchema>;
+export type PortalOfferFormInput = z.input<typeof portalOfferSchema>;

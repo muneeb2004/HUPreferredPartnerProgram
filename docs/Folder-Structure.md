@@ -160,7 +160,10 @@ apps/web/
 │   │   └── globals.css          # Global styles
 │   ├── components/              # Shared components
 │   │   ├── ui/                  # Primitives (Button, Input, Modal)
-│   │   ├── layout/              # Shell components (Header, Sidebar, Footer)
+│   │   ├── layout/              # Shell components
+│   │   │   ├── shared/          # Reusable AppSidebar, AppTopbar
+│   │   │   ├── admin/           # AdminShell wrapper
+│   │   │   └── portal/          # PortalShell wrapper
 │   │   ├── forms/               # Form components (PartnerForm, SearchBar)
 │   │   └── data-display/        # Tables, Cards, Charts
 │   ├── lib/                     # Utilities and clients

@@ -62,6 +62,7 @@ HuPrefferedPartner/
 │   │   │   └── layout.tsx      # Root layout
 │   │   ├── components/         # React components
 │   │   │   ├── ui/             # shadcn/ui components
+│   │   │   ├── layout/         # Shells (admin, portal, shared)
 │   │   │   ├── sections/       # Page sections (hero, catalogue, etc.)
 │   │   │   ├── three/          # Three.js / R3F components
 │   │   │   └── shared/         # Shared components
