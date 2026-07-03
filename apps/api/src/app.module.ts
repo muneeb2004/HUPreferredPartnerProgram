@@ -23,8 +23,15 @@ import { SessionsModule } from './modules/sessions/sessions.module';
 import { SubscriptionModule } from './modules/subscriptions/subscriptions.module';
 import { UsersModule } from './modules/users/users.module';
 
+import { NotificationModule } from './modules/notifications/notification.module';
+import { SearchModule } from './modules/search/search.module';
+import { AnalyticsModule } from './modules/analytics/analytics.module';
+
+import { CacheModule } from '@nestjs/cache-manager';
+
 @Module({
   imports: [
+    CacheModule.register({ isGlobal: true }),
     ThrottlerModule.forRoot([{
       ttl: 60000,
       limit: 10,
@@ -47,7 +54,10 @@ import { UsersModule } from './modules/users/users.module';
     NewslettersModule,
     AdminModule,
     OffersModule,
-    PortalModule
+    PortalModule,
+    NotificationModule,
+    SearchModule,
+    AnalyticsModule
   ],
   controllers: [AppController],
   providers: [

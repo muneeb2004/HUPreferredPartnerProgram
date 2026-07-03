@@ -146,6 +146,10 @@ HuPrefferedPartner/
 | [Frontend Guidelines](docs/Frontend-Guidelines.md) | Next.js conventions, RSC, data fetching, Tailwind, shadcn/ui |
 | [Backend Guidelines](docs/Backend-Guidelines.md) | NestJS patterns, DTOs, Prisma, API versioning, RBAC |
 | [Brand Portal](docs/Brand-Portal.md) | Architecture blueprint for the Brand Partner Self-Service Portal |
+| [Offer Lifecycle](docs/Offer-Lifecycle.md) | Offer status transitions and state management |
+| [Notification Architecture](docs/Notification-Architecture.md) | Event-driven notification dispatch and routing |
+| [Analytics Architecture](docs/Analytics-Architecture.md) | Analytics event tracking, dashboard aggregation, and query performance |
+| [Search Architecture](docs/Search-Architecture.md) | Search index strategy, filtering, and query performance |
 | [Animation Guidelines](docs/Animation-Guidelines.md) | Motion hierarchy, durations, easings, library policies |
 | [Three.js Guidelines](docs/ThreeJS-Guidelines.md) | 3D usage criteria, performance budgets, mobile fallbacks |
 | [Accessibility](docs/Accessibility.md) | WCAG 2.2 AA, semantic HTML, ARIA, keyboard nav |

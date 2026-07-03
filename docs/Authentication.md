@@ -237,6 +237,15 @@ await db.emailVerification.create({
 await this.emailService.sendVerificationEmail(user.email, rawToken);
 ```
 
+### Email Change Verification
+
+When a user requests to change their email:
+1. Server generates an `EmailChangeToken`.
+2. Old email remains active.
+3. Verification link sent to the *new* email.
+4. Upon clicking the link, the token is validated, and the `email` field is updated to the `pendingEmail` value.
+5. All previous pending email change requests are invalidated when a new one is requested.
+
 ---
 
 ## 6. Password Reset Flow

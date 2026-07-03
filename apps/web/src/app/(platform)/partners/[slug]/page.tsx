@@ -2,6 +2,7 @@ import { type Metadata } from "next";
 
 import { PartnerHero } from "@/components/domain/partners/PartnerHero";
 import { PartnerOffersList } from "@/components/domain/partners/PartnerOffersList";
+import { PartnerAnalyticsTracker } from "@/components/domain/partners/PartnerAnalyticsTracker";
 
 import type * as React from "react";
 
@@ -19,6 +20,7 @@ export default async function PartnerDetailPage({ params }: { params: Promise<{ 
   
   return (
     <>
+      <PartnerAnalyticsTracker partnerSlug={slug} />
       <PartnerHero 
         name={`Partner Name Placeholder (${slug})`} 
         description="Partner description placeholder. This content will be populated via the CMS in Phase 8."

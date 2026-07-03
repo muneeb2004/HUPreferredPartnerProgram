@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { NewsletterSubscribeForm } from "@/components/marketing/NewsletterSubscribeForm";
 
 import type * as React from "react";
 
@@ -33,10 +34,7 @@ export function Footer(): React.JSX.Element {
           <div>
             <h3 className="text-sm font-semibold mb-4 text-foreground">Stay Updated</h3>
             <p className="text-sm text-muted-foreground mb-4">Subscribe to our newsletter for the latest partner offers.</p>
-            {/* CMS Newsletter Placeholder (Phase 7) */}
-            <div className="w-full h-10 bg-muted/50 rounded flex items-center justify-center text-xs text-muted-foreground border border-dashed border-border" aria-hidden="true">
-              Newsletter Form Placeholder
-            </div>
+            <NewsletterSubscribeForm />
           </div>
         </div>
         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">

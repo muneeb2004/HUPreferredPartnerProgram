@@ -28,16 +28,32 @@ model User {
   name         String
   role         UserRole    @default(VIEWER)
   passwordHash String
+  pendingEmail String?
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @updatedAt
   deletedAt    DateTime?
   auditLogs    AuditLog[]
   sessions     Session[]
+  emailChangeTokens UserEmailChangeToken[]
   
   partnerId    String?
   partner      Partner?    @relation(fields: [partnerId], references: [id])
 
   @@map("users")
+}
+
+model UserEmailChangeToken {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  newEmail  String
+  tokenHash String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([tokenHash])
+  @@map("user_email_change_tokens")
 }
 
 model Session {
@@ -280,4 +296,77 @@ model UnsubscribeToken {
   @@index([subscriptionId])
   @@index([tokenHash])
   @@map("unsubscribe_tokens")
+}
+
+// ---------------------------------------------------------
+// Phase 14 - Analytics
+// ---------------------------------------------------------
+
+enum AnalyticsEventType {
+  PAGE_VIEW
+  SEARCH_QUERY
+  PARTNER_VIEW
+  OFFER_VIEW
+  OFFER_CLICK
+  NEWSLETTER_SUBSCRIBE
+}
+
+model AnalyticsEvent {
+  id         String             @id // Client-generated UUID for idempotency
+  version    Int                @default(1)
+  eventType  AnalyticsEventType
+  entityId   String?
+  entityType String?
+  metadata   Json?
+  sessionId  String?
+  createdAt  DateTime           @default(now())
+
+  @@index([createdAt])
+  @@index([eventType])
+  @@index([entityId])
+  @@map("analytics_events")
+}
+
+model DailyPartnerStats {
+  id         String   @id @default(uuid())
+  partnerId  String
+  date       DateTime @db.Date
+  views      Int      @default(0)
+  clicks     Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([partnerId, date])
+  @@index([date])
+  @@map("daily_partner_stats")
+}
+
+model DailyOfferStats {
+  id         String   @id @default(uuid())
+  offerId    String
+  partnerId  String
+  date       DateTime @db.Date
+  views      Int      @default(0)
+  clicks     Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([offerId, date])
+  @@index([date])
+  @@map("daily_offer_stats")
+}
+
+model SearchAnalytics {
+  id              String   @id @default(uuid())
+  date            DateTime @db.Date
+  query           String
+  count           Int      @default(0)
+  zeroResultCount Int      @default(0)
+  avgDurationMs   Float    @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([date, query])
+  @@index([date])
+  @@map("search_analytics")
 }

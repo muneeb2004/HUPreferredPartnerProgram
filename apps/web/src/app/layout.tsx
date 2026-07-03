@@ -6,6 +6,7 @@ import { ErrorBoundary } from '@/components/providers/ErrorBoundary';
 import { LenisProvider } from '@/components/providers/LenisProvider';
 import { MotionProvider } from '@/components/providers/MotionProvider';
 import { ThemeProvider } from '@/components/providers/ThemeProvider';
+import { AnalyticsProvider } from '@/components/providers/AnalyticsProvider';
 
 import type { Metadata } from 'next';
 import type * as React from 'react';
@@ -67,7 +68,9 @@ export default function RootLayout({
             <MotionProvider>
               <ThreeProvider>
                 <ErrorBoundary>
-                  {children}
+                  <AnalyticsProvider>
+                    {children}
+                  </AnalyticsProvider>
                 </ErrorBoundary>
               </ThreeProvider>
             </MotionProvider>

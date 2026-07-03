@@ -1,6 +1,8 @@
 import { type Metadata } from "next";
 
 import { OfferDetailHeader } from "@/components/domain/offers/OfferDetailHeader";
+import { OfferAnalyticsTracker } from "@/components/domain/offers/OfferAnalyticsTracker";
+import { ClaimOfferButton } from "@/components/domain/offers/ClaimOfferButton";
 
 import type * as React from "react";
 
@@ -18,6 +20,7 @@ export default async function OfferDetailPage({ params }: { params: Promise<{ id
   
   return (
     <>
+      <OfferAnalyticsTracker offerId={id} />
       <OfferDetailHeader 
         title={`Offer Title Placeholder (${id})`}
         partnerName="Partner Name Placeholder"
@@ -32,9 +35,7 @@ export default async function OfferDetailPage({ params }: { params: Promise<{ id
       <div className="mt-12 p-6 border border-border rounded-xl bg-surface-card max-w-3xl">
         <h3 className="font-display text-xl font-bold mb-4">How to claim</h3>
         <p className="text-muted-foreground italic mb-6">CMS Redemption Instructions Placeholder.</p>
-        <button className="px-6 py-3 bg-brand-primary text-white font-medium rounded-md focus-visible:outline-brand-primary focus-visible:ring-2 focus-visible:ring-brand-primary hover:bg-brand-primary/90 transition-colors">
-          Claim Offer
-        </button>
+        <ClaimOfferButton offerId={id} />
       </div>
     </>
   );

@@ -19,4 +19,8 @@ By tracking these items centrally, we ensure they are not forgotten and can be s
 
 | Recommendation | Originating Phase | Resolution Phase | Notes |
 |----------------|-------------------|------------------|-------|
-| *None yet.* | - | - | - |
+| Password Policy Centralization | Phase 12 | Phase 12 Hardening | Centralized in @hu-partner/utils |
+| Email Change Verification | Phase 12 | Phase 12 Hardening | Implemented UserEmailChangeToken & Service |
+| Notification Infrastructure | Phase 12 | Phase 12 Hardening | Created NotificationModule and Event Emitters |
+| Media Upload UX Components | Phase 12 | Phase 12 Hardening | Created MediaPicker, MediaPreview, MediaSelector |
+| Offer Notification Consumers | Phase 12 | Phase 12 Hardening | Implemented OfferNotificationListener |

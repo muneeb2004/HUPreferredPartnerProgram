@@ -1,4 +1,4 @@
-import { IsString, IsOptional, IsUrl, IsNumber, IsDateString } from 'class-validator';
+import { IsString, IsOptional, IsUrl, IsNumber, IsDateString, MinLength, MaxLength, Matches } from 'class-validator';
 
 export class UpdatePortalProfileDto {
   @IsString()
@@ -96,10 +96,15 @@ export class UpdatePortalSettingsDto {
   name?: string;
 }
 
+import { PASSWORD_MIN_LENGTH, PASSWORD_MAX_LENGTH, PASSWORD_REGEX, PASSWORD_REGEX_MESSAGE } from '@hu-partner/utils';
+
 export class UpdatePortalPasswordDto {
   @IsString()
   currentPassword!: string;
 
   @IsString()
+  @MinLength(PASSWORD_MIN_LENGTH)
+  @MaxLength(PASSWORD_MAX_LENGTH)
+  @Matches(PASSWORD_REGEX, { message: PASSWORD_REGEX_MESSAGE })
   newPassword!: string;
 }
