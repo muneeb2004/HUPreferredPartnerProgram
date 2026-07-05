@@ -5,10 +5,12 @@ import { ValuePropositionGrid } from "@/components/marketing/ValuePropositionGri
 
 import type * as React from "react";
 
-export const metadata: Metadata = {
-  title: 'About | HU Preferred Partner',
+import { constructMetadata } from '@/lib/metadata';
+
+export const metadata: Metadata = constructMetadata({
+  title: 'About',
   description: 'Learn about the Habib University Preferred Partner platform.',
-};
+});
 
 export default function AboutPage(): React.JSX.Element {
   return (

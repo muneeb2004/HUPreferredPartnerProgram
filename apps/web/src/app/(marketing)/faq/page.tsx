@@ -5,9 +5,11 @@ import { HeroEditorial } from "@/components/marketing/HeroEditorial";
 
 import type * as React from "react";
 
-export const metadata: Metadata = {
-  title: 'FAQ | HU Preferred Partner',
-};
+import { constructMetadata } from '@/lib/metadata';
+
+export const metadata: Metadata = constructMetadata({
+  title: 'FAQ',
+});
 
 export default function FAQPage(): React.JSX.Element {
   return (

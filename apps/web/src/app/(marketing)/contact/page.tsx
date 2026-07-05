@@ -4,9 +4,11 @@ import { HeroEditorial } from "@/components/marketing/HeroEditorial";
 
 import type * as React from "react";
 
-export const metadata: Metadata = {
-  title: 'Contact | HU Preferred Partner',
-};
+import { constructMetadata } from '@/lib/metadata';
+
+export const metadata: Metadata = constructMetadata({
+  title: 'Contact',
+});
 
 export default function ContactPage(): React.JSX.Element {
   return (

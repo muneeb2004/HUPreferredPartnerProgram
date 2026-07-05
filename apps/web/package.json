@@ -35,6 +35,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@axe-core/react": "^4.12.1",
     "@hu-partner/config": "workspace:*",
     "@hu-partner/types": "workspace:*",
     "@hu-partner/ui": "workspace:*",

@@ -6,14 +6,29 @@ import { SectionHeading } from "@/components/marketing/SectionHeading";
 
 import type * as React from "react";
 
-export const metadata: Metadata = {
-  title: 'Home | HU Preferred Partner',
+import { constructMetadata } from '@/lib/metadata';
+import { WebSiteJsonLd, OrganizationJsonLd } from '@/components/seo/JsonLd';
+
+export const metadata: Metadata = constructMetadata({
+  title: 'Home',
   description: 'Connecting students with exclusive brand partnerships.',
-};
+});
 
 export default function HomePage(): React.JSX.Element {
   return (
     <>
+      <WebSiteJsonLd
+        name="HU Preferred Partner"
+        url={process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}
+        potentialAction={{
+          target: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/partners?q={search_term_string}`,
+          queryInput: 'required name=search_term_string',
+        }}
+      />
+      <OrganizationJsonLd
+        name="Habib University"
+        url="https://habib.edu.pk"
+      />
       <HeroEditorial 
         headline="Exclusive Partnerships for Habib Students"
         subheadline="Access curated offers, discounts, and opportunities from top brands directly through your university portal."

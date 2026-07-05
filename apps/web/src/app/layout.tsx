@@ -40,17 +40,12 @@ const jetbrains = JetBrains_Mono({
   weight: ['400', '500'],
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: 'HU Preferred Partner',
-    template: '%s | HU Preferred Partner',
-  },
-  description:
-    'Habib University Preferred Partner Platform — connecting students with exclusive brand partnerships and offers.',
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000',
-  ),
-};
+import { constructMetadata } from '@/lib/metadata';
+
+export const metadata: Metadata = constructMetadata();
+
+import { AxeCoreProvider } from '@/components/accessibility/AxeCoreProvider';
+import { RouteAnnouncer } from '@/components/accessibility/RouteAnnouncer';
 
 export default function RootLayout({
   children,
@@ -60,22 +55,25 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${playfair.variable} ${inter.variable} ${jetbrains.variable}`}>
       <body className="font-body antialiased bg-surface-page text-foreground min-h-screen flex flex-col selection:bg-brand-primary/20">
-        <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:p-4 focus:bg-background focus:text-foreground focus:outline-brand-primary">
-          Skip to main content
-        </a>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <LenisProvider>
-            <MotionProvider>
-              <ThreeProvider>
-                <ErrorBoundary>
-                  <AnalyticsProvider>
-                    {children}
-                  </AnalyticsProvider>
-                </ErrorBoundary>
-              </ThreeProvider>
-            </MotionProvider>
-          </LenisProvider>
-        </ThemeProvider>
+        <AxeCoreProvider>
+          <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:p-4 focus:bg-background focus:text-foreground focus:outline-brand-primary">
+            Skip to main content
+          </a>
+          <RouteAnnouncer />
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <LenisProvider>
+              <MotionProvider>
+                <ThreeProvider>
+                  <ErrorBoundary>
+                    <AnalyticsProvider>
+                      {children}
+                    </AnalyticsProvider>
+                  </ErrorBoundary>
+                </ThreeProvider>
+              </MotionProvider>
+            </LenisProvider>
+          </ThemeProvider>
+        </AxeCoreProvider>
       </body>
     </html>
   );

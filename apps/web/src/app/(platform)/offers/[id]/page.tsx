@@ -8,11 +8,15 @@ import type * as React from "react";
 
 export const revalidate = 3600; // ISR 1 hour
 
+import { constructMetadata } from '@/lib/metadata';
+import { OfferJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
-  return {
-    title: `Offer ${id} | HU Preferred Partner`,
-  };
+  return constructMetadata({
+    title: `Offer ${id}`,
+    description: `View details for offer ${id}`,
+  });
 }
 
 export default async function OfferDetailPage({ params }: { params: Promise<{ id: string }> }): Promise<React.JSX.Element> {
@@ -20,6 +24,18 @@ export default async function OfferDetailPage({ params }: { params: Promise<{ id
   
   return (
     <>
+      <OfferJsonLd
+        name={`Offer Title Placeholder (${id})`}
+        url={`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/offers/${id}`}
+        sellerName="Partner Name Placeholder"
+      />
+      <BreadcrumbJsonLd
+        itemListElements={[
+          { name: 'Home', item: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}` },
+          { name: 'Offers', item: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/offers` },
+          { name: `Offer Title Placeholder (${id})`, item: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/offers/${id}` },
+        ]}
+      />
       <OfferAnalyticsTracker offerId={id} />
       <OfferDetailHeader 
         title={`Offer Title Placeholder (${id})`}

@@ -8,11 +8,15 @@ import type * as React from "react";
 
 export const revalidate = 3600; // ISR 1 hour
 
+import { constructMetadata } from '@/lib/metadata';
+import { OrganizationJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  return {
-    title: `${slug} | HU Preferred Partner`,
-  };
+  return constructMetadata({
+    title: slug,
+    description: `View exclusive offers and details for ${slug}.`,
+  });
 }
 
 export default async function PartnerDetailPage({ params }: { params: Promise<{ slug: string }> }): Promise<React.JSX.Element> {
@@ -20,6 +24,17 @@ export default async function PartnerDetailPage({ params }: { params: Promise<{ 
   
   return (
     <>
+      <OrganizationJsonLd
+        name={slug}
+        url={`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/partners/${slug}`}
+      />
+      <BreadcrumbJsonLd
+        itemListElements={[
+          { name: 'Home', item: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}` },
+          { name: 'Partners', item: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/partners` },
+          { name: slug, item: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/partners/${slug}` },
+        ]}
+      />
       <PartnerAnalyticsTracker partnerSlug={slug} />
       <PartnerHero 
         name={`Partner Name Placeholder (${slug})`} 

@@ -5,10 +5,12 @@ import { SectionHeading } from "@/components/marketing/SectionHeading";
 
 import type * as React from "react";
 
-export const metadata: Metadata = {
-  title: 'Offers | HU Preferred Partner',
+import { constructMetadata } from '@/lib/metadata';
+
+export const metadata: Metadata = constructMetadata({
+  title: 'Offers',
   description: 'Browse active offers from our partners.',
-};
+});
 
 export default function OffersPage(): React.JSX.Element {
   return (
